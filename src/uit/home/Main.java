@@ -17,7 +17,7 @@ public class Main extends Application {
         Image icon = new Image("resources/images/popcorn.png");
         primaryStage.setResizable(false);
         primaryStage.getIcons().add(icon);
-        primaryStage.setTitle("Blue cinema");
+        primaryStage.setTitle("JAVa");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

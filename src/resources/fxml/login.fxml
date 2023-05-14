@@ -20,7 +20,7 @@
                   <Image url="@../images/cinema.png" />
                </image>
             </ImageView>
-            <Label alignment="CENTER" layoutX="144.0" layoutY="330.0" text="BLUE" textAlignment="CENTER" textFill="#0621ba">
+            <Label alignment="CENTER" layoutX="144.0" layoutY="330.0" text="JAVa" textAlignment="CENTER" textFill="#0621ba">
                <font>
                   <Font name="System Bold" size="35.0" />
                </font>
@@ -34,55 +34,6 @@
    <center>
       <AnchorPane>
          <children>
-            <AnchorPane fx:id="signInPane" layoutY="137.0" prefHeight="586.0" prefWidth="422.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" BorderPane.alignment="CENTER">
-               <children>
-                  <TextField fx:id="usernameField" layoutX="105.0" layoutY="215.0" prefHeight="35.0" prefWidth="250.0" promptText="Username or Email" styleClass="loginField">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="16.0" />
-                     </font>
-                  </TextField>
-                  <PasswordField fx:id="passwordField" layoutX="105.0" layoutY="270.0" prefHeight="35.0" prefWidth="250.0" promptText="Password" styleClass="loginField">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="16.0" />
-                     </font>
-                  </PasswordField>
-                  <Label layoutX="106.0" layoutY="149.0" prefHeight="56.0" prefWidth="214.0" text="Sign In" textFill="STEELBLUE" wrapText="true">
-                     <font>
-                        <Font name="System Bold" size="30.0" />
-                     </font>
-                  </Label>
-                  <Button fx:id="signIn" defaultButton="true" layoutX="274.0" layoutY="325.0" mnemonicParsing="false" onAction="#login" prefHeight="31.0" prefWidth="79.0" styleClass="login-button" text="Sign In">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Button>
-                  <Label fx:id="statusLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="114.0" layoutY="386.0" prefHeight="25.0" prefWidth="216.0" textAlignment="CENTER" textFill="#c90000c9">
-                     <font>
-                        <Font name="System Italic" size="15.5" />
-                     </font>
-                  </Label>
-                  <Label id="forgot" layoutX="106.0" layoutY="331.0" prefHeight="23.0" prefWidth="156.0" text="Forgot password?" textFill="STEELBLUE">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="64.0" layoutY="223.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/user-avatar.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="33.0" fitWidth="33.0" layoutX="65.0" layoutY="274.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/lock.png" />
-                     </image>
-                  </ImageView>
-                  <Button layoutX="105.0" layoutY="460.0" mnemonicParsing="false" onAction="#handleButtonEvent" prefHeight="35.0" prefWidth="250.0" styleClass="login-button" text="Sign Up">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Button>
-               </children>
-            </AnchorPane>
             <AnchorPane fx:id="signUpPane" prefHeight="546.0" prefWidth="421.0" style="-fx-background-color: #ffff;">
                <children>
                   <Label alignment="CENTER" layoutX="98.0" layoutY="46.0" prefHeight="56.0" prefWidth="214.0" styleClass="signInLabel" text="Sign Up" textFill="STEELBLUE" wrapText="true">
@@ -126,6 +77,55 @@
                      </image>
                   </ImageView>
                   <Button defaultButton="true" layoutX="122.0" layoutY="470.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="191.0" styleClass="login-button" text="Sign Up">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="signInPane" layoutY="137.0" prefHeight="586.0" prefWidth="422.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TextField fx:id="usernameField" layoutX="105.0" layoutY="215.0" prefHeight="35.0" prefWidth="250.0" promptText="Username or Email" styleClass="loginField">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="16.0" />
+                     </font>
+                  </TextField>
+                  <PasswordField fx:id="passwordField" layoutX="105.0" layoutY="270.0" prefHeight="35.0" prefWidth="250.0" promptText="Password" styleClass="loginField">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="16.0" />
+                     </font>
+                  </PasswordField>
+                  <Label layoutX="106.0" layoutY="149.0" prefHeight="56.0" prefWidth="214.0" text="Sign In" textFill="STEELBLUE" wrapText="true">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="signIn" defaultButton="true" layoutX="274.0" layoutY="325.0" mnemonicParsing="false" onAction="#login" prefHeight="31.0" prefWidth="79.0" styleClass="login-button" text="Sign In">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Button>
+                  <Label fx:id="statusLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="114.0" layoutY="386.0" prefHeight="25.0" prefWidth="216.0" textAlignment="CENTER" textFill="#c90000c9">
+                     <font>
+                        <Font name="System Italic" size="15.5" />
+                     </font>
+                  </Label>
+                  <Label id="forgot" layoutX="106.0" layoutY="331.0" prefHeight="23.0" prefWidth="156.0" text="Forgot password?" textFill="STEELBLUE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="35.0" fitWidth="35.0" layoutX="64.0" layoutY="223.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/user-avatar.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="33.0" fitWidth="33.0" layoutX="65.0" layoutY="274.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/lock.png" />
+                     </image>
+                  </ImageView>
+                  <Button layoutX="105.0" layoutY="460.0" mnemonicParsing="false" onAction="#handleButtonEvent" prefHeight="35.0" prefWidth="250.0" styleClass="login-button" text="Sign Up">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
