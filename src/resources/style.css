@@ -1,0 +1,28 @@
+.signInLabel{
+    -fx-text-fill: #4682b4;
+}
+
+.leftAnchor{
+    -fx-background-color: linear-gradient(to bottom right, #1F2F98, #4ADEDE);
+ }
+.signUpField {
+
+}
+.loginField{
+    -fx-background-color: transparent;
+    -fx-border-color: #4682b4;
+    -fx-border-width: 0 0 2 0;
+}
+.login-button {
+    -fx-background-color: transparent;
+    -fx-border-color:  #4682b4;
+    -fx-border-width: 1.5;
+    -fx-text-fill: #4682b4;
+}
+.login-button:hover {
+    -fx-background-color: #4682b4;
+    -fx-text-fill: #fff;
+}
+#forgot:hover{
+    -fx-underline: true;
+}
