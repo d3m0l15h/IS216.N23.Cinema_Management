@@ -11,7 +11,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="546.0" prefWidth="793.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uit.controllers.loginControllers">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="546.0" prefWidth="793.0" stylesheets="@../css/login.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uit.controllers.loginControllers">
    <left>
       <AnchorPane prefHeight="586.0" prefWidth="372.0" styleClass="leftAnchor">
          <children>
@@ -36,21 +36,47 @@
          <children>
             <AnchorPane fx:id="signUpPane" prefHeight="546.0" prefWidth="421.0" style="-fx-background-color: #ffff;">
                <children>
+                  <ImageView fitHeight="39.0" fitWidth="50.0" layoutX="17.0" layoutY="18.0" onMouseClicked="#handleMouseEvent" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/back.png" />
+                     </image>
+                  </ImageView>
                   <Label alignment="CENTER" layoutX="98.0" layoutY="46.0" prefHeight="56.0" prefWidth="214.0" styleClass="signInLabel" text="Sign Up" textFill="STEELBLUE" wrapText="true">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="48.0" layoutY="142.0" prefHeight="31.0" prefWidth="325.0" styleClass="signUpField" />
-                  <TextField layoutX="48.0" layoutY="207.0" prefHeight="31.0" prefWidth="325.0" />
-                  <PasswordField layoutX="48.0" layoutY="335.0" prefHeight="31.0" prefWidth="325.0" />
-                  <PasswordField layoutX="48.0" layoutY="400.0" prefHeight="31.0" prefWidth="325.0" />
+                  <TextField fx:id="signUp_username" layoutX="48.0" layoutY="142.0" prefHeight="31.0" prefWidth="325.0" styleClass="signUpField">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="15.0" />
+                     </font></TextField>
+                  <TextField fx:id="signUp_email" layoutX="48.0" layoutY="207.0" prefHeight="31.0" prefWidth="325.0">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="15.0" />
+                     </font></TextField>
+                  <TextField fx:id="signUp_phone" layoutX="48.0" layoutY="271.0" prefHeight="31.0" prefWidth="325.0">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="15.0" />
+                     </font></TextField>
+                  <PasswordField fx:id="signUp_password" layoutX="48.0" layoutY="335.0" prefHeight="31.0" prefWidth="325.0">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="15.0" />
+                     </font></PasswordField>
+                  <PasswordField fx:id="signUp_confirm" layoutX="48.0" layoutY="400.0" prefHeight="31.0" prefWidth="325.0">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="15.0" />
+                     </font></PasswordField>
                   <Label layoutX="51.0" layoutY="116.0" styleClass="signInLabel" text="Username">
                      <font>
                         <Font name="Arial Bold" size="15.0" />
                      </font>
                   </Label>
                   <Label layoutX="51.0" layoutY="185.0" styleClass="signInLabel" text="Email">
+                     <font>
+                        <Font name="Arial Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="51.0" layoutY="247.0" styleClass="signInLabel" text="Phone">
                      <font>
                         <Font name="Arial Bold" size="15.0" />
                      </font>
@@ -65,32 +91,29 @@
                         <Font name="Arial Bold" size="15.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="48.0" layoutY="271.0" prefHeight="31.0" prefWidth="325.0" />
-                  <Label layoutX="51.0" layoutY="247.0" styleClass="signInLabel" text="Phone">
-                     <font>
-                        <Font name="Arial Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="39.0" fitWidth="50.0" layoutX="17.0" layoutY="18.0" onMouseClicked="#handleMouseEvent" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/back.png" />
-                     </image>
-                  </ImageView>
-                  <Button defaultButton="true" layoutX="122.0" layoutY="470.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="191.0" styleClass="login-button" text="Sign Up">
+                  <Button defaultButton="true" layoutX="122.0" layoutY="487.0" mnemonicParsing="false" onAction="#signUp" prefHeight="39.0" prefWidth="191.0" styleClass="login-button" text="Sign Up">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Button>
+                  <Label fx:id="usernameLabel" alignment="CENTER_RIGHT" layoutX="203.0" layoutY="114.0" prefHeight="21.0" prefWidth="168.0" textFill="#cc1010b5" />
+                  <Label fx:id="confirmLabel" alignment="CENTER_RIGHT" layoutX="206.0" layoutY="374.0" prefHeight="21.0" prefWidth="167.0" textFill="#cd1010b5" />
+                  <Label fx:id="signUp_statusLabel" alignment="CENTER" layoutX="83.0" layoutY="449.0" prefHeight="22.0" prefWidth="265.0" textFill="#000000bf">
+                     <font>
+                        <Font name="System Italic" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="emailLabel" alignment="CENTER_RIGHT" layoutX="203.0" layoutY="181.0" prefHeight="21.0" prefWidth="168.0" textFill="#cc1010b5" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="signInPane" layoutY="137.0" prefHeight="586.0" prefWidth="422.0" style="-fx-background-color: #fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" BorderPane.alignment="CENTER">
                <children>
-                  <TextField fx:id="usernameField" layoutX="105.0" layoutY="215.0" prefHeight="35.0" prefWidth="250.0" promptText="Username or Email" styleClass="loginField">
+                  <TextField fx:id="signIn_username" layoutX="105.0" layoutY="215.0" prefHeight="35.0" prefWidth="250.0" promptText="Username or Email" styleClass="loginField">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="16.0" />
                      </font>
                   </TextField>
-                  <PasswordField fx:id="passwordField" layoutX="105.0" layoutY="270.0" prefHeight="35.0" prefWidth="250.0" promptText="Password" styleClass="loginField">
+                  <PasswordField fx:id="signIn_password" layoutX="105.0" layoutY="270.0" prefHeight="35.0" prefWidth="250.0" promptText="Password" styleClass="loginField">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="16.0" />
                      </font>
@@ -105,7 +128,7 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Button>
-                  <Label fx:id="statusLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="114.0" layoutY="386.0" prefHeight="25.0" prefWidth="216.0" textAlignment="CENTER" textFill="#c90000c9">
+                  <Label fx:id="signIn_statusLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="114.0" layoutY="386.0" prefHeight="25.0" prefWidth="216.0" textAlignment="CENTER" textFill="#c90000c9">
                      <font>
                         <Font name="System Italic" size="15.5" />
                      </font>

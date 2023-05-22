@@ -13,7 +13,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("../../resources/fxml/login.fxml"));
         Scene scene = new Scene(root);
-//        scene.getStylesheets().add(getClass().getResource("../resources/style.css").toExternalForm());
+//        scene.getStylesheets().add(getClass().getResource("../resources/login.css").toExternalForm());
         Image icon = new Image("resources/images/popcorn.png");
         primaryStage.setResizable(false);
         primaryStage.getIcons().add(icon);

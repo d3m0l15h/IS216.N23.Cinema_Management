@@ -1,0 +1,21 @@
+.paneBackground{
+    -fx-background-color: linear-gradient(to bottom right, #1F2F98, #4ADEDE);
+}
+.navButton{
+    -fx-background-color: Transparent;
+    -fx-text-fill: #ffff;
+}
+.nav:hover {
+    -fx-background-color: rgba(46, 61, 141, 0.78);
+}
+
+#signOut {
+    -fx-background-color: #fff;
+    -fx-border-color: #1b5686;
+    -fx-border-width: 3px;
+    -fx-text-fill: #4682b4;
+}
+#signOut:hover{
+    -fx-background-color: #27bff6;
+    -fx-text-fill: #fff;
+}
