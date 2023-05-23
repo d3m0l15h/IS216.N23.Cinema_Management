@@ -1,6 +1,7 @@
 .paneBackground{
     -fx-background-color: linear-gradient(to bottom right, #1F2F98, #4ADEDE);
 }
+/*Left*/
 .navButton{
     -fx-background-color: Transparent;
     -fx-text-fill: #ffff;
@@ -9,24 +10,49 @@
 .nav:hover {
     -fx-background-color: rgba(46, 61, 141, 0.78);
 }
-.nav-form{
 
-}
-#signOut {
+.btn {
     -fx-background-color: #fff;
-    -fx-border-color: #1b5686;
-    -fx-border-width: 3px;
+    -fx-border-color: #5062ab;
+    -fx-border-width: 2.5;
     -fx-text-fill: #4682b4;
 }
-#signOut:hover{
-    -fx-background-color: #27bff6;
+.btn:hover{
+    -fx-background-color: #5062ab;
     -fx-text-fill: #fff;
 }
+/*Right*/
 .bg-white {
-    /* -fx-background-color: #fff;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,.3), 8,0,0,0);
-    -fx-background-radius: 8px; */
+    -fx-background-color: #fff;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,.5), 8,0,0,0);
+    -fx-background-radius: 8px;
 }
+
 .card{
+    -fx-background-color: #fff;
     -fx-background-radius: 12px;
+}
+
+.addMovieBtn{
+    -fx-text-fill: #fff;
+    -fx-background-color: #5062ab;
+    -fx-background-radius: 5px;
+}
+
+.table-view {
+    -fx-background-radius: 10px ;
+    -fx-border-radius: 10px;
+}
+.table-view .column-header-background {
+    -fx-background-color: linear-gradient(to bottom, #1F2F98, #4ADEDE);
+    -fx-background-insets: 0,0,0,0;
+    -fx-background-radius: 10 10 0 0;
+}
+.table-view .column-header, .table-view .filler {
+    -fx-background-color: Transparent;
+    -fx-size: 50px;
+    -fx-fill: #fff;
+}
+.table-view .column-header .label {
+    -fx-fill: #fff
 }

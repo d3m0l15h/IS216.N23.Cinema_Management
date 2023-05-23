@@ -105,7 +105,7 @@ public class loginControllers {
                 prepare.setString(2, signUp_username.getText());
                 prepare.setString(3,signUp_password.getText());
                 prepare.setString(4,signUp_phone.getText());
-                //prepare.execute();
+                prepare.execute();
                 signUp_statusLabel.setText("Sign up success");
                 signUp_statusLabel.setTextFill(Color.GREEN);
                 signUp_email.setText("");
