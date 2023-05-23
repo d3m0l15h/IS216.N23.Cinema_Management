@@ -5,10 +5,13 @@
     -fx-background-color: Transparent;
     -fx-text-fill: #ffff;
 }
+
 .nav:hover {
     -fx-background-color: rgba(46, 61, 141, 0.78);
 }
+.nav-form{
 
+}
 #signOut {
     -fx-background-color: #fff;
     -fx-border-color: #1b5686;
@@ -20,7 +23,10 @@
     -fx-text-fill: #fff;
 }
 .bg-white {
-    -fx-background-color: #fff;
+    /* -fx-background-color: #fff;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,.3), 8,0,0,0);
-    -fx-background-radius: 8px;
+    -fx-background-radius: 8px; */
+}
+.card{
+    -fx-background-radius: 12px;
 }
