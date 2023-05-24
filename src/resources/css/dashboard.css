@@ -32,6 +32,9 @@
     -fx-background-color: #fff;
     -fx-background-radius: 12px;
 }
+.card Label {
+    -fx-text-fill: #4682b4;
+}
 
 .addMovieBtn{
     -fx-text-fill: #fff;
@@ -42,11 +45,12 @@
 .table-view {
     -fx-background-radius: 10px ;
     -fx-border-radius: 10px;
+    -fx-fill: #fff;
 }
 .table-view .column-header-background {
     -fx-background-color: linear-gradient(to bottom, #1F2F98, #4ADEDE);
     -fx-background-insets: 0,0,0,0;
-    -fx-background-radius: 10 10 0 0;
+    -fx-background-radius: 10px 10px 0px 0px;
 }
 .table-view .column-header, .table-view .filler {
     -fx-background-color: Transparent;
@@ -54,5 +58,5 @@
     -fx-fill: #fff;
 }
 .table-view .column-header .label {
-    -fx-fill: #fff
+    -fx-text-fill: #fff
 }

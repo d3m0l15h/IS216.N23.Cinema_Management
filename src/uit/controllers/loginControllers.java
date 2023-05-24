@@ -6,6 +6,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -16,6 +17,7 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.scene.input.MouseEvent;
 import uit.home.database;
+import uit.home.getData;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -54,6 +56,7 @@ public class loginControllers {
     private Label confirmLabel;
     @FXML
     private Label signUp_statusLabel;
+    @FXML
     private Connection connect;
     private PreparedStatement prepare;
     private Statement statement;
@@ -127,6 +130,7 @@ public class loginControllers {
 
             result = prepare.executeQuery();
             if (result.next()) {
+                getData.username = signIn_username.getText();
                 root = FXMLLoader.load(getClass().getResource("../../resources/fxml/dashboard.fxml"));
                 stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                 scene = new Scene(root);
@@ -139,9 +143,7 @@ public class loginControllers {
                 signIn_statusLabel.setText("Wrong username or password");
         } catch (Exception e) {e.printStackTrace();}
     }
-    public void handleButtonEvent(ActionEvent actionEvent) {
-        signUpPane.toFront();
-    }
+    public void handleButtonEvent(ActionEvent actionEvent) {signUpPane.toFront();}
     public void handleMouseEvent(MouseEvent mouseEvent) {
         signInPane.toFront();
     }

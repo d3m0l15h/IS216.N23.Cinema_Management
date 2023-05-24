@@ -24,23 +24,15 @@
                   <Font name="System Bold" size="25.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="3.0" layoutY="190.0" prefHeight="47.0" prefWidth="233.0" text="Admin" textFill="WHITE">
+            <Label fx:id="username" alignment="CENTER" layoutX="3.0" layoutY="190.0" prefHeight="47.0" prefWidth="233.0" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
             <VBox layoutX="-4.0" layoutY="249.0" prefHeight="467.0" prefWidth="243.0">
                <children>
-                  <StackPane prefHeight="72.0" prefWidth="243.0" styleClass="nav">
+                  <StackPane prefHeight="72.0" prefWidth="226.0" styleClass="nav">
                      <children>
-                        <Button alignment="BASELINE_LEFT" contentDisplay="TOP" mnemonicParsing="false" prefHeight="64.0" prefWidth="202.0" styleClass="navButton" text="Dashboard">
-                           <font>
-                              <Font name="Segoe UI Bold" size="15.0" />
-                           </font>
-                           <StackPane.margin>
-                              <Insets left="50.0" />
-                           </StackPane.margin>
-                        </Button>
                         <ImageView fitHeight="36.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                            <StackPane.margin>
                               <Insets right="180.0" />
@@ -49,18 +41,21 @@
                               <Image url="@../images/speedometer_48px.png" />
                            </image>
                         </ImageView>
-                     </children>
-                  </StackPane>
-                  <StackPane prefHeight="72.0" prefWidth="249.0" styleClass="nav">
-                     <children>
-                        <Button alignment="BASELINE_LEFT" contentDisplay="TOP" mnemonicParsing="false" prefHeight="72.0" prefWidth="205.0" styleClass="navButton" text="Add Movies">
+                        <Button fx:id="dashboard" alignment="BASELINE_LEFT" contentDisplay="TOP" mnemonicParsing="false" onAction="#switchForm" prefHeight="72.0" prefWidth="278.0" styleClass="navButton" text="Dashboard">
                            <font>
                               <Font name="Segoe UI Bold" size="15.0" />
                            </font>
                            <StackPane.margin>
-                              <Insets left="50.0" />
+                              <Insets />
                            </StackPane.margin>
+                           <padding>
+                              <Insets left="60.0" />
+                           </padding>
                         </Button>
+                     </children>
+                  </StackPane>
+                  <StackPane prefHeight="72.0" prefWidth="249.0" styleClass="nav">
+                     <children>
                         <ImageView fitHeight="30.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                            <StackPane.margin>
                               <Insets right="180.0" />
@@ -69,18 +64,21 @@
                               <Image url="@../images/xbox_cross_100px.png" />
                            </image>
                         </ImageView>
-                     </children>
-                  </StackPane>
-                  <StackPane prefHeight="72.0" prefWidth="249.0" styleClass="nav">
-                     <children>
-                        <Button alignment="BASELINE_LEFT" contentDisplay="TOP" mnemonicParsing="false" prefHeight="64.0" prefWidth="203.0" styleClass="navButton" text="Available Movies">
+                        <Button fx:id="addMovie" alignment="BASELINE_LEFT" contentDisplay="TOP" mnemonicParsing="false" onAction="#switchForm" prefHeight="75.0" prefWidth="263.0" styleClass="navButton" text="Add Movies">
                            <font>
                               <Font name="Segoe UI Bold" size="15.0" />
                            </font>
                            <StackPane.margin>
-                              <Insets left="50.0" />
+                              <Insets />
                            </StackPane.margin>
+                           <padding>
+                              <Insets left="60.0" />
+                           </padding>
                         </Button>
+                     </children>
+                  </StackPane>
+                  <StackPane prefHeight="72.0" prefWidth="249.0" styleClass="nav">
+                     <children>
                         <ImageView fitHeight="30.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                            <StackPane.margin>
                               <Insets right="180.0" />
@@ -89,18 +87,21 @@
                               <Image url="@../images/streaming_movies_128px.png" />
                            </image>
                         </ImageView>
-                     </children>
-                  </StackPane>
-                  <StackPane prefHeight="72.0" prefWidth="249.0" styleClass="nav">
-                     <children>
-                        <Button alignment="BASELINE_LEFT" contentDisplay="TOP" mnemonicParsing="false" prefHeight="64.0" prefWidth="208.0" styleClass="navButton" text="Edit Screening">
+                        <Button fx:id="availableMovie" alignment="BASELINE_LEFT" contentDisplay="TOP" mnemonicParsing="false" onAction="#switchForm" prefHeight="80.0" prefWidth="273.0" styleClass="navButton" text="Available Movies">
                            <font>
                               <Font name="Segoe UI Bold" size="15.0" />
                            </font>
                            <StackPane.margin>
-                              <Insets left="50.0" />
+                              <Insets />
                            </StackPane.margin>
+                           <padding>
+                              <Insets left="60.0" />
+                           </padding>
                         </Button>
+                     </children>
+                  </StackPane>
+                  <StackPane prefHeight="72.0" prefWidth="249.0" styleClass="nav">
+                     <children>
                         <ImageView fitHeight="39.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <StackPane.margin>
                               <Insets right="180.0" />
@@ -109,18 +110,21 @@
                               <Image url="@../images/edit_48px.png" />
                            </image>
                         </ImageView>
-                     </children>
-                  </StackPane>
-                  <StackPane prefHeight="72.0" prefWidth="249.0" styleClass="nav">
-                     <children>
-                        <Button alignment="BASELINE_LEFT" contentDisplay="TOP" mnemonicParsing="false" prefHeight="64.0" prefWidth="199.0" styleClass="navButton" text="Customers">
+                        <Button fx:id="editScreening" alignment="BASELINE_LEFT" contentDisplay="TOP" mnemonicParsing="false" onAction="#switchForm" prefHeight="70.0" prefWidth="299.0" styleClass="navButton" text="Edit Screening">
                            <font>
                               <Font name="Segoe UI Bold" size="15.0" />
                            </font>
                            <StackPane.margin>
-                              <Insets left="50.0" />
+                              <Insets />
                            </StackPane.margin>
+                           <padding>
+                              <Insets left="60.0" />
+                           </padding>
                         </Button>
+                     </children>
+                  </StackPane>
+                  <StackPane prefHeight="72.0" prefWidth="249.0" styleClass="nav">
+                     <children>
                         <ImageView fitHeight="55.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <StackPane.margin>
                               <Insets right="180.0" />
@@ -129,6 +133,17 @@
                               <Image url="@../images/people_48px.png" />
                            </image>
                         </ImageView>
+                        <Button fx:id="customer" alignment="BASELINE_LEFT" contentDisplay="TOP" mnemonicParsing="false" onAction="#switchForm" prefHeight="110.0" prefWidth="375.0" styleClass="navButton" text="Customers">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                           <StackPane.margin>
+                              <Insets />
+                           </StackPane.margin>
+                           <padding>
+                              <Insets left="60.0" />
+                           </padding>
+                        </Button>
                      </children>
                   </StackPane>
                   <StackPane prefHeight="74.0" prefWidth="176.0">
@@ -142,7 +157,8 @@
                            </rotationAxis>
                            <StackPane.margin>
                               <Insets />
-                           </StackPane.margin></Button>
+                           </StackPane.margin>
+                        </Button>
                      </children>
                      <VBox.margin>
                         <Insets top="20.0" />
@@ -156,12 +172,78 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane layoutX="108.0" layoutY="135.0" prefHeight="720.0" prefWidth="961.0" style="-fx-background-color: F0F1F3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="dashboardForm" layoutX="48.0" layoutY="43.0" prefHeight="720.0" prefWidth="961.0" style="-fx-background-color: #F0F1F3;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <AnchorPane layoutX="35.0" layoutY="256.0" prefHeight="444.0" prefWidth="890.0" style="-fx-background-color: #fff;" styleClass="card" />
+                  <HBox layoutY="30.0" prefHeight="209.0" prefWidth="960.0" spacing="44.5">
+                     <children>
+                        <AnchorPane prefHeight="200.0" prefWidth="290.0" styleClass="card" stylesheets="@../css/dashboard.css">
+                           <children>
+                              <Label layoutX="14.0" layoutY="60.0" prefHeight="45.0" prefWidth="180.0" text="1500">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="35.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="14.0" layoutY="14.0" text="Sold Ticket Today">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="69.0" fitWidth="75.0" layoutX="179.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/ticket_128px.png" />
+                                 </image>
+                              </ImageView>
+                           </children></AnchorPane>
+                        <AnchorPane layoutY="10.0" prefHeight="200.0" prefWidth="290.0" styleClass="card" stylesheets="@../css/dashboard.css">
+                           <children>
+                              <Label layoutX="14.0" layoutY="14.0" text="Total Earn Today">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="14.0" layoutY="60.0" prefHeight="45.0" prefWidth="180.0" text="1500">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="35.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="69.0" fitWidth="75.0" layoutX="179.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/money_box_80px.png" />
+                                 </image>
+                              </ImageView>
+                           </children></AnchorPane>
+                        <AnchorPane prefHeight="200.0" prefWidth="290.0" styleClass="card" stylesheets="@../css/dashboard.css">
+                           <children>
+                              <Label layoutX="14.0" layoutY="14.0" text="Available Movie">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="14.0" layoutY="60.0" prefHeight="45.0" prefWidth="180.0" text="1500">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="35.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fitHeight="69.0" fitWidth="75.0" layoutX="179.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../images/clapperboard_80px.png" />
+                                 </image>
+                              </ImageView>
+                           </children></AnchorPane>
+                     </children>
+                     <padding>
+                        <Insets left="33.0" right="33.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="addMovieForm" layoutX="108.0" layoutY="135.0" prefHeight="720.0" prefWidth="961.0" style="-fx-background-color: #F0F1F3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <AnchorPane layoutX="9.0" layoutY="14.0" prefHeight="691.0" prefWidth="268.0" styleClass="card">
                      <children>
-                        <ImageView fitHeight="197.0" fitWidth="157.0" layoutX="56.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
-                        <Button layoutX="98.0" layoutY="219.0" mnemonicParsing="false" styleClass="addMovieBtn" text="Import">
+                        <ImageView fx:id="addMovie_image" fitHeight="197.0" fitWidth="157.0" layoutX="56.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" />
+                        <Button fx:id="addMovie_import" layoutX="98.0" layoutY="219.0" mnemonicParsing="false" onAction="#ImportImage" styleClass="addMovieBtn" text="Import">
                            <font>
                               <Font name="Segoe UI Semibold" size="15.0" />
                            </font></Button>
@@ -170,11 +252,11 @@
                               <Font name="Segoe UI Semibold" size="14.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="90.0" layoutY="283.0" prefHeight="31.0" prefWidth="159.0">
+                        <TextField fx:id="addMovie_title" layoutX="90.0" layoutY="283.0" prefHeight="31.0" prefWidth="159.0">
                            <font>
                               <Font name="Segoe UI" size="15.0" />
                            </font></TextField>
-                        <TextField layoutX="90.0" layoutY="326.0" prefHeight="31.0" prefWidth="159.0">
+                        <TextField fx:id="addMovie_genre" layoutX="90.0" layoutY="326.0" prefHeight="31.0" prefWidth="159.0">
                            <font>
                               <Font name="Segoe UI" size="15.0" />
                            </font></TextField>
@@ -188,7 +270,7 @@
                               <Font name="Segoe UI Semibold" size="14.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="90.0" layoutY="367.0" prefHeight="31.0" prefWidth="159.0">
+                        <TextField fx:id="addMovie_duration" layoutX="90.0" layoutY="367.0" prefHeight="31.0" prefWidth="159.0">
                            <font>
                               <Font name="Segoe UI" size="15.0" />
                            </font></TextField>
@@ -197,27 +279,27 @@
                               <Font name="Segoe UI Semibold" size="14.0" />
                            </font>
                         </Label>
-                        <TextField layoutX="90.0" layoutY="407.0" prefHeight="31.0" prefWidth="159.0">
+                        <TextField fx:id="addMovie_published" layoutX="90.0" layoutY="407.0" prefHeight="31.0" prefWidth="159.0">
                            <font>
                               <Font name="Segoe UI" size="15.0" />
                            </font></TextField>
-                        <Button layoutX="179.0" layoutY="640.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="69.0" styleClass="addMovieBtn" text="Clear">
+                        <Button fx:id="addMovie_clear" layoutX="192.0" layoutY="646.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="63.0" styleClass="addMovieBtn" text="Clear">
                            <font>
                               <Font name="Segoe UI Semibold" size="15.0" />
                            </font></Button>
                         <HBox id="util" layoutX="1.0" layoutY="467.0" prefHeight="31.0" prefWidth="268.0" spacing="15.0">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="69.0" styleClass="addMovieBtn" text="Add">
+                              <Button fx:id="addMovie_add" mnemonicParsing="false" prefHeight="41.0" prefWidth="69.0" styleClass="addMovieBtn" text="Add">
                                  <font>
                                     <Font name="Segoe UI Semibold" size="15.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="77.0" style="-fx-background-color: #00a903; -fx-text-fill: #fff; -fx-background-radius: 5px;" text="Update">
+                              <Button fx:id="addMovie_update" mnemonicParsing="false" prefHeight="31.0" prefWidth="77.0" style="-fx-background-color: #00a903; -fx-text-fill: #fff; -fx-background-radius: 5px;" text="Update">
                                  <font>
                                     <Font name="Segoe UI Semibold" size="15.0" />
                                  </font>
                               </Button>
-                              <Button id="delete" mnemonicParsing="false" prefHeight="38.0" prefWidth="69.0" style="-fx-background-color: a90000; -fx-text-fill: #fff; -fx-background-radius: 5px;" text="Delete">
+                              <Button id="delete" fx:id="addMovie_delete" mnemonicParsing="false" prefHeight="38.0" prefWidth="69.0" style="-fx-background-color: a90000; -fx-text-fill: #fff; -fx-background-radius: 5px;" text="Delete">
                                  <font>
                                     <Font name="Segoe UI Semibold" size="15.0" />
                                  </font>
@@ -231,7 +313,7 @@
                   </AnchorPane>
                   <AnchorPane layoutX="288.0" layoutY="14.0" prefHeight="692.0" prefWidth="661.0" styleClass="card">
                      <children>
-                        <TextField layoutX="34.0" layoutY="24.0" prefHeight="31.0" prefWidth="250.0">
+                        <TextField fx:id="addMovie_search" layoutX="34.0" layoutY="24.0" prefHeight="31.0" prefWidth="250.0">
                            <padding>
                               <Insets left="30.0" />
                            </padding>
@@ -239,12 +321,12 @@
                               <Font name="Segoe UI" size="15.0" />
                            </font>
                         </TextField>
-                        <TableView layoutX="13.0" layoutY="86.0" prefHeight="594.0" prefWidth="638.0">
+                        <TableView fx:id="addMovie_table" layoutX="13.0" layoutY="86.0" onMouseClicked="#selectAddMovieList" prefHeight="594.0" prefWidth="638.0">
                           <columns>
-                            <TableColumn prefWidth="203.0" text="Movie Title" />
-                            <TableColumn prefWidth="143.0" text="Genre" />
-                              <TableColumn prefWidth="145.0" text="Duration" />
-                              <TableColumn prefWidth="146.0" text="Published" />
+                            <TableColumn fx:id="addMovie_titleCol" prefWidth="203.0" text="Movie Title" />
+                            <TableColumn fx:id="addMovie_genreCol" prefWidth="143.0" text="Genre" />
+                              <TableColumn fx:id="addMovie_durationCol" prefWidth="145.0" text="Duration" />
+                              <TableColumn fx:id="addMovie_publishedCol" prefWidth="146.0" text="Published" />
                           </columns>
                         </TableView>
                         <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="40.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
@@ -255,55 +337,31 @@
                      </children></AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="48.0" layoutY="43.0" prefHeight="720.0" prefWidth="961.0" style="-fx-background-color: #F0F1F3;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="availableMovieForm" prefHeight="720.0" prefWidth="961.0" style="-fx-background-color: F0F1F3;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <AnchorPane layoutX="35.0" layoutY="256.0" prefHeight="444.0" prefWidth="890.0" style="-fx-background-color: #fff;" styleClass="card" />
-                  <HBox layoutY="30.0" prefHeight="209.0" prefWidth="960.0" spacing="44.5">
-                     <children>
-                        <AnchorPane prefHeight="200.0" prefWidth="290.0" styleClass="card" stylesheets="@../css/dashboard.css">
-                           <children>
-                              <Label layoutX="19.0" layoutY="60.0" prefHeight="45.0" prefWidth="180.0" text="1500">
-                                 <font>
-                                    <Font name="Segoe UI Bold" size="35.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="14.0" layoutY="14.0" text="Sold Ticket Today">
-                                 <font>
-                                    <Font name="Segoe UI Bold" size="20.0" />
-                                 </font>
-                              </Label>
-                           </children></AnchorPane>
-                        <AnchorPane layoutY="10.0" prefHeight="200.0" prefWidth="290.0" styleClass="card" stylesheets="@../css/dashboard.css">
-                           <children>
-                              <Label layoutX="14.0" layoutY="14.0" text="Total Earn Today">
-                                 <font>
-                                    <Font name="Segoe UI Bold" size="20.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="12.0" layoutY="60.0" prefHeight="45.0" prefWidth="180.0" text="1500">
-                                 <font>
-                                    <Font name="Segoe UI Bold" size="35.0" />
-                                 </font>
-                              </Label>
-                           </children></AnchorPane>
-                        <AnchorPane prefHeight="200.0" prefWidth="290.0" styleClass="card" stylesheets="@../css/dashboard.css">
-                           <children>
-                              <Label layoutX="14.0" layoutY="14.0" text="Available Movie">
-                                 <font>
-                                    <Font name="Segoe UI Bold" size="20.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="8.0" layoutY="60.0" prefHeight="45.0" prefWidth="180.0" text="1500">
-                                 <font>
-                                    <Font name="Segoe UI Bold" size="35.0" />
-                                 </font>
-                              </Label>
-                           </children></AnchorPane>
-                     </children>
-                     <padding>
-                        <Insets left="33.0" right="33.0" />
-                     </padding>
-                  </HBox>
+                  <Label layoutX="50.0" layoutY="50.0" text="AM">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="editScreeningForm" prefHeight="720.0" prefWidth="961.0" style="-fx-background-color: F0F1F3;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label text="ES">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="customerForm" prefHeight="720.0" prefWidth="961.0" style="-fx-background-color: F0F1F3;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label text="Cus">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </children>
