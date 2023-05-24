@@ -15,6 +15,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -30,7 +31,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ResourceBundle;
-
 public class dashboardController implements Initializable {
 //Element
     private ObservableList<movieData> listAddMovie;
@@ -113,40 +113,75 @@ public class dashboardController implements Initializable {
     private AnchorPane editScreeningForm;
     @FXML
     private AnchorPane customerForm;
+    @FXML
+    private StackPane dashboardPane;
+    @FXML
+    private StackPane addMoviePane;
+    @FXML
+    private StackPane availableMoviePane;
+    @FXML
+    private StackPane editScreeningPane;
+    @FXML
+    private StackPane customerPane;
     public void displayUsername(){
         username.setText(getData.username.toUpperCase());
     }
     public void switchForm(ActionEvent event){
         if(event.getSource() == dashboard) {
             dashboardForm.setVisible(true);
+            dashboardPane.getStyleClass().add("navButtonHover");
             addMovieForm.setVisible(false);
+            addMoviePane.getStyleClass().removeAll("navButtonHover");
             availableMovieForm.setVisible(false);
+            availableMoviePane.getStyleClass().removeAll("navButtonHover");
             editScreeningForm.setVisible(false);
+            editScreeningPane.getStyleClass().removeAll("navButtonHover");
             customerForm.setVisible(false);
+            customerPane.getStyleClass().removeAll("navButtonHover");
         } else if (event.getSource() == addMovie) {
             dashboardForm.setVisible(false);
+            dashboardPane.getStyleClass().removeAll("navButtonHover");
             addMovieForm.setVisible(true);
+            addMoviePane.getStyleClass().add("navButtonHover");
             availableMovieForm.setVisible(false);
+            availableMoviePane.getStyleClass().removeAll("navButtonHover");
             editScreeningForm.setVisible(false);
+            editScreeningPane.getStyleClass().removeAll("navButtonHover");
             customerForm.setVisible(false);
+            customerPane.getStyleClass().removeAll("navButtonHover");
         } else if (event.getSource() == availableMovie) {
             dashboardForm.setVisible(false);
+            dashboardPane.getStyleClass().removeAll("navButtonHover");
             addMovieForm.setVisible(false);
+            addMoviePane.getStyleClass().removeAll("navButtonHover");
             availableMovieForm.setVisible(true);
+            availableMoviePane.getStyleClass().add("navButtonHover");
             editScreeningForm.setVisible(false);
+            editScreeningPane.getStyleClass().removeAll("navButtonHover");
             customerForm.setVisible(false);
+            customerPane.getStyleClass().removeAll("navButtonHover");
         } else if (event.getSource() == editScreening) {
             dashboardForm.setVisible(false);
+            dashboardPane.getStyleClass().removeAll("navButtonHover");
             addMovieForm.setVisible(false);
+            addMoviePane.getStyleClass().removeAll("navButtonHover");
             availableMovieForm.setVisible(false);
+            availableMoviePane.getStyleClass().removeAll("navButtonHover");
             editScreeningForm.setVisible(true);
+            editScreeningPane.getStyleClass().add("navButtonHover");
             customerForm.setVisible(false);
+            customerPane.getStyleClass().removeAll("navButtonHover");
         }else if (event.getSource() == customer) {
             dashboardForm.setVisible(false);
+            dashboardPane.getStyleClass().removeAll("navButtonHover");
             addMovieForm.setVisible(false);
+            addMoviePane.getStyleClass().removeAll("navButtonHover");
             availableMovieForm.setVisible(false);
+            availableMoviePane.getStyleClass().removeAll("navButtonHover");
             editScreeningForm.setVisible(false);
+            editScreeningPane.getStyleClass().removeAll("navButtonHover");
             customerForm.setVisible(true);
+            customerPane.getStyleClass().add("navButtonHover");
         }
     }
     public void signOut(ActionEvent event) throws IOException {
