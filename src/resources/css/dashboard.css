@@ -17,7 +17,7 @@
     -fx-border-width: 2.5;
     -fx-text-fill: #4682b4;
 }
-.btn:active{
+.btn:hover{
     -fx-background-color: #5062ab;
     -fx-text-fill: #fff;
 }
