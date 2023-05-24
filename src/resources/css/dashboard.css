@@ -27,19 +27,17 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,.5), 8,0,0,0);
     -fx-background-radius: 8px;
 }
-.card{
-    -fx-background-radius: 12px;
-}
-.card Label {
-    -fx-text-fill: #4682b4;
+.bg-white Label {
+    -fx-text-fill: #5062ab;
 }
 
+/*AddMovie*/
 .addMovieBtn{
     -fx-text-fill: #fff;
     -fx-background-color: #5062ab;
     -fx-background-radius: 5px;
 }
-
+/*Table*/
 .table-view {
     -fx-background-radius: 10px ;
     -fx-border-radius: 10px;
@@ -57,4 +55,48 @@
 }
 .table-view .column-header .label {
     -fx-text-fill: #fff
+}
+/*Available Movie*/
+.availableMovieBtn {
+    -fx-background-color: Transparent;
+    -fx-border-color: #5062ab;
+    -fx-border-width: 2.5;
+    -fx-border-radius: 5px;
+    -fx-text-fill: #5062ab;
+}
+.availableMovieBtn:hover{
+    -fx-background-color: #5062ab;
+    -fx-border-width: 2.5;
+    -fx-background-radius: 5px;
+    -fx-text-fill: #fff;
+}
+.availableMovieBtn#buy:hover{
+    -fx-background-color: #00d219;
+    -fx-border-color: #00d219;
+    -fx-text-fill: #fff;
+    -fx-border-width: 2.5;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+.availableMovieBtn#receipt:hover{
+    -fx-background-color: #ffa400;
+    -fx-border-color: #ffa400;
+    -fx-text-fill: #fff;
+    -fx-border-width: 2.5;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+.availableMovieBtn#clear:hover{
+    -fx-background-color: #d200ce;
+    -fx-border-color: #d200ce;
+    -fx-text-fill: #fff;
+    -fx-border-width: 2.5;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+.info-card
+{
+    -fx-border-color: #3374a2;
+    -fx-border-radius: 5px 0px 0px 5px;
+    -fx-border-width: 2px;
 }
