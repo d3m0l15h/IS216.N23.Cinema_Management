@@ -7,7 +7,7 @@
     -fx-text-fill: #ffff;
 }
 
-.nav:hover {
+.navButtonHover {
     -fx-background-color: rgba(46, 61, 141, 0.78);
 }
 
@@ -17,7 +17,7 @@
     -fx-border-width: 2.5;
     -fx-text-fill: #4682b4;
 }
-.btn:hover{
+.btn:active{
     -fx-background-color: #5062ab;
     -fx-text-fill: #fff;
 }
