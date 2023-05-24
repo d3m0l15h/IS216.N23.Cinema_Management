@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.paint.*?>
+
 <?import de.jensd.fx.glyphs.fontawesome.*?>
+
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
@@ -25,23 +27,15 @@
                   <Font name="System Bold" size="25.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="3.0" layoutY="190.0" prefHeight="47.0" prefWidth="233.0" text="Admin" textFill="WHITE">
+            <Label fx:id="username" alignment="CENTER" layoutX="3.0" layoutY="190.0" prefHeight="47.0" prefWidth="233.0" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <VBox layoutX="3.0" layoutY="249.0" prefHeight="467.0" prefWidth="236.0">
+            <VBox layoutX="-4.0" layoutY="249.0" prefHeight="467.0" prefWidth="243.0">
                <children>
-                  <StackPane prefHeight="72.0" prefWidth="243.0" styleClass="nav">
+                  <StackPane prefHeight="72.0" prefWidth="226.0" styleClass="nav">
                      <children>
-                        <Button alignment="BASELINE_LEFT" contentDisplay="TOP" mnemonicParsing="false" prefHeight="64.0" prefWidth="202.0" styleClass="navButton" text="Dashboard">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                           <StackPane.margin>
-                              <Insets left="50.0" />
-                           </StackPane.margin>
-                        </Button>
                         <ImageView fitHeight="36.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                            <StackPane.margin>
                               <Insets right="180.0" />
@@ -50,18 +44,21 @@
                               <Image url="@../images/speedometer_48px.png" />
                            </image>
                         </ImageView>
+                        <Button fx:id="dashboard" alignment="BASELINE_LEFT" contentDisplay="TOP" mnemonicParsing="false" onAction="#switchForm" prefHeight="72.0" prefWidth="278.0" styleClass="navButton" text="Dashboard">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                           <StackPane.margin>
+                              <Insets />
+                           </StackPane.margin>
+                           <padding>
+                              <Insets left="60.0" />
+                           </padding>
+                        </Button>
                      </children>
                   </StackPane>
                   <StackPane prefHeight="72.0" prefWidth="249.0" styleClass="nav">
                      <children>
-                        <Button alignment="BASELINE_LEFT" contentDisplay="TOP" mnemonicParsing="false" prefHeight="72.0" prefWidth="205.0" styleClass="navButton" text="Add Movies">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                           <StackPane.margin>
-                              <Insets left="50.0" />
-                           </StackPane.margin>
-                        </Button>
                         <ImageView fitHeight="30.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
                            <StackPane.margin>
                               <Insets right="180.0" />
@@ -70,18 +67,21 @@
                               <Image url="@../images/xbox_cross_100px.png" />
                            </image>
                         </ImageView>
+                        <Button fx:id="addMovie" alignment="BASELINE_LEFT" contentDisplay="TOP" mnemonicParsing="false" onAction="#switchForm" prefHeight="75.0" prefWidth="263.0" styleClass="navButton" text="Add Movies">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                           <StackPane.margin>
+                              <Insets />
+                           </StackPane.margin>
+                           <padding>
+                              <Insets left="60.0" />
+                           </padding>
+                        </Button>
                      </children>
                   </StackPane>
                   <StackPane prefHeight="72.0" prefWidth="249.0" styleClass="nav">
                      <children>
-                        <Button alignment="BASELINE_LEFT" contentDisplay="TOP" mnemonicParsing="false" prefHeight="64.0" prefWidth="203.0" styleClass="navButton" text="Available Movies">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                           <StackPane.margin>
-                              <Insets left="50.0" />
-                           </StackPane.margin>
-                        </Button>
                         <ImageView fitHeight="30.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
                            <StackPane.margin>
                               <Insets right="180.0" />
@@ -90,18 +90,21 @@
                               <Image url="@../images/streaming_movies_128px.png" />
                            </image>
                         </ImageView>
+                        <Button fx:id="availableMovie" alignment="BASELINE_LEFT" contentDisplay="TOP" mnemonicParsing="false" onAction="#switchForm" prefHeight="80.0" prefWidth="273.0" styleClass="navButton" text="Available Movies">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                           <StackPane.margin>
+                              <Insets />
+                           </StackPane.margin>
+                           <padding>
+                              <Insets left="60.0" />
+                           </padding>
+                        </Button>
                      </children>
                   </StackPane>
                   <StackPane prefHeight="72.0" prefWidth="249.0" styleClass="nav">
                      <children>
-                        <Button alignment="BASELINE_LEFT" contentDisplay="TOP" mnemonicParsing="false" prefHeight="64.0" prefWidth="208.0" styleClass="navButton" text="Edit Screening">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                           <StackPane.margin>
-                              <Insets left="50.0" />
-                           </StackPane.margin>
-                        </Button>
                         <ImageView fitHeight="39.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <StackPane.margin>
                               <Insets right="180.0" />
@@ -110,18 +113,21 @@
                               <Image url="@../images/edit_48px.png" />
                            </image>
                         </ImageView>
+                        <Button fx:id="editScreening" alignment="BASELINE_LEFT" contentDisplay="TOP" mnemonicParsing="false" onAction="#switchForm" prefHeight="70.0" prefWidth="299.0" styleClass="navButton" text="Edit Screening">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                           <StackPane.margin>
+                              <Insets />
+                           </StackPane.margin>
+                           <padding>
+                              <Insets left="60.0" />
+                           </padding>
+                        </Button>
                      </children>
                   </StackPane>
                   <StackPane prefHeight="72.0" prefWidth="249.0" styleClass="nav">
                      <children>
-                        <Button alignment="BASELINE_LEFT" contentDisplay="TOP" mnemonicParsing="false" prefHeight="64.0" prefWidth="199.0" styleClass="navButton" text="Customers">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                           <StackPane.margin>
-                              <Insets left="50.0" />
-                           </StackPane.margin>
-                        </Button>
                         <ImageView fitHeight="55.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <StackPane.margin>
                               <Insets right="180.0" />
@@ -130,20 +136,35 @@
                               <Image url="@../images/people_48px.png" />
                            </image>
                         </ImageView>
+                        <Button fx:id="customer" alignment="BASELINE_LEFT" contentDisplay="TOP" mnemonicParsing="false" onAction="#switchForm" prefHeight="110.0" prefWidth="375.0" styleClass="navButton" text="Customers">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                           <StackPane.margin>
+                              <Insets />
+                           </StackPane.margin>
+                           <padding>
+                              <Insets left="60.0" />
+                           </padding>
+                        </Button>
                      </children>
                   </StackPane>
                   <StackPane prefHeight="74.0" prefWidth="176.0">
                      <children>
-                        <Button id="signOut" mnemonicParsing="false" prefHeight="39.0" prefWidth="125.0" styleClass="btn" text="Sign Out" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#signOut" prefHeight="35.0" prefWidth="108.0" styleClass="btn" text="Sign Out" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
                            <rotationAxis>
                               <Point3D />
-                           </rotationAxis></Button>
+                           </rotationAxis>
+                           <StackPane.margin>
+                              <Insets />
+                           </StackPane.margin>
+                        </Button>
                      </children>
                      <VBox.margin>
-                        <Insets />
+                        <Insets top="20.0" />
                      </VBox.margin>
                   </StackPane>
                </children>
