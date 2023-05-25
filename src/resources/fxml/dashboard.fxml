@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Point3D?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.TableColumn?>
@@ -241,11 +240,7 @@
                <children>
                   <AnchorPane layoutX="9.0" layoutY="14.0" prefHeight="691.0" prefWidth="268.0" styleClass="bg-white">
                      <children>
-                        <ImageView fx:id="addMovie_image" fitHeight="139.0" fitWidth="113.0" layoutX="81.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true" styleClass="bg-white">
-                           <image>
-                              <Image url="@../images/image_96px.png" />
-                           </image></ImageView>
-                        <Button fx:id="addMovie_import" layoutX="98.0" layoutY="219.0" mnemonicParsing="false" onAction="#ImportImage" styleClass="addMovieBtn" text="Import">
+                        <Button fx:id="addMovie_import" layoutX="102.0" layoutY="217.0" mnemonicParsing="false" onAction="#ImportImage" styleClass="addMovieBtn" text="Import">
                            <font>
                               <Font name="Segoe UI Semibold" size="15.0" />
                            </font></Button>
@@ -262,6 +257,15 @@
                            <font>
                               <Font name="Segoe UI" size="15.0" />
                            </font></TextField>
+                        <TextField fx:id="addMovie_duration" layoutX="90.0" layoutY="367.0" prefHeight="31.0" prefWidth="159.0">
+                           <font>
+                              <Font name="Segoe UI" size="15.0" />
+                           </font></TextField>
+                        <TextField fx:id="addMovie_year" layoutX="90.0" layoutY="407.0" prefHeight="31.0" prefWidth="159.0">
+                           <font>
+                              <Font name="Segoe UI" size="15.0" />
+                           </font>
+                        </TextField>
                         <Label alignment="CENTER_RIGHT" layoutX="4.0" layoutY="331.0" prefHeight="21.0" prefWidth="80.0" text="Genre">
                            <font>
                               <Font name="Segoe UI Semibold" size="14.0" />
@@ -272,32 +276,29 @@
                               <Font name="Segoe UI Semibold" size="14.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="addMovie_duration" layoutX="90.0" layoutY="367.0" prefHeight="31.0" prefWidth="159.0">
-                           <font>
-                              <Font name="Segoe UI" size="15.0" />
-                           </font></TextField>
-                        <Label alignment="CENTER_RIGHT" layoutX="4.0" layoutY="412.0" prefHeight="21.0" prefWidth="80.0" text="Published">
+                        <Label alignment="CENTER_RIGHT" layoutX="4.0" layoutY="412.0" prefHeight="21.0" prefWidth="80.0" text="Year">
                            <font>
                               <Font name="Segoe UI Semibold" size="14.0" />
                            </font>
                         </Label>
-                        <Button fx:id="addMovie_clear" layoutX="192.0" layoutY="646.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="63.0" styleClass="addMovieBtn" text="Clear">
+                        <Button layoutX="192.0" layoutY="646.0" mnemonicParsing="false" onAction="#clearAddMovie" prefHeight="31.0" prefWidth="63.0" styleClass="addMovieBtn" text="Clear">
                            <font>
                               <Font name="Segoe UI Semibold" size="15.0" />
-                           </font></Button>
+                           </font>
+                        </Button>
                         <HBox id="util" layoutX="1.0" layoutY="467.0" prefHeight="31.0" prefWidth="268.0" spacing="15.0">
                            <children>
-                              <Button fx:id="addMovie_add" mnemonicParsing="false" onAction="#insertAddMovie" prefHeight="41.0" prefWidth="69.0" styleClass="addMovieBtn" text="Add">
+                              <Button mnemonicParsing="false" onAction="#insertAddMovie" prefHeight="41.0" prefWidth="69.0" styleClass="addMovieBtn" text="Add">
                                  <font>
                                     <Font name="Segoe UI Semibold" size="15.0" />
                                  </font>
                               </Button>
-                              <Button fx:id="addMovie_update" mnemonicParsing="false" prefHeight="31.0" prefWidth="77.0" style="-fx-background-color: #00a903; -fx-text-fill: #fff; -fx-background-radius: 5px;" text="Update">
+                              <Button mnemonicParsing="false" onAction="#updateAddMovie" prefHeight="31.0" prefWidth="77.0" style="-fx-background-color: #00a903; -fx-text-fill: #fff; -fx-background-radius: 5px;" text="Update">
                                  <font>
                                     <Font name="Segoe UI Semibold" size="15.0" />
                                  </font>
                               </Button>
-                              <Button id="delete" fx:id="addMovie_delete" mnemonicParsing="false" prefHeight="38.0" prefWidth="69.0" style="-fx-background-color: a90000; -fx-text-fill: #fff; -fx-background-radius: 5px;" text="Delete">
+                              <Button id="delete" mnemonicParsing="false" onAction="#deleteAddMovie" prefHeight="38.0" prefWidth="69.0" style="-fx-background-color: a90000; -fx-text-fill: #fff; -fx-background-radius: 5px;" text="Delete">
                                  <font>
                                     <Font name="Segoe UI Semibold" size="15.0" />
                                  </font>
@@ -307,7 +308,15 @@
                               <Insets left="10.0" />
                            </padding>
                         </HBox>
-                        <DatePicker fx:id="addMovie_published" layoutX="90.0" layoutY="409.0" prefHeight="26.0" prefWidth="159.0" />
+                        <AnchorPane layoutX="57.0" layoutY="14.0" prefHeight="197.0" prefWidth="157.0">
+                           <children>
+                              <ImageView fx:id="addMovie_image" fitHeight="139.0" fitWidth="113.0" layoutX="20.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true" styleClass="bg-white">
+                                 <image>
+                                    <Image url="@../images/image_96px.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </AnchorPane>
                      </children>
                   </AnchorPane>
                   <AnchorPane layoutX="288.0" layoutY="14.0" prefHeight="692.0" prefWidth="661.0" styleClass="bg-white">
@@ -322,10 +331,10 @@
                         </TextField>
                         <TableView fx:id="addMovie_table" layoutX="13.0" layoutY="86.0" onMouseClicked="#selectAddMovieList" prefHeight="594.0" prefWidth="638.0">
                           <columns>
-                            <TableColumn fx:id="addMovie_titleCol" prefWidth="203.0" text="Movie Title" />
+                            <TableColumn fx:id="addMovie_titleCol" prefWidth="203.0" text="Title" />
                             <TableColumn fx:id="addMovie_genreCol" prefWidth="143.0" text="Genre" />
-                              <TableColumn fx:id="addMovie_durationCol" prefWidth="145.0" text="Duration" />
-                              <TableColumn fx:id="addMovie_publishedCol" prefWidth="146.0" text="Published" />
+                              <TableColumn fx:id="addMovie_durationCol" prefWidth="145.0" text="Duration (min)" />
+                              <TableColumn fx:id="addMovie_yearCol" prefWidth="146.0" text="Year" />
                           </columns>
                         </TableView>
                         <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="40.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">

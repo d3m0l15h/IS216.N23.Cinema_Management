@@ -120,7 +120,7 @@ public class loginControllers {
         }catch (Exception e) {e.printStackTrace();}
     }
     public void login(ActionEvent event) {
-        String sql = "SELECT * FROM admin WHERE username=? AND password=?";
+        String sql = "SELECT * FROM user WHERE username=? AND password=?";
         connect = database.connectDb();
         try {
             assert connect != null;
