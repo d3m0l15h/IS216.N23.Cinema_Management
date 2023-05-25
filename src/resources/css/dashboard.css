@@ -31,6 +31,10 @@
     -fx-text-fill: #5062ab;
 }
 
+.bg-white-Label2 {
+    -fx-text-fill: #FFF;
+}
+
 /*AddMovie*/
 .addMovieBtn{
     -fx-text-fill: #fff;
@@ -99,4 +103,47 @@
     -fx-border-color: #3374a2;
     -fx-border-radius: 5px 0px 0px 5px;
     -fx-border-width: 2px;
+}
+
+.combo-box
+{
+    -fx-background-color: #fff;
+    -fx-background-radius: 5px;
+    -fx-border-color: #1e242e;
+    -fx-border-width: .5px;
+    -fx-border-radius: 5px;
+}
+.combo-box:focused{
+     -fx-border-color: #ae2d3c;
+    -fx-border-width: 1px;
+    
+}
+.card-customer{
+    -fx-background-color:#fff;
+    -fx-background-radius:5px;
+    -fx-border-color: #ae2d3c;
+    -fx-border-width: .8px;
+    -fx-border-radius:5px;
+}
+
+.card1
+{
+    -fx-background-color: linear-gradient(to right, #2b428c, #2e58ab);
+    -fx-background-radius: 0px 10px 10px 0px;
+}
+
+.card2
+{
+    -fx-background-color: linear-gradient(to right, #772d90, #a42fb8);
+    -fx-background-radius: 0px 10px 10px 0px;
+}
+
+.card3
+{
+    -fx-background-color: linear-gradient(to right, #9d2249, #cc1c5a);
+    -fx-background-radius: 0px 10px 10px 0px;
+}
+
+.card:hover{
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);
 }
