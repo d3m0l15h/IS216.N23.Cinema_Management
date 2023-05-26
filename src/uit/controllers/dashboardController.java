@@ -2,6 +2,8 @@ package uit.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -30,14 +32,220 @@ import java.sql.*;
 import java.util.Optional;
 import java.util.ResourceBundle;
 public class dashboardController implements Initializable {
-//Element
+//FXML
+    @FXML
+    private TableColumn<movieData, String> addMovie_durationCol;
+    @FXML
+    private TableColumn<movieData, String> addMovie_titleCol;
+    @FXML
+    private TableColumn<movieData, String> addMovie_genreCol;
+    @FXML
+    private TableColumn<movieData, String> addMovie_yearCol;
+    @FXML
+    private TableView<movieData> addMovie_table;
+    @FXML
+    private Button addMovie;
+
+    @FXML
+    private AnchorPane addMovieForm;
+
+    @FXML
+    private StackPane addMoviePane;
+
+    @FXML
+    private TextField addMovie_duration;
+
+    @FXML
+    private TextField addMovie_genre;
+
+    @FXML
+    private ImageView addMovie_image;
+
+    @FXML
+    private Button addMovie_import;
+
+    @FXML
+    private TextField addMovie_search;
+
+
+    @FXML
+    private TextField addMovie_title;
+
+
+    @FXML
+    private TextField addMovie_year;
+
+
+    @FXML
+    private Button availableMovie;
+
+    @FXML
+    private AnchorPane availableMovieForm;
+
+    @FXML
+    private StackPane availableMoviePane;
+
+    @FXML
+    private Button availableMovie_buy;
+
+    @FXML
+    private Button availableMovie_clear;
+
+    @FXML
+    private Label availableMovie_date;
+
+    @FXML
+    private TableColumn<?, ?> availableMovie_dateCol;
+
+    @FXML
+    private Label availableMovie_genre;
+
+    @FXML
+    private TableColumn<?, ?> availableMovie_genreCol;
+
+    @FXML
+    private ImageView availableMovie_image;
+
+    @FXML
+    private Label availableMovie_label;
+
+    @FXML
+    private TableColumn<?, ?> availableMovie_movieCol;
+
+    @FXML
+    private Label availableMovie_price1;
+
+    @FXML
+    private Label availableMovie_price2;
+
+    @FXML
+    private Button availableMovie_receipt;
+
+    @FXML
+    private Button availableMovie_select;
+
+    @FXML
+    private Spinner<?> availableMovie_spinner1;
+
+    @FXML
+    private Spinner<?> availableMovie_spinner2;
+
+    @FXML
+    private TableView<?> availableMovie_table;
+
+    @FXML
+    private Label availableMovie_title;
+
+    @FXML
+    private Button customer;
+
+    @FXML
+    private AnchorPane customerForm;
+
+    @FXML
+    private StackPane customerPane;
+
+    @FXML
+    private Label customer_date;
+
+    @FXML
+    private TableColumn<?, ?> customer_dateCol;
+
+    @FXML
+    private TextField customer_search;
+
+    @FXML
+    private TableView<?> customer_table;
+
+    @FXML
+    private Label customer_ticket;
+
+    @FXML
+    private TableColumn<?, ?> customer_ticketCol;
+
+    @FXML
+    private Label customer_time;
+
+    @FXML
+    private TableColumn<?, ?> customer_timeCol;
+
+    @FXML
+    private Label customer_title;
+
+    @FXML
+    private TableColumn<?, ?> customer_titleCol;
+
+    @FXML
+    private Label customer_total;
+
+    @FXML
+    private TableColumn<?, ?> customer_totalCol;
+
+    @FXML
+    private Button dashboard;
+
+    @FXML
+    private AnchorPane dashboardForm;
+
+    @FXML
+    private StackPane dashboardPane;
+
+    @FXML
+    private Button editScreening;
+
+    @FXML
+    private AnchorPane editScreeningForm;
+
+    @FXML
+    private StackPane editScreeningPane;
+
+    @FXML
+    private Button editScreening_clear;
+
+    @FXML
+    private ComboBox<?> editScreening_combobox;
+
+    @FXML
+    private TableColumn<?, ?> editScreening_currentCol;
+
+    @FXML
+    private TableColumn<?, ?> editScreening_durationCol;
+
+    @FXML
+    private TableColumn<?, ?> editScreening_genreCol;
+
+    @FXML
+    private ImageView editScreening_image;
+
+    @FXML
+    private Label editScreening_label;
+
+    @FXML
+    private TextField editScreening_search;
+
+    @FXML
+    private TableView<?> editScreening_table;
+
+    @FXML
+    private Label editScreening_title;
+
+    @FXML
+    private TableColumn<?, ?> editScreening_titleCol;
+
+    @FXML
+    private Button editScreening_update;
+
+    @FXML
+    private Label username;
+
+    //Element
     private ObservableList<movieData> listAddMovie;
     private Image image;
-//Javafx.graphic
+    //Javafx.graphic
     private Parent root;
     private Scene scene;
     private Stage stage;
-//Java.sql
+    //Java.sql
     private Connection connect;
     private ResultSet result;
     private PreparedStatement prepare;
@@ -56,63 +264,6 @@ public class dashboardController implements Initializable {
             getData.path = file.getAbsolutePath();
         }
     }
-//FXML
-    @FXML
-    private TextField addMovie_duration;
-    @FXML
-    private TextField addMovie_search;
-    @FXML
-    private TextField addMovie_title;
-    @FXML
-    private TextField addMovie_genre;
-    @FXML
-    private TableColumn<movieData, String> addMovie_durationCol;
-    @FXML
-    private TableColumn<movieData, String> addMovie_titleCol;
-    @FXML
-    private Button addMovie_import;
-    @FXML
-    private TextField addMovie_year;
-    @FXML
-    private TableColumn<movieData, String> addMovie_genreCol;
-    @FXML
-    private TableColumn<movieData, String> addMovie_yearCol;
-    @FXML
-    private TableView<movieData> addMovie_table;
-    @FXML
-    private ImageView addMovie_image;
-    @FXML
-    private Label username;
-    @FXML
-    private Button customer;
-    @FXML
-    private Button dashboard;
-    @FXML
-    private Button editScreening;
-    @FXML
-    private Button addMovie;
-    @FXML
-    private Button availableMovie;
-    @FXML
-    private AnchorPane dashboardForm;
-    @FXML
-    private AnchorPane addMovieForm;
-    @FXML
-    private AnchorPane availableMovieForm;
-    @FXML
-    private AnchorPane editScreeningForm;
-    @FXML
-    private AnchorPane customerForm;
-    @FXML
-    private StackPane dashboardPane;
-    @FXML
-    private StackPane addMoviePane;
-    @FXML
-    private StackPane availableMoviePane;
-    @FXML
-    private StackPane editScreeningPane;
-    @FXML
-    private StackPane customerPane;
     public void displayUsername(){
         username.setText(getData.username.toUpperCase());
     }
@@ -365,7 +516,29 @@ public class dashboardController implements Initializable {
         addMovie_year.setText("");
         addMovie_image.setImage(new Image("resources/images/image_96px.png"));
     }
+    //SEARCH
+    public void searchAddMovie(){
+        FilteredList<movieData> filter = new FilteredList<>(listAddMovie, e -> true);
 
+        addMovie_search.textProperty().addListener((observable, oldValue, newValue) -> {
+
+            filter.setPredicate(predicateMoviesData -> {
+
+                if(newValue.isEmpty() || newValue == null){
+                    return true;
+                }
+
+                String keyword = newValue.toLowerCase();
+                return predicateMoviesData.getTitle().toLowerCase().contains(keyword)
+                        || predicateMoviesData.getGenre().toLowerCase().contains(keyword);
+            });
+        });
+
+        SortedList<movieData> sortData = new SortedList<>(filter);
+        sortData.comparatorProperty().bind(addMovie_table.comparatorProperty());
+
+        addMovie_table.setItems(filter);
+    }
 
 //Available Movies
 

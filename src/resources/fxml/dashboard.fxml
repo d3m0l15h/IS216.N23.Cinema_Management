@@ -156,7 +156,7 @@
                   </StackPane>
                   <StackPane prefHeight="74.0" prefWidth="176.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#signOut" prefHeight="35.0" prefWidth="108.0" styleClass="btn" text="Sign Out" textAlignment="CENTER" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#signOut" prefHeight="35.0" prefWidth="108.0" styleClass="signOutBtn" text="Sign Out" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
@@ -322,7 +322,7 @@
                   </AnchorPane>
                   <AnchorPane layoutX="288.0" layoutY="14.0" prefHeight="692.0" prefWidth="661.0" styleClass="bg-white">
                      <children>
-                        <TextField fx:id="addMovie_search" layoutX="34.0" layoutY="24.0" prefHeight="31.0" prefWidth="250.0">
+                        <TextField fx:id="addMovie_search" layoutX="34.0" layoutY="24.0" onKeyPressed="#searchAddMovie" prefHeight="31.0" prefWidth="250.0">
                            <padding>
                               <Insets left="30.0" />
                            </padding>
@@ -346,7 +346,7 @@
                      </children></AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="availableMovieForm" prefHeight="720.0" prefWidth="961.0" style="-fx-background-color: F0F1F3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="availableMovieForm" prefHeight="720.0" prefWidth="961.0" style="-fx-background-color: F0F1F3;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <AnchorPane layoutX="16.0" layoutY="27.0" prefHeight="200.0" prefWidth="930.0" styleClass="bg-white">
                      <children>
@@ -357,7 +357,7 @@
                                     <Font name="Segoe UI Semibold" size="14.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="availableMovie_title" layoutX="100.0" layoutY="22.0" prefHeight="24.0" prefWidth="134.0" style="-fx-border-color: #4682b4; -fx-border-width: 2; -fx-border-radius: 3;" text="Movie Titles">
+                              <Label fx:id="availableMovie_title" layoutX="100.0" layoutY="22.0" prefHeight="24.0" prefWidth="134.0" style="-fx-border-color: #4682b4; -fx-border-width: 2; -fx-border-radius: 3;">
                                  <font>
                                     <Font name="Segoe UI" size="14.0" />
                                  </font>
@@ -365,7 +365,7 @@
                                     <Insets left="5.0" />
                                  </padding>
                               </Label>
-                              <Label fx:id="availableMovie_date" layoutX="100.0" layoutY="101.0" prefHeight="24.0" prefWidth="134.0" style="-fx-border-color: #4682b4; -fx-border-width: 2; -fx-border-radius: 3;" text="Movie Titles">
+                              <Label fx:id="availableMovie_date" layoutX="100.0" layoutY="101.0" prefHeight="24.0" prefWidth="134.0" style="-fx-border-color: #4682b4; -fx-border-width: 2; -fx-border-radius: 3;">
                                  <font>
                                     <Font name="Segoe UI" size="14.0" />
                                  </font>
@@ -383,7 +383,7 @@
                                     <Font name="Segoe UI Semibold" size="14.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="availableMovie_genre" layoutX="100.0" layoutY="61.0" prefHeight="24.0" prefWidth="134.0" style="-fx-border-color: #4682b4; -fx-border-width: 2; -fx-border-radius: 3;" text="Movie Titles">
+                              <Label fx:id="availableMovie_genre" layoutX="100.0" layoutY="61.0" prefHeight="24.0" prefWidth="134.0" style="-fx-border-color: #4682b4; -fx-border-width: 2; -fx-border-radius: 3;">
                                  <font>
                                     <Font name="Segoe UI" size="14.0" />
                                  </font>
@@ -391,7 +391,7 @@
                                     <Insets left="5.0" />
                                  </padding>
                               </Label>
-                              <Button fx:id="availableMovie_select" layoutX="100.0" layoutY="146.0" mnemonicParsing="false" styleClass="availableMovieBtn" text="Select Movie">
+                              <Button fx:id="availableMovie_select" layoutX="100.0" layoutY="146.0" mnemonicParsing="false" styleClass="btn" text="Select Movie">
                                  <font>
                                     <Font name="Segoe UI Bold" size="14.0" />
                                  </font>
@@ -415,177 +415,135 @@
                                     <ImageView fx:id="availableMovie_image" fitHeight="203.0" fitWidth="177.0" layoutX="-14.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" styleClass="bg-white" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="-1.0" />
                                  </children>
                               </AnchorPane>
-                              <Label alignment="CENTER" layoutX="7.0" layoutY="244.0" prefHeight="21.0" prefWidth="244.0" text="Label">
+                              <Label fx:id="availableMovie_label" alignment="CENTER" layoutX="7.0" layoutY="244.0" prefHeight="21.0" prefWidth="244.0" text="Label">
                                  <font>
-                                    <Font name="Segoe UI Bold" size="22.0" />
+                                    <Font name="Segoe UI Bold" size="24.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" layoutX="-1.0" layoutY="285.0" prefHeight="26.0" prefWidth="258.0" text="Title">
+                              <Label fx:id="availableMovie_title2" alignment="CENTER" layoutX="-1.0" layoutY="285.0" prefHeight="26.0" prefWidth="258.0" text="Title">
                                  <font>
-                                    <Font size="14.0" />
+                                    <Font name="Segoe UI Semibold" size="15.0" />
                                  </font>
                               </Label>
                            </children></AnchorPane>
-                        <Label layoutX="491.0" layoutY="23.0" text="Purchase Ticket">
-                           <font>
-                              <Font name="Segoe UI Bold" size="26.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="507.0" layoutY="117.0" text="Quantity">
-                           <font>
-                              <Font name="Segoe UI Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="686.0" layoutY="117.0" text="Price($)">
-                           <font>
-                              <Font name="Segoe UI Bold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="367.0" layoutY="159.0" text="Special Class">
-                           <font>
-                              <Font name="Segoe UI Semibold" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="367.0" layoutY="216.0" text="Normal Class">
-                           <font>
-                              <Font name="Segoe UI Semibold" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="788.0" layoutY="279.0" text="Total">
-                           <font>
-                              <Font name="Segoe UI Bold" size="20.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="availableMovie_price1" layoutX="689.0" layoutY="160.0" text="\$0.0">
-                           <font>
-                              <Font name="Segoe UI Semibold" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="availableMovie_price2" layoutX="689.0" layoutY="217.0" text="\$0.0">
-                           <font>
-                              <Font name="Segoe UI Semibold" size="16.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER" layoutX="740.0" layoutY="303.0" prefHeight="30.0" prefWidth="143.0" text="\$0.0">
-                           <font>
-                              <Font name="Segoe UI Semibold" size="18.0" />
-                           </font>
-                        </Label>
-                        <Button id="buy" fx:id="availableMovie_buy" layoutX="828.0" layoutY="364.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="76.0" styleClass="availableMovieBtn" text="Buy">
-                           <font>
-                              <Font name="Segoe UI Bold" size="14.0" />
-                           </font></Button>
-                        <Button id="clear" fx:id="availableMovie_clear" layoutX="285.0" layoutY="365.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="70.0" styleClass="availableMovieBtn" text="Clear">
-                           <font>
-                              <Font name="Segoe UI Bold" size="14.0" />
-                           </font></Button>
-                        <Button id="receipt" fx:id="availableMovie_receipt" layoutX="719.0" layoutY="365.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="76.0" styleClass="availableMovieBtn" text="Receipt">
-                           <font>
-                              <Font name="Segoe UI Bold" size="14.0" />
-                           </font></Button>
-                        <Spinner fx:id="availableMovie_spinner1" layoutX="479.0" layoutY="160.0" />
-                        <Spinner fx:id="availableMovie_spinner2" layoutX="479.0" layoutY="218.0" />
+                        <AnchorPane layoutX="280.0" prefHeight="428.0" prefWidth="653.0" styleClass="info-card">
+                           <children>
+                              <Label layoutX="198.0" layoutY="14.0" text="Purchase Ticket">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="26.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="210.0" layoutY="119.0" text="Quantity">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="411.0" layoutY="119.0" text="Price($)">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="70.0" layoutY="161.0" text="Special Class">
+                                 <font>
+                                    <Font name="Segoe UI Semibold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="70.0" layoutY="218.0" text="Normal Class">
+                                 <font>
+                                    <Font name="Segoe UI Semibold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="514.0" layoutY="306.0" text="Total">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="availableMovie_price1" layoutX="414.0" layoutY="160.0" text="\$0.0">
+                                 <font>
+                                    <Font name="Segoe UI Semibold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="availableMovie_price2" layoutX="414.0" layoutY="218.0" text="\$0.0">
+                                 <font>
+                                    <Font name="Segoe UI Semibold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" layoutX="426.0" layoutY="330.0" prefHeight="30.0" prefWidth="222.0" text="\$0.0">
+                                 <font>
+                                    <Font name="Segoe UI Semibold" size="18.0" />
+                                 </font>
+                              </Label>
+                              <Button id="buy" fx:id="availableMovie_buy" layoutX="549.0" layoutY="378.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="76.0" styleClass="btn" text="Buy">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button id="clear" fx:id="availableMovie_clear" layoutX="35.0" layoutY="378.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="70.0" styleClass="btn" text="Clear">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button id="receipt" fx:id="availableMovie_receipt" layoutX="444.0" layoutY="378.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="76.0" styleClass="btn" text="Receipt">
+                                 <font>
+                                    <Font name="Segoe UI Bold" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Spinner fx:id="availableMovie_spinner1" layoutX="182.0" layoutY="162.0" />
+                              <Spinner fx:id="availableMovie_spinner2" layoutX="182.0" layoutY="220.0" />
+                           </children>
+                        </AnchorPane>
                      </children>
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="customerForm" prefHeight="720.0" prefWidth="963.2" style="-fx-background-color: F0F1F3;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="editScreeningForm" prefHeight="720.0" prefWidth="961.0" style="-fx-background-color: F0F1F3;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <AnchorPane layoutX="11.0" layoutY="15.0" prefHeight="694.0" prefWidth="315.0" styleClass="bg-white">
+                  <AnchorPane layoutX="14.0" layoutY="22.0" prefHeight="683.0" prefWidth="311.0" styleClass="bg-white">
                      <children>
-                        <AnchorPane layoutY="-1.0" prefHeight="318.0" prefWidth="318.0" styleClass="info-card">
+                        <AnchorPane layoutX="47.0" layoutY="34.0" prefHeight="295.0" prefWidth="206.0" styleClass="bg-white">
                            <children>
-                              <Label layoutX="69.0" layoutY="40.0" text="Ticket:">
-                                 <font>
-                                    <Font name="Segoe UI Semibold" size="16.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="29.0" layoutY="90.0" text="Movie Title:">
-                                 <font>
-                                    <Font name="Segoe UI Semibold" size="16.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="6.0" layoutY="140.0" text="Total payment:">
-                                 <font>
-                                    <Font name="Segoe UI Semibold" size="16.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="125.0" layoutY="190.0" prefHeight="30.0" prefWidth="180.0" style="-fx-border-color: #4682b4;" styleClass="card-customer" text="Movie Title">
-                                 <font>
-                                    <Font name="Segoe UI" size="16.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets left="5.0" />
-                                 </padding>
-                              </Label>
-                              <Label layoutX="12.0" layoutY="190.0" text="Date checked:">
-                                 <font>
-                                    <Font name="Segoe UI Semibold" size="16.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="12.0" layoutY="240.0" text="Time checked:">
-                                 <font>
-                                    <Font name="Segoe UI Semibold" size="16.0" />
-                                 </font>
-                              </Label>
-                              <Label layoutX="125.0" layoutY="140.0" prefHeight="30.0" prefWidth="180.0" style="-fx-border-color: #4682b4;" styleClass="card-customer" text="Movie Title">
-                                 <font>
-                                    <Font name="Segoe UI" size="16.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets left="5.0" />
-                                 </padding>
-                              </Label>
-                              <Label layoutX="125.0" layoutY="90.0" prefHeight="30.0" prefWidth="180.0" style="-fx-border-color: #4682b4;" styleClass="card-customer" text="Movie Title">
-                                 <font>
-                                    <Font name="Segoe UI" size="16.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets left="5.0" />
-                                 </padding>
-                              </Label>
-                              <Label layoutX="125.0" layoutY="40.0" prefHeight="30.0" prefWidth="180.0" style="-fx-border-color: #4682b4;" styleClass="card-customer" text="Movie Title">
-                                 <font>
-                                    <Font name="Segoe UI" size="16.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets left="5.0" />
-                                 </padding>
-                              </Label>
-                              <Label layoutX="125.0" layoutY="240.0" prefHeight="30.0" prefWidth="180.0" style="-fx-border-color: #4682b4;" styleClass="card-customer" text="Movie Title">
-                                 <font>
-                                    <Font name="Segoe UI" size="16.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets left="5.0" />
-                                 </padding>
-                              </Label>
+                              <ImageView fx:id="editScreening_image" fitHeight="293.0" fitWidth="209.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
                            </children>
                         </AnchorPane>
-                        <Button id="clear" layoutX="56.0" layoutY="347.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" styleClass="customerBtn" text="Clear">
+                        <Label fx:id="editScreening_label" alignment="CENTER" layoutX="-1.0" layoutY="335.0" prefHeight="40.0" prefWidth="310.0" text="Lable">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="42.0" layoutY="487.0" prefHeight="30.0" prefWidth="78.0" text="Current:">
+                           <font>
+                              <Font name="System Bold" size="17.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="editScreening_title" alignment="CENTER" layoutX="-2.0" layoutY="384.0" prefHeight="30.0" prefWidth="312.0" text="Title">
+                           <font>
+                              <Font name="Segoe UI Semibold" size="20.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="editScreening_combobox" layoutX="121.0" layoutY="487.0" prefHeight="31.0" prefWidth="147.0" promptText="Choose" style="-fx-border-color: #4682b4; -fx-border-width: 2;" styleClass="combo-box" />
+                        <Button id="receipt" fx:id="editScreening_update" layoutX="50.0" layoutY="621.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="92.0" styleClass="btn" text="Update">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
                         </Button>
-                        <Button id="update" layoutX="190.0" layoutY="347.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" styleClass="customerBtn" text="Update">
+                        <Button id="clear" fx:id="editScreening_clear" layoutX="181.0" layoutY="621.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="92.0" styleClass="btn" text="Clear">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
                         </Button>
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutX="337.0" layoutY="17.0" prefHeight="691.0" prefWidth="614.0" styleClass="bg-white">
+                  <AnchorPane layoutX="349.0" layoutY="22.0" prefHeight="682.0" prefWidth="599.0" styleClass="bg-white">
                      <children>
-                        <TableView layoutX="9.0" layoutY="107.0" prefHeight="579.0" prefWidth="599.0">
+                        <TableView fx:id="editScreening_table" layoutX="7.0" layoutY="207.0" prefHeight="650.0" prefWidth="600.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="70.0">
                            <columns>
-                              <TableColumn prefWidth="88.79998779296875" text="Ticker Number" />
-                              <TableColumn prefWidth="136.79998779296875" text="Movie Title" />
-                              <TableColumn prefWidth="107.20001220703125" text="Total payment" />
-                              <TableColumn prefWidth="124.0" text="Date Checked Out" />
-                              <TableColumn prefWidth="175.199951171875" text="Time Check Out" />
+                              <TableColumn fx:id="editScreening_titleCol" prefWidth="205.33331298828125" text="Movie title" />
+                              <TableColumn fx:id="editScreening_genreCol" prefWidth="127.46661376953125" text="Genre" />
+                              <TableColumn fx:id="editScreening_durationCol" prefWidth="130.1334228515625" text="Duration" />
+                              <TableColumn fx:id="editScreening_currentCol" prefWidth="135.9998779296875" text="Current" />
                            </columns>
                         </TableView>
-                        <TextField fx:id="addMovie_search1" layoutX="14.0" layoutY="14.0" prefHeight="31.0" prefWidth="250.0">
+                        <TextField fx:id="editScreening_search" layoutX="14.0" layoutY="14.0" prefHeight="31.0" prefWidth="250.0">
                            <padding>
                               <Insets left="30.0" />
                            </padding>
@@ -602,56 +560,115 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="editScreeningForm" prefHeight="720.0" prefWidth="961.0" style="-fx-background-color: F0F1F3;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="customerForm" prefHeight="720.0" prefWidth="963.2" style="-fx-background-color: F0F1F3;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <AnchorPane layoutX="14.0" layoutY="22.0" prefHeight="683.0" prefWidth="311.0" styleClass="bg-white">
+                  <AnchorPane layoutX="11.0" layoutY="15.0" prefHeight="694.0" prefWidth="315.0" styleClass="bg-white">
                      <children>
-                        <AnchorPane layoutX="47.0" layoutY="34.0" prefHeight="295.0" prefWidth="206.0" styleClass="bg-white">
+                        <AnchorPane layoutX="-2.0" layoutY="-1.0" prefHeight="284.0" prefWidth="320.0">
                            <children>
-                              <ImageView fitHeight="293.0" fitWidth="209.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true" />
+                              <Label layoutX="69.0" layoutY="23.0" text="Ticket:">
+                                 <font>
+                                    <Font name="Segoe UI Semibold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="29.0" layoutY="73.0" text="Movie Title:">
+                                 <font>
+                                    <Font name="Segoe UI Semibold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="6.0" layoutY="123.0" text="Total payment:">
+                                 <font>
+                                    <Font name="Segoe UI Semibold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="customer_date" layoutX="125.0" layoutY="173.0" prefHeight="30.0" prefWidth="180.0" style="-fx-border-color: #4682b4;" styleClass="card-customer">
+                                 <font>
+                                    <Font name="Segoe UI" size="15.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets left="5.0" />
+                                 </padding>
+                              </Label>
+                              <Label layoutX="12.0" layoutY="173.0" text="Date checked:">
+                                 <font>
+                                    <Font name="Segoe UI Semibold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="12.0" layoutY="223.0" text="Time checked:">
+                                 <font>
+                                    <Font name="Segoe UI Semibold" size="16.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="customer_total" layoutX="125.0" layoutY="123.0" prefHeight="30.0" prefWidth="180.0" style="-fx-border-color: #4682b4;" styleClass="card-customer">
+                                 <font>
+                                    <Font name="Segoe UI" size="15.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets left="5.0" />
+                                 </padding>
+                              </Label>
+                              <Label fx:id="customer_title" layoutX="125.0" layoutY="73.0" prefHeight="30.0" prefWidth="180.0" style="-fx-border-color: #4682b4;" styleClass="card-customer">
+                                 <font>
+                                    <Font name="Segoe UI" size="15.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets left="5.0" />
+                                 </padding>
+                              </Label>
+                              <Label fx:id="customer_ticket" layoutX="125.0" layoutY="23.0" prefHeight="30.0" prefWidth="180.0" style="-fx-border-color: #4682b4;" styleClass="card-customer">
+                                 <font>
+                                    <Font name="Segoe UI" size="15.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets left="5.0" />
+                                 </padding>
+                              </Label>
+                              <Label fx:id="customer_time" layoutX="125.0" layoutY="223.0" prefHeight="30.0" prefWidth="180.0" style="-fx-border-color: #4682b4;" styleClass="card-customer">
+                                 <font>
+                                    <Font name="Segoe UI" size="15.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets left="5.0" />
+                                 </padding>
+                              </Label>
                            </children>
                         </AnchorPane>
-                        <Label alignment="CENTER" layoutX="35.0" layoutY="335.0" prefHeight="40.0" prefWidth="229.0" text="Lable">
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="30.0" layoutY="473.0" prefHeight="38.0" prefWidth="70.0" text="Current:">
+                        <Button id="clear" layoutX="119.0" layoutY="287.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" styleClass="btn" text="Clear">
                            <font>
                               <Font name="System Bold" size="15.0" />
                            </font>
-                        </Label>
-                        <Label layoutX="136.0" layoutY="384.0" text="Title">
+                        </Button>
+                        <Button id="receipt" layoutX="224.0" layoutY="287.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="80.0" styleClass="btn" text="Update">
                            <font>
-                              <Font size="15.0" />
+                              <Font name="System Bold" size="15.0" />
                            </font>
-                        </Label>
-                        <ComboBox layoutX="125.0" layoutY="480.0" prefWidth="150.0" promptText="Choose" style="-fx-border-color: #4682b4; -fx-border-width: 2;" styleClass="combo-box" />
-                        <Button layoutX="39.0" layoutY="550.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="92.0" styleClass="btn" text="Update">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font></Button>
-                        <Button layoutX="200.0" layoutY="550.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="70.0" styleClass="btn" text="Clear">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font></Button>
+                        </Button>
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutX="349.0" layoutY="22.0" prefHeight="682.0" prefWidth="599.0" styleClass="bg-white">
+                  <AnchorPane layoutX="337.0" layoutY="18.0" prefHeight="691.0" prefWidth="614.0" styleClass="bg-white">
                      <children>
-                        <TableView layoutX="7.0" layoutY="207.0" prefHeight="650.0" prefWidth="600.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="70.0">
+                        <TableView fx:id="customer_table" layoutX="7.0" layoutY="65.0" prefHeight="610.0" prefWidth="599.0">
                            <columns>
-                              <TableColumn prefWidth="205.33331298828125" text="Movie title" />
-                              <TableColumn prefWidth="127.46661376953125" text="Genre" />
-                              <TableColumn prefWidth="130.1334228515625" text="Duration" />
-                              <TableColumn prefWidth="135.9998779296875" text="Current" />
+                              <TableColumn fx:id="customer_ticketCol" prefWidth="88.79998779296875" text="Ticker Number" />
+                              <TableColumn fx:id="customer_titleCol" prefWidth="136.79998779296875" text="Movie Title" />
+                              <TableColumn fx:id="customer_totalCol" prefWidth="107.20001220703125" text="Total payment" />
+                              <TableColumn fx:id="customer_dateCol" prefWidth="122.4000244140625" text="Date Checked Out" />
+                              <TableColumn fx:id="customer_timeCol" prefWidth="141.6000854492188" text="Time Check Out" />
                            </columns>
                         </TableView>
-                        <TextField layoutX="30.0" layoutY="15.0" prefHeight="41.0" prefWidth="272.0" promptText="Search" style="-fx-border-color: #4682b4; -fx-border-width: 2;">
+                        <TextField fx:id="customer_search" layoutX="12.0" layoutY="17.0" prefHeight="31.0" prefWidth="250.0">
+                           <padding>
+                              <Insets left="30.0" />
+                           </padding>
                            <font>
-                              <Font name="System Bold" size="15.0" />
+                              <Font name="Segoe UI" size="15.0" />
                            </font>
                         </TextField>
+                        <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="18.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/search_48px.png" />
+                           </image>
+                        </ImageView>
                      </children>
                   </AnchorPane>
                </children>
