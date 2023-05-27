@@ -29,7 +29,7 @@
 .btn {
     -fx-background-color: Transparent;
     -fx-border-color: #5062ab;
-    -fx-border-width: 2.5;
+    -fx-border-width: 2;
     -fx-border-radius: 5px;
     -fx-text-fill: #5062ab;
 }
@@ -61,6 +61,46 @@
     -fx-border-radius: 5px;
     -fx-background-radius: 5px;
 }
+.btn#delete:hover {
+    -fx-background-color: #ae2d3c;
+    -fx-border-color: #ae2d3c;
+    -fx-text-fill: #fff;
+    -fx-border-width: 2.5;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+#updateBtn{
+    -fx-background-color: #ffa400;
+    -fx-border-color: #ffa400;
+    -fx-text-fill: #fff;
+    -fx-border-width: 2.5;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+#addBtn{
+    -fx-background-color: #00d219;
+    -fx-border-color: #00d219;
+    -fx-text-fill: #fff;
+    -fx-border-width: 2.5;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+#deleteBtn{
+    -fx-background-color: #ae2d3c;
+    -fx-border-color: #ae2d3c;
+    -fx-text-fill: #fff;
+    -fx-border-width: 2.5;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+#clearBtn{
+    -fx-background-color: #d200ce;
+    -fx-border-color: #d200ce;
+    -fx-text-fill: #fff;
+    -fx-border-width: 2.5;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
 /*Right*/
 .bg-white {
     -fx-background-color: #fff;
@@ -70,9 +110,16 @@
 .bg-white Label {
     -fx-text-fill: #5062ab;
 }
-
 .bg-white-Label2 {
     -fx-text-fill: #FFF;
+}
+.bg-white TextField {
+    -fx-border-color: #5062ab;
+    -fx-border-radius: 5px;
+}
+.bg-white DatePicker {
+    -fx-border-color: #5062ab;
+    -fx-border-radius: 5px;
 }
 
 /*AddMovie*/

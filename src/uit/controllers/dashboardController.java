@@ -23,7 +23,7 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import uit.home.database;
 import uit.home.getData;
-import uit.models.movieData;
+import uit.models.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -43,6 +43,22 @@ public class dashboardController implements Initializable {
     private TableColumn<movieData, String> addMovie_yearCol;
     @FXML
     private TableView<movieData> addMovie_table;
+    @FXML
+    private TableView<movieData> editScreening_table1;
+    @FXML
+    private TableColumn<movieData, String> editScreening_titleCol1;
+    @FXML
+    private TableColumn<movieData, String> editScreening_year;
+    @FXML
+    private TableColumn<screeningData, String> editScreening_dateCol;
+    @FXML
+    private TableColumn<screeningData, String> editScreening_roomCol;
+    @FXML
+    private TableColumn<screeningData, String> editScreening_startCol;
+    @FXML
+    private TableView<screeningData> editScreening_table2;
+    @FXML
+    private TableColumn<screeningData, String> editScreening_titleCol2;
     @FXML
     private Button addMovie;
 
@@ -67,14 +83,11 @@ public class dashboardController implements Initializable {
     @FXML
     private TextField addMovie_search;
 
-
     @FXML
     private TextField addMovie_title;
 
-
     @FXML
     private TextField addMovie_year;
-
 
     @FXML
     private Button availableMovie;
@@ -137,6 +150,9 @@ public class dashboardController implements Initializable {
     private Label availableMovie_title;
 
     @FXML
+    private Label availableMovie_title2;
+
+    @FXML
     private Button customer;
 
     @FXML
@@ -146,7 +162,7 @@ public class dashboardController implements Initializable {
     private StackPane customerPane;
 
     @FXML
-    private Label customer_date;
+    private DatePicker customer_date;
 
     @FXML
     private TableColumn<?, ?> customer_dateCol;
@@ -200,37 +216,34 @@ public class dashboardController implements Initializable {
     private StackPane editScreeningPane;
 
     @FXML
+    private Button editScreening_add;
+
+    @FXML
     private Button editScreening_clear;
 
     @FXML
-    private ComboBox<?> editScreening_combobox;
+    private DatePicker editScreening_date;
 
     @FXML
-    private TableColumn<?, ?> editScreening_currentCol;
-
-    @FXML
-    private TableColumn<?, ?> editScreening_durationCol;
-
-    @FXML
-    private TableColumn<?, ?> editScreening_genreCol;
+    private Button editScreening_delete;
 
     @FXML
     private ImageView editScreening_image;
 
     @FXML
-    private Label editScreening_label;
-
-    @FXML
-    private TextField editScreening_search;
-
-    @FXML
-    private TableView<?> editScreening_table;
-
-    @FXML
     private Label editScreening_title;
 
     @FXML
-    private TableColumn<?, ?> editScreening_titleCol;
+    private TextField editScreening_room;
+
+    @FXML
+    private TextField editScreening_search1;
+
+    @FXML
+    private TextField editScreening_search2;
+
+    @FXML
+    private TextField editScreening_start;
 
     @FXML
     private Button editScreening_update;
@@ -240,6 +253,7 @@ public class dashboardController implements Initializable {
 
     //Element
     private ObservableList<movieData> listAddMovie;
+    private ObservableList<screeningData> listScreening2;
     private Image image;
     //Javafx.graphic
     private Parent root;
@@ -250,16 +264,40 @@ public class dashboardController implements Initializable {
     private ResultSet result;
     private PreparedStatement prepare;
     private Statement statement;
+    public void emptyAlert(){
+        Alert alert;
+        alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Warning Message");
+        alert.setHeaderText(null);
+        alert.setContentText("Fill in all the blank");
+        alert.showAndWait();
+    }
+    public void successAlert(String str){
+        Alert alert;
+        alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("SUCCESSFUL");
+        alert.setHeaderText(null);
+        alert.setContentText(str);
+        alert.showAndWait();
+    }
+    public void existAlert(String str){
+        Alert alert;
+        alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Error Message");
+        alert.setHeaderText(null);
+        alert.setContentText(str);
+        alert.showAndWait();
+    }
     public void ImportImage(){
         FileChooser open = new FileChooser();
         open.setTitle("Open Image File");
-        open.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image File", "*png", "*jpg"));
+        open.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image File", "*.png", "*.jpg"));
 
         Stage stage = (Stage) addMovieForm.getScene().getWindow();
         File file = open.showOpenDialog(stage);
 
         if(file != null) {
-            image = new Image(file.toURI().toString(), 165, 210, true, false);
+            image = new Image(file.toURI().toString(), 159, 202, true, false);
             addMovie_image.setImage(image);
             getData.path = file.getAbsolutePath();
         }
@@ -335,6 +373,7 @@ public class dashboardController implements Initializable {
         stage.setX((primScreenBounds.getWidth() - stage.getWidth()) / 2);
         stage.setY((primScreenBounds.getHeight() - stage.getHeight()) / 2);
     }
+
 //Add Movie
     //SHOW TABLE LIST
     public ObservableList<movieData> addMovieList(){
@@ -380,7 +419,7 @@ public class dashboardController implements Initializable {
         getData.movieID = movieD.getId();
         getData.path = movieD.getImage();
         String URI = "file:" + movieD.getImage();
-        image = new Image(URI, 165, 210, false, true);
+        image = new Image(URI, 159, 202, false, true);
         addMovie_image.setImage(image);
     }
     //INSERT
@@ -390,11 +429,8 @@ public class dashboardController implements Initializable {
                 || addMovie_genre.getText().isEmpty()
                 || addMovie_duration.getText().isEmpty()
                 || addMovie_year.getText().isEmpty()) {
-            alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Warning Message");
-            alert.setHeaderText(null);
-            alert.setContentText("Empty field");
-            alert.showAndWait();}
+            emptyAlert();
+        }
         else {
             String sql = "INSERT INTO movie(title, genre, duration, image, year) VALUES(?,?,?,?,?)";
             String sql1 = "SELECT title, year from movie WHERE title = '" + addMovie_title.getText() + "'" +
@@ -406,11 +442,7 @@ public class dashboardController implements Initializable {
                 result = statement.executeQuery(sql1);
 
                 if (result.next()) {
-                    alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error Message");
-                    alert.setHeaderText(null);
-                    alert.setContentText(addMovie_title.getText() + " already exist");
-                    alert.showAndWait();
+                    existAlert(addMovie_title.getText() + " already exist");
                 } else {
                     String URI = getData.path;
                     URI = URI.replace("\\", "\\\\");
@@ -424,11 +456,7 @@ public class dashboardController implements Initializable {
 
                     prepare.execute();
 
-                    alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("SUCCESSFUL");
-                    alert.setHeaderText(null);
-                    alert.setContentText("Successfully add new movie");
-                    alert.showAndWait();
+                    successAlert("Successfully add " + addMovie_title.getText() + " - " + addMovie_year.getText());
 
                     clearAddMovie();
                     showAddMovieList();
@@ -446,36 +474,40 @@ public class dashboardController implements Initializable {
                 || addMovie_genre.getText().isEmpty()
                 || addMovie_duration.getText().isEmpty()
                 || addMovie_year.getText().isEmpty()) {
-            alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Warning Message");
-            alert.setHeaderText(null);
-            alert.setContentText("Empty field");
-            alert.showAndWait();
+            emptyAlert();
         }
         else {
             String sql = "UPDATE movie SET title = ?, genre = ?, duration = ?, year = ?, image = ? WHERE id = ?";
+            String sql1 = "SELECT * from movie WHERE title = '" + addMovie_title.getText() + "'" +
+                                                "AND year = '" + addMovie_year.getText() + "'";
             connect = database.connectDb();
             try {
-                String URI = getData.path;
-                URI = URI.replace("\\", "\\\\");
+                assert connect != null;
+                result = connect.prepareStatement(sql1).executeQuery();
+                if(result.next()){
+                    alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error Message");
+                    alert.setHeaderText(null);
+                    alert.setContentText(addMovie_title.getText() + " already exist");
+                    alert.showAndWait();
+                } else {
+                    String URI = getData.path;
+                    URI = URI.replace("\\", "\\\\");
 
-                prepare = connect.prepareStatement(sql);
-                prepare.setString(1, addMovie_title.getText());
-                prepare.setString(2, addMovie_genre.getText());
-                prepare.setInt(3, Integer.parseInt(addMovie_duration.getText()));
-                prepare.setInt(4, Integer.parseInt(addMovie_year.getText()));
-                prepare.setString(5, URI);
-                prepare.setInt(6, getData.movieID);
-                prepare.execute();
+                    prepare = connect.prepareStatement(sql);
+                    prepare.setString(1, addMovie_title.getText());
+                    prepare.setString(2, addMovie_genre.getText());
+                    prepare.setInt(3, Integer.parseInt(addMovie_duration.getText()));
+                    prepare.setInt(4, Integer.parseInt(addMovie_year.getText()));
+                    prepare.setString(5, URI);
+                    prepare.setInt(6, getData.movieID);
+                    prepare.execute();
 
-                alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("SUCCESSFUL");
-                alert.setHeaderText(null);
-                alert.setContentText("Successfully update");
-                alert.showAndWait();
+                    successAlert("Successfully update");
 
-                clearAddMovie();
-                showAddMovieList();
+                    clearAddMovie();
+                    showAddMovieList();
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -483,30 +515,34 @@ public class dashboardController implements Initializable {
     }
     //DELETE
     public void deleteAddMovie(){
-        String sql = "DELETE FROM movie WHERE id = '" + getData.movieID + "'";
-        connect = database.connectDb();
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Delete movie");
-        alert.setHeaderText("Are you sure want to delete this movie");
-        alert.setContentText(null);
+        if(addMovie_title.getText().isEmpty()
+                || addMovie_genre.getText().isEmpty()
+                || addMovie_duration.getText().isEmpty()
+                || addMovie_year.getText().isEmpty()) {
+            emptyAlert();
+        } else {
+            String sql = "DELETE FROM movie WHERE id = '" + getData.movieID + "'";
+            connect = database.connectDb();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Delete movie");
+            alert.setHeaderText("Are you sure want to delete this movie");
+            alert.setContentText(null);
 
-        Optional<ButtonType> option = alert.showAndWait();
-        if(option.get() == ButtonType.OK) {
-            try {
-                statement = connect.createStatement();
-                statement.execute(sql);
-                alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("SUCCESSFUL");
-                alert.setHeaderText(null);
-                alert.setContentText("Successfully delete");
-                alert.showAndWait();
+            Optional<ButtonType> option = alert.showAndWait();
+            if (option.get() == ButtonType.OK) {
+                try {
+                    statement = connect.createStatement();
+                    statement.execute(sql);
+                    successAlert("Successfully delete");
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
             }
-            catch (Exception e) {e.printStackTrace();}
-
+            clearAddMovie();
+            showAddMovieList();
         }
-        clearAddMovie();
-        showAddMovieList();
     }
     //CLEAR
     public void clearAddMovie(){
@@ -514,7 +550,8 @@ public class dashboardController implements Initializable {
         addMovie_genre.setText("");
         addMovie_duration.setText("");
         addMovie_year.setText("");
-        addMovie_image.setImage(new Image("resources/images/image_96px.png"));
+        addMovie_image.setImage(null);
+        getData.clear();
     }
     //SEARCH
     public void searchAddMovie(){
@@ -543,12 +580,239 @@ public class dashboardController implements Initializable {
 //Available Movies
 
 //Edit Screening
+    //SHOW MOVIE
+    public void showScreening1(){
+        editScreening_titleCol1.setCellValueFactory(new PropertyValueFactory<>("title"));
+        editScreening_year.setCellValueFactory(new PropertyValueFactory<>("year"));
 
+        editScreening_table1.setItems(listAddMovie);
+    }
+    //SELECT MOVIE
+    public void selectEditScreeningList1(){
+        clearEditScreening();
+        editScreening_update.setDisable(true);
+        editScreening_update.setStyle("-fx-background-color: #C0C0C0; -fx-border-color: #C0C0C0");
+        editScreening_delete.setDisable(true);
+        editScreening_delete.setStyle("-fx-background-color: #C0C0C0; -fx-border-color: #C0C0C0");
+        editScreening_add.setDisable(false);
+        editScreening_add.setStyle("-fx-background-color: #00d219; -fx-border-color: #00d219");
+
+        movieData movieD = editScreening_table1.getSelectionModel().getSelectedItem();
+        int num = editScreening_table1.getSelectionModel().getSelectedIndex();
+
+        if(num - 1 < -1) return;
+
+        editScreening_title.setText(movieD.getTitle());
+        getData.movieID = movieD.getId();
+        String URI = "file:" + movieD.getImage();
+        image = new Image(URI, 135, 174, false, true);
+        editScreening_image.setImage(image);
+    }
+    //SEARCH MOVIE
+    public void searchEditScreening1(){
+        FilteredList<movieData> filter = new FilteredList<>(listAddMovie, e -> true);
+        editScreening_search1.textProperty().addListener((observable, oldValue, newValue) -> {
+            filter.setPredicate(predicateMoviesData -> {
+
+                if(newValue.isEmpty() || newValue == null){
+                    return true;
+                }
+
+                String keyword = newValue.toLowerCase();
+                return predicateMoviesData.getTitle().toLowerCase().contains(keyword);
+            });
+        });
+        SortedList<movieData> sortData = new SortedList<>(filter);
+        sortData.comparatorProperty().bind(editScreening_table1.comparatorProperty());
+
+        editScreening_table1.setItems(filter);
+    }
+    //SHOW SCREENING
+    ObservableList<screeningData> screeningList2(){
+        ObservableList<screeningData> listData = FXCollections.observableArrayList();
+        String sql = "call screeningData()";
+        connect = database.connectDb();
+        screeningData screenD;
+        try {
+            result = connect.prepareStatement(sql).executeQuery();
+            while (result.next()) {
+                screenD = new screeningData(result.getInt(1),
+                                            result.getInt(2),
+                                            result.getString(3),
+                                            result.getDate(4),
+                                            result.getTime(5),
+                                            result.getInt(6),
+                                            result.getString(7));
+                listData.add(screenD);
+            }
+        }
+        catch(Exception e){e.printStackTrace();}
+        return listData;
+    }
+    public void showScreening2(){
+        listScreening2 = screeningList2();
+        editScreening_titleCol2.setCellValueFactory(new PropertyValueFactory<>("movieTitle"));
+        editScreening_startCol.setCellValueFactory(new PropertyValueFactory<>("startTime"));
+        editScreening_dateCol.setCellValueFactory(new PropertyValueFactory<>("dateShow"));
+        editScreening_roomCol.setCellValueFactory(new PropertyValueFactory<>("roomID"));
+
+        editScreening_table2.setItems(listScreening2);
+    }
+    //SEARCH SCREEN
+    public void searchEditScreening2(){
+        FilteredList<screeningData> filter = new FilteredList<>(listScreening2, e -> true);
+        editScreening_search2.textProperty().addListener((observable, oldValue, newValue) -> {
+
+            filter.setPredicate(predicateScreeningData -> {
+
+                if(newValue.isEmpty() || newValue == null){
+                    return true;
+                }
+
+                String keyword = newValue.toLowerCase();
+                return predicateScreeningData.getMovieTitle().toLowerCase().contains(keyword);
+            });
+        });
+
+        SortedList<screeningData> sortData = new SortedList<>(filter);
+        sortData.comparatorProperty().bind(editScreening_table2.comparatorProperty());
+
+        editScreening_table2.setItems(filter);
+    }
+    //CLEAR
+    public void clearEditScreening(){
+        editScreening_start.setText("");
+        editScreening_start.setPromptText("hh:mm:ss");
+        editScreening_date.setValue(null);
+        editScreening_date.setPromptText("mm/dd/yyyy");
+        editScreening_room.setText("");
+        editScreening_title.setText("Title");
+        editScreening_image.setImage(null);
+        getData.clear();
+    }
+    //SELECT SCREENING
+    public void selectEditScreeningList2(){
+        editScreening_add.setDisable(true);
+        editScreening_add.setStyle("-fx-background-color: #C0C0C0; -fx-border-color: #C0C0C0");
+        editScreening_delete.setDisable(false);
+        editScreening_delete.setStyle("-fx-background-color: #ae2d3c; -fx-border-color: #ae2d3c");
+        editScreening_update.setDisable(false);
+        editScreening_update.setStyle("-fx-background-color: #ffa400; -fx-border-color: #ffa400");
+        screeningData screenD = editScreening_table2.getSelectionModel().getSelectedItem();
+        int num  = editScreening_table2.getSelectionModel().getSelectedIndex();
+
+        if(num - 1 < -1) return;
+
+        editScreening_title.setText(screenD.getMovieTitle());
+        editScreening_start.setText(String.valueOf(screenD.getStartTime()));
+        editScreening_date.setValue(screenD.getDateShow().toLocalDate());
+        editScreening_room.setText(String.valueOf(screenD.getRoomID()));
+
+        getData.screeningID = screenD.getId();
+        getData.path = screenD.getImage();
+        String URI = "file:" + screenD.getImage();
+        image = new Image(URI, 135, 174, false, true);
+        editScreening_image.setImage(image);
+    }
+    //ADD
+    public void addEditScreening(){
+        if(editScreening_start.getText().isEmpty() || editScreening_date.getValue() == null || editScreening_room.getText().isEmpty()) {
+            emptyAlert();
+        } else {
+            String sql = "SELECT * FROM screening WHERE movieID = ? AND startTime = ? AND dateShow = ? AND roomID = ?";
+            connect = database.connectDb();
+            try {
+                prepare = connect.prepareStatement(sql);
+                prepare.setInt(1, getData.movieID);
+                prepare.setTime(2, Time.valueOf(editScreening_start.getText()));
+                prepare.setDate(3, Date.valueOf(editScreening_date.getValue()));
+                prepare.setInt(4, Integer.parseInt(editScreening_room.getText()));
+                result = prepare.executeQuery();
+                prepare.clearParameters();
+                if(result.next()){
+                    existAlert("This screening already exist");
+                } else {
+                    String sql2 = "INSERT INTO screening(movieID, startTime, dateShow, roomID) VALUES(?,?,?,?)";
+                    prepare = connect.prepareStatement(sql2);
+                    prepare.setInt(1, getData.movieID);
+                    prepare.setTime(2, Time.valueOf(editScreening_start.getText()));
+                    prepare.setDate(3, Date.valueOf(editScreening_date.getValue()));
+                    prepare.setInt(4, Integer.parseInt(editScreening_room.getText()));
+                    prepare.execute();
+                    successAlert("Successfully adding new screen");
+                    showScreening2();
+                    clearEditScreening();
+                }
+            } catch (Exception e){e.printStackTrace();}
+        }
+    }
+    //UPDATE
+    public void updateEditScreening(){
+        if(editScreening_start.getText().isEmpty() || editScreening_date.getValue() == null || editScreening_room.getText().isEmpty()) {
+            emptyAlert();
+        } else {
+            String sql = "SELECT * FROM screening WHERE movieID = ? AND startTime = ? AND dateShow = ? AND roomID = ?";
+            connect = database.connectDb();
+            try {
+                prepare = connect.prepareStatement(sql);
+                prepare.setInt(1, getData.movieID);
+                prepare.setTime(2, Time.valueOf(editScreening_start.getText()));
+                prepare.setDate(3, Date.valueOf(editScreening_date.getValue()));
+                prepare.setInt(4, Integer.parseInt(editScreening_room.getText()));
+                result = prepare.executeQuery();
+                prepare.clearParameters();
+                if(result.next()){
+                    existAlert("This screen already exist");
+                } else {
+                    String sql2 = "UPDATE screening SET startTime = ?, dateShow = ?, roomID = ? WHERE id = ?";
+                    prepare = connect.prepareStatement(sql2);
+                    prepare.setDate(2, Date.valueOf(editScreening_date.getValue()));
+                    prepare.setTime(1, Time.valueOf(editScreening_start.getText()));
+                    prepare.setInt(3, Integer.parseInt(editScreening_room.getText()));
+                    prepare.setInt(4, getData.screeningID);
+                    prepare.execute();
+                    successAlert("Successfully updating screen");
+                    showScreening2();
+                    clearEditScreening();
+                }
+            } catch (Exception e){e.printStackTrace();}
+        }
+    }
+    //DELETE
+    public void deleteEditScreening(){
+        if(editScreening_start.getText().isEmpty() || editScreening_date.getValue() == null || editScreening_room.getText().isEmpty()) {
+            emptyAlert();
+        } else {
+            String sql = "DELETE FROM screening WHERE id = '" + getData.screeningID + "'";
+            connect = database.connectDb();
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Delete movie");
+            alert.setHeaderText("Are you sure want to delete this screen");
+            alert.setContentText(null);
+
+            Optional<ButtonType> option = alert.showAndWait();
+            if (option.get() == ButtonType.OK) {
+                try {
+                    statement = connect.createStatement();
+                    statement.execute(sql);
+                    successAlert("Successfully delete");
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+            }
+            clearEditScreening();
+            showScreening2();
+        }
+    }
 //Customers
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         displayUsername();
         showAddMovieList();
+        showScreening1();
+        showScreening2();
     }
 }
