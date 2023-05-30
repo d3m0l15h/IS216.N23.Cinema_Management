@@ -836,18 +836,18 @@ public class dashboardController implements Initializable {
                             seat.getStyleClass().add("seat");
                             seat.getStyleClass().removeAll("chooseSeat");// unreserve the seat
                             if(vip.contains(seat.getText())){
-                                total.setText(String.valueOf(Integer.parseInt(total.getText().replaceAll("[^\\d]", "")) - 75000) + "VND");
+                                total.setText(Integer.parseInt(total.getText().replaceAll("[^\\d]", "")) - 75000 + "VND");
                             } else {
-                                total.setText(String.valueOf(Integer.parseInt(total.getText().replaceAll("[^\\d]", "")) - 70000) + "VND");
+                                total.setText(Integer.parseInt(total.getText().replaceAll("[^\\d]", "")) - 70000 + "VND");
                             }
                             seatSet.remove(seat.getId());
                         } else {
                             seat.getStyleClass().add("chooseSeat");
                             seat.getStyleClass().removeAll("seat");// reserve the seat
                             if(vip.contains(seat.getText())){
-                                total.setText(String.valueOf(Integer.parseInt(total.getText().replaceAll("[^\\d]", "")) + 75000) + "VND");
+                                total.setText(Integer.parseInt(total.getText().replaceAll("[^\\d]", "")) + 75000 + "VND");
                             } else {
-                                total.setText(String.valueOf(Integer.parseInt(total.getText().replaceAll("[^\\d]", "")) + 70000) + "VND");
+                                total.setText(Integer.parseInt(total.getText().replaceAll("[^\\d]", "")) + 70000 + "VND");
                             }
                             seatSet.add(seat.getId());
                         }
@@ -953,7 +953,7 @@ public class dashboardController implements Initializable {
         }
         else{
             String sql1 = "call checkCus(?,?,?)";
-            String sql2 = "INSERT INTO booking(customerID, screeningID) VALUES (?,?)";
+            String sql2 = "INSERT INTO booking(customerID, screeningID, total) VALUES (?,?,?)";
             String sql3 = "INSERT INTO booking_detail VALUES (?,?,?)";
             connect = database.connectDb();
             try {
@@ -968,6 +968,7 @@ public class dashboardController implements Initializable {
                 prepare = connect.prepareStatement(sql2, Statement.RETURN_GENERATED_KEYS);
                 prepare.setString(1, booking_phone.getText());
                 prepare.setInt(2, getData.screeningID);
+                prepare.setInt(3, Integer.parseInt(total.getText().replaceAll("[^\\d]", "")));
                 prepare.execute();
                 result = prepare.getGeneratedKeys();
                 if (result.next())
@@ -996,7 +997,7 @@ public class dashboardController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //displayUsername();
+        displayUsername();
         showAddMovieList();
         showScreening1();
         showScreening2();
