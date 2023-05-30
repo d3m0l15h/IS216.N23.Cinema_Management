@@ -162,15 +162,6 @@
     -fx-border-width: 2px;
 }
 
-.combo-box
-{
-    -fx-background-color: #fff;
-    -fx-background-radius: 5px;
-    -fx-border-color: #1e242e;
-    -fx-border-width: .5px;
-    -fx-border-radius: 5px;
-}
-
 .card-customer{
     -fx-background-color:#fff;
     -fx-background-radius:5px;
@@ -179,6 +170,23 @@
     -fx-border-radius:5px;
 }
 
+.seat{
+    -fx-background-color:#FFFFFF;
+    -fx-border-color: #000000;
+    -fx-border-width: 0.5;
+}
+.chooseSeat{
+    -fx-background-color: #00bb00;
+    -fx-border-color: #000000;
+    -fx-border-width: 0.5;
+}
+.bookSeat{
+    -fx-background-color: #ae2d3c;
+    -fx-border-color: #000000;
+    -fx-border-width: 0.5;
+}
+
+/*........................................*/
 .card1
 {
     -fx-background-color: linear-gradient(to right, #2b428c, #2e58ab);
