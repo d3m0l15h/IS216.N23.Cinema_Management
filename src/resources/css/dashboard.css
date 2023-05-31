@@ -153,6 +153,14 @@
     -fx-text-fill: #fff
 }
 
+/* DASH-TABLE */
+.dash-table {
+    -fx-background-color: #fff;
+    /* -fx-border-color: #5062ab; */
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+
 /*CUSTOMER*/
 
 .info-card
@@ -187,24 +195,11 @@
 }
 
 /*........................................*/
-.card1
-{
-    -fx-background-color: linear-gradient(to right, #2b428c, #2e58ab);
-    -fx-background-radius: 0px 10px 10px 0px;
+.card {
+    /* -fx-background-color: linear-gradient(to right, #2b428c, #2e58ab); */
+    -fx-background-radius: 10px;
 }
 
-.card2
-{
-    -fx-background-color: linear-gradient(to right, #772d90, #a42fb8);
-    -fx-background-radius: 0px 10px 10px 0px;
-}
-
-.card3
-{
-    -fx-background-color: linear-gradient(to right, #9d2249, #cc1c5a);
-    -fx-background-radius: 0px 10px 10px 0px;
-}
-
-.card:hover{
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 5,0,0,0);
+.box {
+    justify-content: center;
 }
