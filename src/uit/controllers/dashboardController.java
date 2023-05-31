@@ -74,6 +74,26 @@ public class dashboardController implements Initializable {
     private TableView<screeningData> booking_table;
     @FXML
     private TableColumn<screeningData, String> booking_titleCol;
+    @FXML
+    private TableView<bookingData> customer_table2;
+    @FXML
+    private TableColumn<bookingData, String> customer_dateCol;
+    @FXML
+    private TableColumn<bookingData, String> customer_phoneCol2;
+    @FXML
+    private TableColumn<bookingData, String> customer_seatCol;
+    @FXML
+    private TableColumn<customerData, String> customer_emailCol;
+    @FXML
+    private TableColumn<customerData, String> customer_birthCol;
+    @FXML
+    private TableColumn<customerData, String> customer_genderCol;
+    @FXML
+    private TableColumn<customerData, String> customer_nameCol;
+    @FXML
+    private TableColumn<customerData, String> customer_phoneCol1;
+    @FXML
+    private TableView<customerData> customer_table1;
 
     @FXML
     private Button addMovie;
@@ -89,6 +109,7 @@ public class dashboardController implements Initializable {
 
     @FXML
     private TextField addMovie_genre;
+
     @FXML
     private ImageView addMovie_image;
 
@@ -103,8 +124,6 @@ public class dashboardController implements Initializable {
 
     @FXML
     private TextField addMovie_year;
-    @FXML
-    private Button availableMovie_clear;
 
     @FXML
     private Label availableMovie_label1;
@@ -119,6 +138,9 @@ public class dashboardController implements Initializable {
     private StackPane bookingPane;
 
     @FXML
+    private DatePicker booking_birth;
+
+    @FXML
     private Button booking_buy;
 
     @FXML
@@ -128,18 +150,31 @@ public class dashboardController implements Initializable {
     private ImageView booking_image;
 
     @FXML
+    private TextField booking_name;
+
+    @FXML
+    private TextField booking_phone;
+
+    @FXML
     private Button booking_receipt;
 
     @FXML
     private Label booking_room;
+
     @FXML
     private TextField booking_search;
+
+    @FXML
+    private GridPane booking_seat;
 
     @FXML
     private Label booking_start;
 
     @FXML
     private Label booking_title;
+
+    @FXML
+    private Label booking_total;
 
     @FXML
     private Button customer;
@@ -151,37 +186,39 @@ public class dashboardController implements Initializable {
     private StackPane customerPane;
 
     @FXML
-    private DatePicker customer_date;
+    private DatePicker customer_birth;
 
     @FXML
-    private TableColumn<?, ?> customer_dateCol;
+    private Label customer_date;
+    @FXML
+    private TextField customer_email;
+
 
     @FXML
-    private TextField customer_search;
+    private ChoiceBox<String> customer_gender;
 
     @FXML
-    private TableView<?> customer_table;
+    private Label customer_movie;
 
     @FXML
-    private Label customer_ticket;
+    private TextField customer_name;
 
     @FXML
-    private TableColumn<?, ?> customer_ticketCol;
+    private Label customer_phone;
 
     @FXML
-    private Label customer_time;
+    private Label customer_room;
 
     @FXML
-    private TableColumn<?, ?> customer_timeCol;
+    private TextField customer_search1;
 
     @FXML
-    private Label customer_title;
+    private TextField customer_search2;
 
     @FXML
-    private TableColumn<?, ?> customer_titleCol;
+    private Label customer_start;
 
-    @FXML
-    private Label customer_total;
+
 
     @FXML
     private TableColumn<?, ?> customer_totalCol;
@@ -236,24 +273,12 @@ public class dashboardController implements Initializable {
     @FXML
     private Label username;
 
-    @FXML
-    private GridPane booking_seat;
-
-    @FXML
-    private TextField booking_name;
-
-    @FXML
-    private TextField booking_phone;
-
-    @FXML
-    private DatePicker booking_birth;
-
-    @FXML
-    private Label total;
 
     //Element
+    private ObservableList<customerData> listCustomer;
+    private ObservableList<bookingData> listBooking;
     private ObservableList<movieData> listAddMovie;
-    private ObservableList<screeningData> listScreening2;
+    private ObservableList<screeningData> listScreening;
     private Image image;
     private Set<String> seatSet;
     List<String> vip = Arrays.asList("E2","E3","E4","F2","F3","F4");
@@ -309,6 +334,7 @@ public class dashboardController implements Initializable {
     }
     public void switchForm(ActionEvent event){
         if(event.getSource() == dashboard) {
+            getData.clear();
             dashboardForm.setVisible(true);
             dashboardPane.getStyleClass().add("navButtonHover");
             addMovieForm.setVisible(false);
@@ -320,6 +346,7 @@ public class dashboardController implements Initializable {
             customerForm.setVisible(false);
             customerPane.getStyleClass().removeAll("navButtonHover");
         } else if (event.getSource() == addMovie) {
+            getData.clear();
             dashboardForm.setVisible(false);
             dashboardPane.getStyleClass().removeAll("navButtonHover");
             addMovieForm.setVisible(true);
@@ -331,6 +358,7 @@ public class dashboardController implements Initializable {
             customerForm.setVisible(false);
             customerPane.getStyleClass().removeAll("navButtonHover");
         } else if (event.getSource() == booking) {
+            getData.clear();
             dashboardForm.setVisible(false);
             dashboardPane.getStyleClass().removeAll("navButtonHover");
             addMovieForm.setVisible(false);
@@ -342,6 +370,7 @@ public class dashboardController implements Initializable {
             customerForm.setVisible(false);
             customerPane.getStyleClass().removeAll("navButtonHover");
         } else if (event.getSource() == editScreening) {
+            getData.clear();
             dashboardForm.setVisible(false);
             dashboardPane.getStyleClass().removeAll("navButtonHover");
             addMovieForm.setVisible(false);
@@ -353,6 +382,7 @@ public class dashboardController implements Initializable {
             customerForm.setVisible(false);
             customerPane.getStyleClass().removeAll("navButtonHover");
         }else if (event.getSource() == customer) {
+            getData.clear();
             dashboardForm.setVisible(false);
             dashboardPane.getStyleClass().removeAll("navButtonHover");
             addMovieForm.setVisible(false);
@@ -631,7 +661,7 @@ public class dashboardController implements Initializable {
         editScreening_table1.setItems(filter);
     }
     //SHOW SCREENING////////////////////////////////////////////////////////////////
-    ObservableList<screeningData> screeningList2(){
+    ObservableList<screeningData> screeningList(){
         ObservableList<screeningData> listData = FXCollections.observableArrayList();
         String sql = "call screeningData()";
         connect = database.connectDb();
@@ -654,17 +684,17 @@ public class dashboardController implements Initializable {
         return listData;
     }
     public void showScreening2(){
-        listScreening2 = screeningList2();
+        listScreening = screeningList();
         editScreening_titleCol2.setCellValueFactory(new PropertyValueFactory<>("movieTitle"));
         editScreening_startCol.setCellValueFactory(new PropertyValueFactory<>("startTime"));
         editScreening_dateCol.setCellValueFactory(new PropertyValueFactory<>("dateShow"));
         editScreening_roomCol.setCellValueFactory(new PropertyValueFactory<>("roomID"));
 
-        editScreening_table2.setItems(listScreening2);
+        editScreening_table2.setItems(listScreening);
     }
     //SEARCH SCREEN////////////////////////////////////////////////////////////////
     public void searchEditScreening2(){
-        FilteredList<screeningData> filter = new FilteredList<>(listScreening2, e -> true);
+        FilteredList<screeningData> filter = new FilteredList<>(listScreening, e -> true);
         editScreening_search2.textProperty().addListener((observable, oldValue, newValue) -> {
 
             filter.setPredicate(predicateScreeningData -> {
@@ -836,18 +866,18 @@ public class dashboardController implements Initializable {
                             seat.getStyleClass().add("seat");
                             seat.getStyleClass().removeAll("chooseSeat");// unreserve the seat
                             if(vip.contains(seat.getText())){
-                                total.setText(Integer.parseInt(total.getText().replaceAll("[^\\d]", "")) - 75000 + "VND");
+                                booking_total.setText(Integer.parseInt(booking_total.getText().replaceAll("[^\\d]", "")) - 75000 + "VND");
                             } else {
-                                total.setText(Integer.parseInt(total.getText().replaceAll("[^\\d]", "")) - 70000 + "VND");
+                                booking_total.setText(Integer.parseInt(booking_total.getText().replaceAll("[^\\d]", "")) - 70000 + "VND");
                             }
                             seatSet.remove(seat.getId());
                         } else {
                             seat.getStyleClass().add("chooseSeat");
                             seat.getStyleClass().removeAll("seat");// reserve the seat
                             if(vip.contains(seat.getText())){
-                                total.setText(Integer.parseInt(total.getText().replaceAll("[^\\d]", "")) + 75000 + "VND");
+                                booking_total.setText(Integer.parseInt(booking_total.getText().replaceAll("[^\\d]", "")) + 75000 + "VND");
                             } else {
-                                total.setText(Integer.parseInt(total.getText().replaceAll("[^\\d]", "")) + 70000 + "VND");
+                                booking_total.setText(Integer.parseInt(booking_total.getText().replaceAll("[^\\d]", "")) + 70000 + "VND");
                             }
                             seatSet.add(seat.getId());
                         }
@@ -875,11 +905,11 @@ public class dashboardController implements Initializable {
         booking_dateCol.setCellValueFactory(new PropertyValueFactory<>("dateShow"));
         booking_roomCol.setCellValueFactory(new PropertyValueFactory<>("roomID"));
 
-        booking_table.setItems(listScreening2);
+        booking_table.setItems(listScreening);
     }
     //SEARCH BOOKING
     public void searchBooking(){
-        FilteredList<screeningData> filter = new FilteredList<>(listScreening2, e -> true);
+        FilteredList<screeningData> filter = new FilteredList<>(listScreening, e -> true);
         booking_search.textProperty().addListener((observable, oldValue, newValue) -> {
 
             filter.setPredicate(predicateScreeningData -> {
@@ -901,6 +931,8 @@ public class dashboardController implements Initializable {
     //SELECT BOOKING////////////////////////////////////////////////////////////////
     public void selectBooking(){
         getData.clear();
+        booking_total.setText("0VND");
+
         screeningData screenD = booking_table.getSelectionModel().getSelectedItem();
         int num  = booking_table.getSelectionModel().getSelectedIndex();
 
@@ -943,7 +975,7 @@ public class dashboardController implements Initializable {
             });
     }
     //
-    public void buyBooking(){
+    public void buyBooking() throws Exception{
         Iterator<String> iterator = seatSet.iterator();
         if(getData.screeningID == 0) { emptyAlert("Select screening first");}
         else if(booking_name.getText().isEmpty()
@@ -968,7 +1000,7 @@ public class dashboardController implements Initializable {
                 prepare = connect.prepareStatement(sql2, Statement.RETURN_GENERATED_KEYS);
                 prepare.setString(1, booking_phone.getText());
                 prepare.setInt(2, getData.screeningID);
-                prepare.setInt(3, Integer.parseInt(total.getText().replaceAll("[^\\d]", "")));
+                prepare.setInt(3, Integer.parseInt(booking_total.getText().replaceAll("[^\\d]", "")));
                 prepare.execute();
                 result = prepare.getGeneratedKeys();
                 if (result.next())
@@ -988,19 +1020,185 @@ public class dashboardController implements Initializable {
 
                 successAlert("Successfully booking");
                 createRoom();
+                showCustomer2();
 
                 connect.close();
             } catch (Exception e) {e.printStackTrace();}
         }
     }
 //Customers
+    //SHOW
+    public ObservableList<customerData> customerList(){
+        ObservableList<customerData> listData = FXCollections.observableArrayList();
+        String sql = "SELECT * FROM customer";
+        connect = database.connectDb();
+        customerData cusD;
+        try {
+            assert connect != null;
+            result = connect.prepareStatement(sql).executeQuery();
+            while (result.next()) {
+                cusD = new customerData(result.getString(2),
+                        result.getString(1),
+                        result.getString(3),
+                        result.getDate(4),
+                        result.getString(5));
+                listData.add(cusD);
+            }
+            connect.close();
+        } catch (Exception e){e.printStackTrace();}
+        return listData;
+    }
+    public void showCustomer1(){
+        listCustomer = customerList();
 
+        customer_nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        customer_phoneCol1.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        customer_emailCol.setCellValueFactory(new PropertyValueFactory<>("email"));
+        customer_birthCol.setCellValueFactory(new PropertyValueFactory<>("birth"));
+        customer_genderCol.setCellValueFactory(new PropertyValueFactory<>("gender"));
+
+        customer_table1.setItems(listCustomer);
+    }
+    //SEARCH
+    public void searchCustomer1(){
+        FilteredList<customerData> filter = new FilteredList<>(listCustomer, e -> true);
+        customer_search1.textProperty().addListener((observable, oldValue, newValue) -> {
+
+            filter.setPredicate(predicateScreeningData -> {
+
+                if(newValue.isEmpty() || newValue == null){
+                    return true;
+                }
+
+                String keyword = newValue.toLowerCase();
+                return predicateScreeningData.getPhone().toLowerCase().contains(keyword)
+                        || predicateScreeningData.getName().toLowerCase().contains(keyword) ;
+            });
+        });
+
+        SortedList<customerData> sortData = new SortedList<>(filter);
+        sortData.comparatorProperty().bind(customer_table1.comparatorProperty());
+
+        customer_table1.setItems(filter);
+    }
+    //SELECT
+    public void selectCustomer1(){
+        customerData cusD = customer_table1.getSelectionModel().getSelectedItem();
+        int num = customer_table1.getSelectionModel().getSelectedIndex();
+
+        if(num - 1 < -1) return;
+
+        customer_name.setText(cusD.getName());
+        customer_phone.setText(cusD.getPhone());
+        customer_email.setText(cusD.getEmail()==null ? "" : cusD.getEmail());
+        customer_birth.setValue(cusD.getBirth().toLocalDate());
+        customer_gender.setValue(cusD.getGender() == null ? "" : cusD.getGender());
+
+        getData.customerID = cusD.getPhone();
+    }
+    //SHOW
+    public ObservableList<bookingData> bookingList(){
+        ObservableList<bookingData> listData = FXCollections.observableArrayList();
+        String sql = "call getBooking()";
+        connect = database.connectDb();
+        bookingData bookD;
+        try {
+            prepare = connect.prepareStatement(sql);
+            result = prepare.executeQuery();
+            while (result.next()){
+                bookD = new bookingData(result.getInt(1),
+                                        result.getString(2),
+                                        result.getDate(3),
+                                        result.getString(4),
+                                        result.getDate(5),
+                                        result.getTime(6),
+                                        result.getInt(7),
+                                        result.getInt(8),
+                                        result.getString(9));
+                listData.add(bookD);
+            }
+            connect.close();
+
+        }catch (Exception e){e.printStackTrace();}
+        return listData;
+    }
+    public void showCustomer2(){
+        listBooking = bookingList();
+        customer_phoneCol2.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+        customer_seatCol.setCellValueFactory(new PropertyValueFactory<>("seats"));
+        customer_dateCol.setCellValueFactory(new PropertyValueFactory<>("bookingDate"));
+        customer_totalCol.setCellValueFactory(new PropertyValueFactory<>("total"));
+
+        customer_table2.setItems(listBooking);
+    }
+    //SELECT
+    public void selectCustomer2(){
+        bookingData bookD = customer_table2.getSelectionModel().getSelectedItem();
+        int num = customer_table2.getSelectionModel().getSelectedIndex();
+
+        if(num - 1 < -1) return;
+
+        customer_movie.setText(bookD.getMovie());
+        customer_date.setText(String.valueOf(bookD.getDateShow()));
+        customer_start.setText(String.valueOf(bookD.getStartTime()));
+        customer_room.setText(String.valueOf(bookD.getRoom()));
+
+    }
+    //Search
+    public void searchCustomer2(){
+        FilteredList<bookingData> filter = new FilteredList<>(listBooking, e -> true);
+        customer_search2.textProperty().addListener((observable, oldValue, newValue) -> {
+
+            filter.setPredicate(predicateScreeningData -> {
+
+                if(newValue.isEmpty() || newValue == null){
+                    return true;
+                }
+
+                String keyword = newValue.toLowerCase();
+                return predicateScreeningData.getCustomerID().toLowerCase().contains(keyword);
+            });
+        });
+
+        SortedList<bookingData> sortData = new SortedList<>(filter);
+        sortData.comparatorProperty().bind(customer_table2.comparatorProperty());
+
+        customer_table2.setItems(filter);
+    }
+    //UPDATE
+    public void customerUpdate(){
+        if(customer_name.getText().isEmpty() || customer_birth.getValue() == null) {
+            emptyAlert("Don't empty name or birth");
+        } else{
+            String sql = "UPDATE customer SET name=?, email=?, birth=?, gender=? WHERE phone='" + getData.customerID + "'";
+            connect = database.connectDb();
+            try {
+                assert connect != null;
+                prepare = connect.prepareStatement(sql);
+                prepare.setString(1, customer_name.getText());
+                prepare.setString(2, customer_email.getText());
+                prepare.setDate(3, Date.valueOf(customer_birth.getValue()));
+                prepare.setString(4, customer_gender.getValue());
+
+                prepare.execute();
+                successAlert("Update successfully");
+                showCustomer1();
+                getData.clear();
+                connect.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        customer_gender.getItems().addAll("Male", "Female");
         displayUsername();
         showAddMovieList();
         showScreening1();
         showScreening2();
         showBooking();
+        showCustomer1();
+        showCustomer2();
     }
 }

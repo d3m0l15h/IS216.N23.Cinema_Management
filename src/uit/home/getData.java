@@ -6,10 +6,12 @@ public class getData {
     public static int movieID;
     public static int screeningID;
     public static int bookingID;
+    public static String customerID;
     public static void clear(){
         path = "";
         movieID = 0;
         screeningID = 0;
         bookingID = 0;
+        customerID = "";
     }
 }
