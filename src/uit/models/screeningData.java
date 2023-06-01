@@ -2,6 +2,8 @@ package uit.models;
 
 import java.sql.Date;
 import java.sql.Time;
+// import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class screeningData {
     private int id;
@@ -11,7 +13,9 @@ public class screeningData {
     private Time startTime;
     private int roomID;
     private String image;
-    public screeningData(int id, int movieID, String title, Date date, Time time, int roomID, String image){
+    private String status;
+
+    public screeningData(int id, int movieID, String title, Date date, Time time, int roomID, String image) {
         this.id = id;
         this.movieID = movieID;
         this.movieTitle = title;
@@ -47,5 +51,14 @@ public class screeningData {
 
     public String getImage() {
         return image;
+    }
+
+    public String getStatus() {
+        if (LocalTime.now().isAfter(startTime.toLocalTime())) {
+            status = "Finished";
+        } else {
+            status = "Available";
+        }
+        return status;
     }
 }
