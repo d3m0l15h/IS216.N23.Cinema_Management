@@ -10,6 +10,7 @@ public class movieData {
     private int duration;
     private String image;
     private int year;
+
     public movieData(int id, String title, String genre, int duration, String image, int year) {
         this.id = id;
         this.title = title;
@@ -18,18 +19,29 @@ public class movieData {
         this.image = image;
         this.year = year;
     }
-    public int getId() {return id;}
-    public String getTitle(){
+
+    public int getId() {
+        return id;
+    }
+
+    public String getTitle() {
         return title;
     }
+
     public String getGenre() {
         return genre;
     }
+
     public int getDuration() {
         return duration;
     }
+
     public String getImage() {
         return image;
     }
-    public int getYear() {return year;}
+
+    public int getYear() {
+        return year;
+    }
+
 }

@@ -34,10 +34,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.*;
 
 public class dashboardController implements Initializable {
-//FXML
+    // FXML
     @FXML
     private TableColumn<movieData, String> addMovie_durationCol;
     @FXML
@@ -62,6 +63,14 @@ public class dashboardController implements Initializable {
     private TableColumn<screeningData, String> editScreening_startCol;
     @FXML
     private TableView<screeningData> editScreening_table2;
+    @FXML
+    private TableView<screeningData> dashboard_Table;
+    @FXML
+    private TableColumn<screeningData, String> dashboard_titleCol;
+    @FXML
+    private TableColumn<screeningData, String> dashboard_startCol;
+    @FXML
+    private TableColumn<screeningData, String> dashboard_statusCol;
     @FXML
     private TableColumn<screeningData, String> editScreening_titleCol2;
     @FXML
@@ -193,7 +202,6 @@ public class dashboardController implements Initializable {
     @FXML
     private TextField customer_email;
 
-
     @FXML
     private ChoiceBox<String> customer_gender;
 
@@ -217,8 +225,6 @@ public class dashboardController implements Initializable {
 
     @FXML
     private Label customer_start;
-
-
 
     @FXML
     private TableColumn<?, ?> customer_totalCol;
@@ -273,25 +279,35 @@ public class dashboardController implements Initializable {
     @FXML
     private Label username;
 
+    @FXML
+    // private Label sold
+    private Label ticketSold;
 
-    //Element
+    @FXML
+    private Label totalIncome;
+
+    @FXML
+    private Label totalMovie;
+    // Element
     private ObservableList<customerData> listCustomer;
     private ObservableList<bookingData> listBooking;
     private ObservableList<movieData> listAddMovie;
     private ObservableList<screeningData> listScreening;
+
     private Image image;
     private Set<String> seatSet;
-    List<String> vip = Arrays.asList("E2","E3","E4","F2","F3","F4");
-    //Javafx.graphic
+    List<String> vip = Arrays.asList("E2", "E3", "E4", "F2", "F3", "F4");
+    // Javafx.graphic
     private Parent root;
     private Scene scene;
     private Stage stage;
-    //Java.sql
+    // Java.sql
     private Connection connect;
     private ResultSet result;
     private PreparedStatement prepare;
     private Statement statement;
-    public void emptyAlert(String str){
+
+    public void emptyAlert(String str) {
         Alert alert;
         alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Warning Message");
@@ -299,7 +315,8 @@ public class dashboardController implements Initializable {
         alert.setContentText(str);
         alert.showAndWait();
     }
-    public void successAlert(String str){
+
+    public void successAlert(String str) {
         Alert alert;
         alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("SUCCESSFUL");
@@ -307,7 +324,8 @@ public class dashboardController implements Initializable {
         alert.setContentText(str);
         alert.showAndWait();
     }
-    public void existAlert(String str){
+
+    public void existAlert(String str) {
         Alert alert;
         alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error Message");
@@ -315,7 +333,8 @@ public class dashboardController implements Initializable {
         alert.setContentText(str);
         alert.showAndWait();
     }
-    public void ImportImage(){
+
+    public void ImportImage() {
         FileChooser open = new FileChooser();
         open.setTitle("Open Image File");
         open.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image File", "*.png", "*.jpg"));
@@ -323,17 +342,19 @@ public class dashboardController implements Initializable {
         Stage stage = (Stage) addMovieForm.getScene().getWindow();
         File file = open.showOpenDialog(stage);
 
-        if(file != null) {
+        if (file != null) {
             image = new Image(file.toURI().toString(), 159, 202, true, false);
             addMovie_image.setImage(image);
             getData.path = file.getAbsolutePath();
         }
     }
-    public void displayUsername(){
+
+    public void displayUsername() {
         username.setText(getData.username.toUpperCase());
     }
-    public void switchForm(ActionEvent event){
-        if(event.getSource() == dashboard) {
+
+    public void switchForm(ActionEvent event) {
+        if (event.getSource() == dashboard) {
             getData.clear();
             dashboardForm.setVisible(true);
             dashboardPane.getStyleClass().add("navButtonHover");
@@ -381,7 +402,7 @@ public class dashboardController implements Initializable {
             editScreeningPane.getStyleClass().add("navButtonHover");
             customerForm.setVisible(false);
             customerPane.getStyleClass().removeAll("navButtonHover");
-        }else if (event.getSource() == customer) {
+        } else if (event.getSource() == customer) {
             getData.clear();
             dashboardForm.setVisible(false);
             dashboardPane.getStyleClass().removeAll("navButtonHover");
@@ -395,6 +416,7 @@ public class dashboardController implements Initializable {
             customerPane.getStyleClass().add("navButtonHover");
         }
     }
+
     public void signOut(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("../../resources/fxml/login.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -406,9 +428,10 @@ public class dashboardController implements Initializable {
         stage.setY((primScreenBounds.getHeight() - stage.getHeight()) / 2);
     }
 
-//Add Movie////////////////////////////////////////////////////////////////
-    //SHOW TABLE LIST////////////////////////////////////////////////////////////////
-    public ObservableList<movieData> addMovieList(){
+    // Add Movie////////////////////////////////////////////////////////////////
+    // SHOW TABLE
+    // LIST////////////////////////////////////////////////////////////////
+    public ObservableList<movieData> addMovieList() {
         ObservableList<movieData> listData = FXCollections.observableArrayList();
 
         String sql = "SELECT * FROM movie";
@@ -419,19 +442,22 @@ public class dashboardController implements Initializable {
             result = prepare.executeQuery();
             while (result.next()) {
                 movieD = new movieData(result.getInt(1),
-                                        result.getString(2),
-                                        result.getString(3),
-                                        result.getInt(4),
-                                        result.getString(6),
-                                        result.getInt(5));
+                        result.getString(2),
+                        result.getString(3),
+                        result.getInt(4),
+                        result.getString(6),
+                        result.getInt(5));
                 listData.add(movieD);
             }
             connect.close();
-        } catch (Exception e){e.printStackTrace();}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         return listData;
     }
-    public void showAddMovieList(){
+
+    public void showAddMovieList() {
         listAddMovie = addMovieList();
         addMovie_titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
         addMovie_genreCol.setCellValueFactory(new PropertyValueFactory<>("genre"));
@@ -440,11 +466,13 @@ public class dashboardController implements Initializable {
 
         addMovie_table.setItems(listAddMovie);
     }
-    public void selectAddMovieList(){
-        movieData movieD = addMovie_table.getSelectionModel().getSelectedItem();
-        int num  = addMovie_table.getSelectionModel().getSelectedIndex();
 
-        if(num - 1 < -1) return;
+    public void selectAddMovieList() {
+        movieData movieD = addMovie_table.getSelectionModel().getSelectedItem();
+        int num = addMovie_table.getSelectionModel().getSelectedIndex();
+
+        if (num - 1 < -1)
+            return;
 
         addMovie_title.setText(movieD.getTitle());
         addMovie_genre.setText(movieD.getGenre());
@@ -456,16 +484,16 @@ public class dashboardController implements Initializable {
         image = new Image(URI, 159, 202, false, true);
         addMovie_image.setImage(image);
     }
-    //INSERT////////////////////////////////////////////////////////////////
-    public void insertAddMovie(){
+
+    // INSERT////////////////////////////////////////////////////////////////
+    public void insertAddMovie() {
         Alert alert;
-        if(addMovie_title.getText().isEmpty()
+        if (addMovie_title.getText().isEmpty()
                 || addMovie_genre.getText().isEmpty()
                 || addMovie_duration.getText().isEmpty()
                 || addMovie_year.getText().isEmpty()) {
             emptyAlert("Fill in all the blank");
-        }
-        else {
+        } else {
             String sql = "INSERT INTO movie(title, genre, duration, image, year) VALUES(?,?,?,?,?)";
             String sql1 = "SELECT title, year from movie WHERE title = '" + addMovie_title.getText() + "'" +
                     "AND year = '" + addMovie_year.getText() + "'";
@@ -502,24 +530,24 @@ public class dashboardController implements Initializable {
             }
         }
     }
-    //UPDATE////////////////////////////////////////////////////////////////
-    public void updateAddMovie(){
+
+    // UPDATE////////////////////////////////////////////////////////////////
+    public void updateAddMovie() {
         Alert alert;
-        if(addMovie_title.getText().isEmpty()
+        if (addMovie_title.getText().isEmpty()
                 || addMovie_genre.getText().isEmpty()
                 || addMovie_duration.getText().isEmpty()
                 || addMovie_year.getText().isEmpty()) {
             emptyAlert("Fill in all the blank");
-        }
-        else {
+        } else {
             String sql = "UPDATE movie SET title = ?, genre = ?, duration = ?, year = ?, image = ? WHERE id = ?";
             String sql1 = "SELECT * from movie WHERE title = '" + addMovie_title.getText() + "'" +
-                                                "AND year = '" + addMovie_year.getText() + "'";
+                    "AND year = '" + addMovie_year.getText() + "'";
             connect = database.connectDb();
             try {
                 assert connect != null;
                 result = connect.prepareStatement(sql1).executeQuery();
-                if(result.next()){
+                if (result.next()) {
                     alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Error Message");
                     alert.setHeaderText(null);
@@ -549,9 +577,11 @@ public class dashboardController implements Initializable {
             }
         }
     }
-    //DELETE////////////////////////////////////////////////////////////////
-    public void deleteAddMovie(){
-        if(addMovie_title.getText().isEmpty()
+
+    public
+    // DELETE////////////////////////////////////////////////////////////////
+    public void deleteAddMovie() {
+        if (addMovie_title.getText().isEmpty()
                 || addMovie_genre.getText().isEmpty()
                 || addMovie_duration.getText().isEmpty()
                 || addMovie_year.getText().isEmpty()) {
@@ -579,8 +609,9 @@ public class dashboardController implements Initializable {
             showAddMovieList();
         }
     }
-    //CLEAR////////////////////////////////////////////////////////////////
-    public void clearAddMovie(){
+
+    // CLEAR////////////////////////////////////////////////////////////////
+    public void clearAddMovie() {
         addMovie_title.setText("");
         addMovie_genre.setText("");
         addMovie_duration.setText("");
@@ -588,15 +619,16 @@ public class dashboardController implements Initializable {
         addMovie_image.setImage(null);
         getData.clear();
     }
-    //SEARCH////////////////////////////////////////////////////////////////
-    public void searchAddMovie(){
+
+    // SEARCH////////////////////////////////////////////////////////////////
+    public void searchAddMovie() {
         FilteredList<movieData> filter = new FilteredList<>(listAddMovie, e -> true);
 
         addMovie_search.textProperty().addListener((observable, oldValue, newValue) -> {
 
             filter.setPredicate(predicateMoviesData -> {
 
-                if(newValue.isEmpty() || newValue == null){
+                if (newValue.isEmpty() || newValue == null) {
                     return true;
                 }
 
@@ -612,16 +644,18 @@ public class dashboardController implements Initializable {
         addMovie_table.setItems(filter);
     }
 
-//Edit Screening////////////////////////////////////////////////////////////////
-    //SHOW MOVIE////////////////////////////////////////////////////////////////
-    public void showScreening1(){
+    // Edit
+    // Screening////////////////////////////////////////////////////////////////
+    // SHOW MOVIE////////////////////////////////////////////////////////////////
+    public void showScreening1() {
         editScreening_titleCol1.setCellValueFactory(new PropertyValueFactory<>("title"));
         editScreening_year.setCellValueFactory(new PropertyValueFactory<>("year"));
 
         editScreening_table1.setItems(listAddMovie);
     }
-    //SELECT MOVIE////////////////////////////////////////////////////////////////
-    public void selectEditScreeningList1(){
+
+    // SELECT MOVIE////////////////////////////////////////////////////////////////
+    public void selectEditScreeningList1() {
         clearEditScreening();
         editScreening_update.setDisable(true);
         editScreening_update.setStyle("-fx-background-color: #C0C0C0; -fx-border-color: #C0C0C0");
@@ -633,7 +667,8 @@ public class dashboardController implements Initializable {
         movieData movieD = editScreening_table1.getSelectionModel().getSelectedItem();
         int num = editScreening_table1.getSelectionModel().getSelectedIndex();
 
-        if(num - 1 < -1) return;
+        if (num - 1 < -1)
+            return;
 
         editScreening_title.setText(movieD.getTitle());
         getData.movieID = movieD.getId();
@@ -641,13 +676,14 @@ public class dashboardController implements Initializable {
         image = new Image(URI, 135, 174, false, true);
         editScreening_image.setImage(image);
     }
-    //SEARCH MOVIE////////////////////////////////////////////////////////////////
-    public void searchEditScreening1(){
+
+    // SEARCH MOVIE////////////////////////////////////////////////////////////////
+    public void searchEditScreening1() {
         FilteredList<movieData> filter = new FilteredList<>(listAddMovie, e -> true);
         editScreening_search1.textProperty().addListener((observable, oldValue, newValue) -> {
             filter.setPredicate(predicateMoviesData -> {
 
-                if(newValue.isEmpty() || newValue == null){
+                if (newValue.isEmpty() || newValue == null) {
                     return true;
                 }
 
@@ -660,8 +696,10 @@ public class dashboardController implements Initializable {
 
         editScreening_table1.setItems(filter);
     }
-    //SHOW SCREENING////////////////////////////////////////////////////////////////
-    ObservableList<screeningData> screeningList(){
+
+    // SHOW
+    // SCREENING////////////////////////////////////////////////////////////////
+    ObservableList<screeningData> screeningList() {
         ObservableList<screeningData> listData = FXCollections.observableArrayList();
         String sql = "call screeningData()";
         connect = database.connectDb();
@@ -670,20 +708,46 @@ public class dashboardController implements Initializable {
             result = connect.prepareStatement(sql).executeQuery();
             while (result.next()) {
                 screenD = new screeningData(result.getInt(1),
-                                            result.getInt(2),
-                                            result.getString(3),
-                                            result.getDate(4),
-                                            result.getTime(5),
-                                            result.getInt(6),
-                                            result.getString(7));
+                        result.getInt(2),
+                        result.getString(3),
+                        result.getDate(4),
+                        result.getTime(5),
+                        result.getInt(6),
+                        result.getString(7));
                 listData.add(screenD);
             }
             connect.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        catch(Exception e){e.printStackTrace();}
         return listData;
     }
-    public void showScreening2(){
+
+    ObservableList<screeningData> screeningListToday() {
+        ObservableList<screeningData> screeningToday = FXCollections.observableArrayList();
+        String sql = "select * from screening where date = curdate()";
+        connect = database.connectDb();
+        screeningData screenD;
+        try {
+            result = connect.prepareStatement(sql).executeQuery();
+            while (result.next()) {
+                screenD = new screeningData(result.getInt(1),
+                        result.getInt(2),
+                        result.getString(3),
+                        result.getDate(4),
+                        result.getTime(5),
+                        result.getInt(6),
+                        result.getString(7));
+                screeningToday.add(screenD);
+            }
+            connect.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return screeningToday;
+    }
+
+    public void showScreening2() {
         listScreening = screeningList();
         editScreening_titleCol2.setCellValueFactory(new PropertyValueFactory<>("movieTitle"));
         editScreening_startCol.setCellValueFactory(new PropertyValueFactory<>("startTime"));
@@ -692,14 +756,48 @@ public class dashboardController implements Initializable {
 
         editScreening_table2.setItems(listScreening);
     }
-    //SEARCH SCREEN////////////////////////////////////////////////////////////////
-    public void searchEditScreening2(){
+
+    public void show_Dashboard_Screening() {
+        listScreening = screeningListToday();
+        dashboard_titleCol.setCellValueFactory(new PropertyValueFactory<>("movieTitle"));
+        dashboard_startCol.setCellValueFactory(new PropertyValueFactory<>("startTime"));
+        dashboard_statusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
+        dashboard_Table.setItems(listScreening);
+    }
+
+    public void show_Dashboard_summary() {
+        String sql = "select count(seatID) from booking join booking_detail on screeningID where ticketDate = curdate()";
+        String sql1 = "select sum(total) from booking where ticketDate = curdate()";
+        String sql2 = "select count(id) from movie";
+        connect = database.connectDb();
+        try {
+            result = connect.prepareStatement(sql).executeQuery();
+            ticketSold.setText(result.getString(1));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            result = connect.prepareStatement(sql1).executeQuery();
+            totalIncome.setText(result.getString(1));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            result = connect.prepareStatement(sql2).executeQuery();
+            totalMovie.setText(result.getString(1));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // SEARCH SCREEN////////////////////////////////////////////////////////////////
+    public void searchEditScreening2() {
         FilteredList<screeningData> filter = new FilteredList<>(listScreening, e -> true);
         editScreening_search2.textProperty().addListener((observable, oldValue, newValue) -> {
 
             filter.setPredicate(predicateScreeningData -> {
 
-                if(newValue.isEmpty() || newValue == null){
+                if (newValue.isEmpty() || newValue == null) {
                     return true;
                 }
 
@@ -713,8 +811,9 @@ public class dashboardController implements Initializable {
 
         editScreening_table2.setItems(filter);
     }
-    //CLEAR////////////////////////////////////////////////////////////////
-    public void selectEditScreeningList2(){
+
+    // CLEAR////////////////////////////////////////////////////////////////
+    public void selectEditScreeningList2() {
         editScreening_add.setDisable(true);
         editScreening_add.setStyle("-fx-background-color: #C0C0C0; -fx-border-color: #C0C0C0");
         editScreening_delete.setDisable(false);
@@ -722,9 +821,10 @@ public class dashboardController implements Initializable {
         editScreening_update.setDisable(false);
         editScreening_update.setStyle("-fx-background-color: #ffa400; -fx-border-color: #ffa400");
         screeningData screenD = editScreening_table2.getSelectionModel().getSelectedItem();
-        int num  = editScreening_table2.getSelectionModel().getSelectedIndex();
+        int num = editScreening_table2.getSelectionModel().getSelectedIndex();
 
-        if(num - 1 < -1) return;
+        if (num - 1 < -1)
+            return;
 
         editScreening_title.setText(screenD.getMovieTitle());
         editScreening_start.setText(String.valueOf(screenD.getStartTime()));
@@ -737,8 +837,9 @@ public class dashboardController implements Initializable {
         image = new Image(URI, 135, 174, false, true);
         editScreening_image.setImage(image);
     }
-    //ADD////////////////////////////////////////////////////////////////
-    public void clearEditScreening(){
+
+    // ADD////////////////////////////////////////////////////////////////
+    public void clearEditScreening() {
         editScreening_start.setText("");
         editScreening_start.setPromptText("hh:mm:ss");
         editScreening_date.setValue(null);
@@ -748,9 +849,12 @@ public class dashboardController implements Initializable {
         editScreening_image.setImage(null);
         getData.clear();
     }
-    //SELECT SCREENING////////////////////////////////////////////////////////////////
-    public void addEditScreening(){
-        if(editScreening_start.getText().isEmpty() || editScreening_date.getValue() == null || editScreening_room.getText().isEmpty()) {
+
+    // SELECT
+    // SCREENING////////////////////////////////////////////////////////////////
+    public void addEditScreening() {
+        if (editScreening_start.getText().isEmpty() || editScreening_date.getValue() == null
+                || editScreening_room.getText().isEmpty()) {
             emptyAlert("Fill in all the blank");
         } else {
             String sql = "SELECT * FROM screening WHERE movieID = ? AND startTime = ? AND dateShow = ? AND roomID = ?";
@@ -763,7 +867,7 @@ public class dashboardController implements Initializable {
                 prepare.setInt(4, Integer.parseInt(editScreening_room.getText()));
                 result = prepare.executeQuery();
                 prepare.clearParameters();
-                if(result.next()){
+                if (result.next()) {
                     existAlert("This screening already exist");
                 } else {
                     String sql2 = "INSERT INTO screening(movieID, startTime, dateShow, roomID) VALUES(?,?,?,?)";
@@ -778,12 +882,16 @@ public class dashboardController implements Initializable {
                     clearEditScreening();
                     connect.close();
                 }
-            } catch (Exception e){e.printStackTrace();}
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
-    //UPDATE////////////////////////////////////////////////////////////////
-    public void updateEditScreening(){
-        if(editScreening_start.getText().isEmpty() || editScreening_date.getValue() == null || editScreening_room.getText().isEmpty()) {
+
+    // UPDATE////////////////////////////////////////////////////////////////
+    public void updateEditScreening() {
+        if (editScreening_start.getText().isEmpty() || editScreening_date.getValue() == null
+                || editScreening_room.getText().isEmpty()) {
             emptyAlert("Fill in all the blank");
         } else {
             String sql = "SELECT * FROM screening WHERE movieID = ? AND startTime = ? AND dateShow = ? AND roomID = ?";
@@ -796,7 +904,7 @@ public class dashboardController implements Initializable {
                 prepare.setInt(4, Integer.parseInt(editScreening_room.getText()));
                 result = prepare.executeQuery();
                 prepare.clearParameters();
-                if(result.next()){
+                if (result.next()) {
                     existAlert("This screen already exist");
                 } else {
                     String sql2 = "UPDATE screening SET startTime = ?, dateShow = ?, roomID = ? WHERE id = ?";
@@ -811,12 +919,16 @@ public class dashboardController implements Initializable {
                     clearEditScreening();
                     connect.close();
                 }
-            } catch (Exception e){e.printStackTrace();}
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
-    //DELETE////////////////////////////////////////////////////////////////
-    public void deleteEditScreening(){
-        if(editScreening_start.getText().isEmpty() || editScreening_date.getValue() == null || editScreening_room.getText().isEmpty()) {
+
+    // DELETE////////////////////////////////////////////////////////////////
+    public void deleteEditScreening() {
+        if (editScreening_start.getText().isEmpty() || editScreening_date.getValue() == null
+                || editScreening_room.getText().isEmpty()) {
             emptyAlert("Fill in all the blank");
         } else {
             String sql = "DELETE FROM screening WHERE id = '" + getData.screeningID + "'";
@@ -843,63 +955,69 @@ public class dashboardController implements Initializable {
         }
     }
 
-//Booking////////////////////////////////////////////////////////////////
-    //CREATE ROOM FOR BOOKING////////////////////////////////////////////////////////////////
-    public void createRoom(){
+    // Booking////////////////////////////////////////////////////////////////
+    // CREATE ROOM FOR
+    // BOOKING////////////////////////////////////////////////////////////////
+    public void createRoom() {
         seatSet = new HashSet<>();
         booking_seat.getChildren().clear();
         int row = 0, col = 0;
         String sql = "call getScreenAvailSeat(?)";
         connect = database.connectDb();
-        try
-        {
+        try {
             prepare = connect.prepareStatement(sql);
             prepare.setInt(1, getData.screeningID);
             result = prepare.executeQuery();
-            while(result.next()){
+            while (result.next()) {
                 Button seat = new Button(result.getString(2) + result.getString(3));
                 seat.setId(String.valueOf(result.getInt(1)));
-                if(result.getString(4).equals("available")) {
+                if (result.getString(4).equals("available")) {
                     seat.getStyleClass().add("seat");
                     seat.setOnAction(event -> {
                         if (seat.getStyleClass().contains("chooseSeat")) {
                             seat.getStyleClass().add("seat");
                             seat.getStyleClass().removeAll("chooseSeat");// unreserve the seat
-                            if(vip.contains(seat.getText())){
-                                booking_total.setText(Integer.parseInt(booking_total.getText().replaceAll("[^\\d]", "")) - 75000 + "VND");
+                            if (vip.contains(seat.getText())) {
+                                booking_total.setText(Integer.parseInt(booking_total.getText().replaceAll("[^\\d]", ""))
+                                        - 75000 + "VND");
                             } else {
-                                booking_total.setText(Integer.parseInt(booking_total.getText().replaceAll("[^\\d]", "")) - 70000 + "VND");
+                                booking_total.setText(Integer.parseInt(booking_total.getText().replaceAll("[^\\d]", ""))
+                                        - 70000 + "VND");
                             }
                             seatSet.remove(seat.getId());
                         } else {
                             seat.getStyleClass().add("chooseSeat");
                             seat.getStyleClass().removeAll("seat");// reserve the seat
-                            if(vip.contains(seat.getText())){
-                                booking_total.setText(Integer.parseInt(booking_total.getText().replaceAll("[^\\d]", "")) + 75000 + "VND");
+                            if (vip.contains(seat.getText())) {
+                                booking_total.setText(Integer.parseInt(booking_total.getText().replaceAll("[^\\d]", ""))
+                                        + 75000 + "VND");
                             } else {
-                                booking_total.setText(Integer.parseInt(booking_total.getText().replaceAll("[^\\d]", "")) + 70000 + "VND");
+                                booking_total.setText(Integer.parseInt(booking_total.getText().replaceAll("[^\\d]", ""))
+                                        + 70000 + "VND");
                             }
                             seatSet.add(seat.getId());
                         }
                     });
-                }
-                else {
+                } else {
                     seat.setDisable(true);
                     seat.getStyleClass().add("bookSeat");
                 }
-                booking_seat.add(seat,col,row);
+                booking_seat.add(seat, col, row);
 
                 col++;
-                if(col == 5) {
+                if (col == 5) {
                     col = 0;
                     row++;
                 }
             }
             connect.close();
-        }catch (Exception e){e.printStackTrace();}
-}
-    //SHOW BOOKING////////////////////////////////////////////////////////////////
-    public void showBooking(){
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    // SHOW BOOKING////////////////////////////////////////////////////////////////
+    public void showBooking() {
         booking_titleCol.setCellValueFactory(new PropertyValueFactory<>("movieTitle"));
         booking_startCol.setCellValueFactory(new PropertyValueFactory<>("startTime"));
         booking_dateCol.setCellValueFactory(new PropertyValueFactory<>("dateShow"));
@@ -907,14 +1025,15 @@ public class dashboardController implements Initializable {
 
         booking_table.setItems(listScreening);
     }
-    //SEARCH BOOKING
-    public void searchBooking(){
+
+    // SEARCH BOOKING
+    public void searchBooking() {
         FilteredList<screeningData> filter = new FilteredList<>(listScreening, e -> true);
         booking_search.textProperty().addListener((observable, oldValue, newValue) -> {
 
             filter.setPredicate(predicateScreeningData -> {
 
-                if(newValue.isEmpty() || newValue == null){
+                if (newValue.isEmpty() || newValue == null) {
                     return true;
                 }
 
@@ -928,15 +1047,18 @@ public class dashboardController implements Initializable {
 
         booking_table.setItems(filter);
     }
-    //SELECT BOOKING////////////////////////////////////////////////////////////////
-    public void selectBooking(){
+
+    // SELECT
+    // BOOKING////////////////////////////////////////////////////////////////
+    public void selectBooking() {
         getData.clear();
         booking_total.setText("0VND");
 
         screeningData screenD = booking_table.getSelectionModel().getSelectedItem();
-        int num  = booking_table.getSelectionModel().getSelectedIndex();
+        int num = booking_table.getSelectionModel().getSelectedIndex();
 
-        if(num - 1 < -1) return;
+        if (num - 1 < -1)
+            return;
 
         booking_title.setText(screenD.getMovieTitle());
         booking_start.setText(String.valueOf(screenD.getStartTime()));
@@ -951,39 +1073,43 @@ public class dashboardController implements Initializable {
 
         createRoom();
     }
+
     //
-    public void customerSearchBooking(){
+    public void customerSearchBooking() {
         String sql = "SELECT name, birth FROM customer WHERE phone = ?";
         connect = database.connectDb();
-            booking_phone.textProperty().addListener((observable, oldValue, newValue) -> {
-                try {
-                    prepare = connect.prepareStatement(sql);
-                    prepare.setString(1,newValue);
-                    result = prepare.executeQuery();
-                    if(result.next()){
-                        booking_name.setText(result.getString(1));
-                        booking_name.setEditable(false);
-                        booking_birth.setValue(result.getDate(2).toLocalDate());
-                        booking_birth.setEditable(false);
-                    } else {
-                        booking_name.setText("");
-                        booking_name.setEditable(true);
-                        booking_birth.setValue(null);
-                        booking_birth.setEditable(true);
-                    }
-                } catch (SQLException e) {throw new RuntimeException(e);}
-            });
+        booking_phone.textProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                prepare = connect.prepareStatement(sql);
+                prepare.setString(1, newValue);
+                result = prepare.executeQuery();
+                if (result.next()) {
+                    booking_name.setText(result.getString(1));
+                    booking_name.setEditable(false);
+                    booking_birth.setValue(result.getDate(2).toLocalDate());
+                    booking_birth.setEditable(false);
+                } else {
+                    booking_name.setText("");
+                    booking_name.setEditable(true);
+                    booking_birth.setValue(null);
+                    booking_birth.setEditable(true);
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
+
     //
-    public void buyBooking() throws Exception{
+    public void buyBooking() throws Exception {
         Iterator<String> iterator = seatSet.iterator();
-        if(getData.screeningID == 0) { emptyAlert("Select screening first");}
-        else if(booking_name.getText().isEmpty()
+        if (getData.screeningID == 0) {
+            emptyAlert("Select screening first");
+        } else if (booking_name.getText().isEmpty()
                 || booking_phone.getText().isEmpty()
-                || booking_birth.getValue() == null){
+                || booking_birth.getValue() == null) {
             emptyAlert("Fill all the information");
-        }
-        else{
+        } else {
             String sql1 = "call checkCus(?,?,?)";
             String sql2 = "INSERT INTO booking(customerID, screeningID, total) VALUES (?,?,?)";
             String sql3 = "INSERT INTO booking_detail VALUES (?,?,?)";
@@ -1003,13 +1129,12 @@ public class dashboardController implements Initializable {
                 prepare.setInt(3, Integer.parseInt(booking_total.getText().replaceAll("[^\\d]", "")));
                 prepare.execute();
                 result = prepare.getGeneratedKeys();
-                if (result.next())
-                {
+                if (result.next()) {
                     getData.bookingID = result.getInt(1);
                 }
                 prepare.close();
 
-                while (iterator.hasNext()){
+                while (iterator.hasNext()) {
                     prepare = connect.prepareStatement(sql3);
                     prepare.setInt(1, getData.bookingID);
                     prepare.setInt(2, Integer.parseInt(iterator.next()));
@@ -1023,12 +1148,15 @@ public class dashboardController implements Initializable {
                 showCustomer2();
 
                 connect.close();
-            } catch (Exception e) {e.printStackTrace();}
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
-//Customers
-    //SHOW
-    public ObservableList<customerData> customerList(){
+
+    // Customers
+    // SHOW
+    public ObservableList<customerData> customerList() {
         ObservableList<customerData> listData = FXCollections.observableArrayList();
         String sql = "SELECT * FROM customer";
         connect = database.connectDb();
@@ -1045,10 +1173,13 @@ public class dashboardController implements Initializable {
                 listData.add(cusD);
             }
             connect.close();
-        } catch (Exception e){e.printStackTrace();}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return listData;
     }
-    public void showCustomer1(){
+
+    public void showCustomer1() {
         listCustomer = customerList();
 
         customer_nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -1059,20 +1190,21 @@ public class dashboardController implements Initializable {
 
         customer_table1.setItems(listCustomer);
     }
-    //SEARCH
-    public void searchCustomer1(){
+
+    // SEARCH
+    public void searchCustomer1() {
         FilteredList<customerData> filter = new FilteredList<>(listCustomer, e -> true);
         customer_search1.textProperty().addListener((observable, oldValue, newValue) -> {
 
             filter.setPredicate(predicateScreeningData -> {
 
-                if(newValue.isEmpty() || newValue == null){
+                if (newValue.isEmpty() || newValue == null) {
                     return true;
                 }
 
                 String keyword = newValue.toLowerCase();
                 return predicateScreeningData.getPhone().toLowerCase().contains(keyword)
-                        || predicateScreeningData.getName().toLowerCase().contains(keyword) ;
+                        || predicateScreeningData.getName().toLowerCase().contains(keyword);
             });
         });
 
@@ -1081,23 +1213,26 @@ public class dashboardController implements Initializable {
 
         customer_table1.setItems(filter);
     }
-    //SELECT
-    public void selectCustomer1(){
+
+    // SELECT
+    public void selectCustomer1() {
         customerData cusD = customer_table1.getSelectionModel().getSelectedItem();
         int num = customer_table1.getSelectionModel().getSelectedIndex();
 
-        if(num - 1 < -1) return;
+        if (num - 1 < -1)
+            return;
 
         customer_name.setText(cusD.getName());
         customer_phone.setText(cusD.getPhone());
-        customer_email.setText(cusD.getEmail()==null ? "" : cusD.getEmail());
+        customer_email.setText(cusD.getEmail() == null ? "" : cusD.getEmail());
         customer_birth.setValue(cusD.getBirth().toLocalDate());
         customer_gender.setValue(cusD.getGender() == null ? "" : cusD.getGender());
 
         getData.customerID = cusD.getPhone();
     }
-    //SHOW
-    public ObservableList<bookingData> bookingList(){
+
+    // SHOW
+    public ObservableList<bookingData> bookingList() {
         ObservableList<bookingData> listData = FXCollections.observableArrayList();
         String sql = "call getBooking()";
         connect = database.connectDb();
@@ -1105,24 +1240,27 @@ public class dashboardController implements Initializable {
         try {
             prepare = connect.prepareStatement(sql);
             result = prepare.executeQuery();
-            while (result.next()){
+            while (result.next()) {
                 bookD = new bookingData(result.getInt(1),
-                                        result.getString(2),
-                                        result.getDate(3),
-                                        result.getString(4),
-                                        result.getDate(5),
-                                        result.getTime(6),
-                                        result.getInt(7),
-                                        result.getInt(8),
-                                        result.getString(9));
+                        result.getString(2),
+                        result.getDate(3),
+                        result.getString(4),
+                        result.getDate(5),
+                        result.getTime(6),
+                        result.getInt(7),
+                        result.getInt(8),
+                        result.getString(9));
                 listData.add(bookD);
             }
             connect.close();
 
-        }catch (Exception e){e.printStackTrace();}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return listData;
     }
-    public void showCustomer2(){
+
+    public void showCustomer2() {
         listBooking = bookingList();
         customer_phoneCol2.setCellValueFactory(new PropertyValueFactory<>("customerID"));
         customer_seatCol.setCellValueFactory(new PropertyValueFactory<>("seats"));
@@ -1131,12 +1269,14 @@ public class dashboardController implements Initializable {
 
         customer_table2.setItems(listBooking);
     }
-    //SELECT
-    public void selectCustomer2(){
+
+    // SELECT
+    public void selectCustomer2() {
         bookingData bookD = customer_table2.getSelectionModel().getSelectedItem();
         int num = customer_table2.getSelectionModel().getSelectedIndex();
 
-        if(num - 1 < -1) return;
+        if (num - 1 < -1)
+            return;
 
         customer_movie.setText(bookD.getMovie());
         customer_date.setText(String.valueOf(bookD.getDateShow()));
@@ -1144,14 +1284,15 @@ public class dashboardController implements Initializable {
         customer_room.setText(String.valueOf(bookD.getRoom()));
 
     }
-    //Search
-    public void searchCustomer2(){
+
+    // Search
+    public void searchCustomer2() {
         FilteredList<bookingData> filter = new FilteredList<>(listBooking, e -> true);
         customer_search2.textProperty().addListener((observable, oldValue, newValue) -> {
 
             filter.setPredicate(predicateScreeningData -> {
 
-                if(newValue.isEmpty() || newValue == null){
+                if (newValue.isEmpty() || newValue == null) {
                     return true;
                 }
 
@@ -1165,12 +1306,14 @@ public class dashboardController implements Initializable {
 
         customer_table2.setItems(filter);
     }
-    //UPDATE
-    public void customerUpdate(){
-        if(customer_name.getText().isEmpty() || customer_birth.getValue() == null) {
+
+    // UPDATE
+    public void customerUpdate() {
+        if (customer_name.getText().isEmpty() || customer_birth.getValue() == null) {
             emptyAlert("Don't empty name or birth");
-        } else{
-            String sql = "UPDATE customer SET name=?, email=?, birth=?, gender=? WHERE phone='" + getData.customerID + "'";
+        } else {
+            String sql = "UPDATE customer SET name=?, email=?, birth=?, gender=? WHERE phone='" + getData.customerID
+                    + "'";
             connect = database.connectDb();
             try {
                 assert connect != null;
@@ -1190,6 +1333,7 @@ public class dashboardController implements Initializable {
             }
         }
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         customer_gender.getItems().addAll("Male", "Female");
