@@ -283,6 +283,11 @@ public class dashboardController implements Initializable {
     // private Label sold
     private Label ticketSold;
 
+    @FXML
+    private Label totalIncome;
+
+    @FXML
+    private Label totalMovie;
     // Element
     private ObservableList<customerData> listCustomer;
     private ObservableList<bookingData> listBooking;
@@ -760,7 +765,30 @@ public class dashboardController implements Initializable {
         dashboard_Table.setItems(listScreening);
     }
 
-    public void show_Dashboard_
+    public void show_Dashboard_summary() {
+        String sql = "select count(seatID) from booking join booking_detail on screeningID where ticketDate = curdate()";
+        String sql1 = "select sum(total) from booking where ticketDate = curdate()";
+        String sql2 = "select count(id) from movie";
+        connect = database.connectDb();
+        try {
+            result = connect.prepareStatement(sql).executeQuery();
+            ticketSold.setText(result.getString(1));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            result = connect.prepareStatement(sql1).executeQuery();
+            totalIncome.setText(result.getString(1));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            result = connect.prepareStatement(sql2).executeQuery();
+            totalMovie.setText(result.getString(1));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     // SEARCH SCREEN////////////////////////////////////////////////////////////////
     public void searchEditScreening2() {
