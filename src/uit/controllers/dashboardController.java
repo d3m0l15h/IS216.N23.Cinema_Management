@@ -40,6 +40,14 @@ import java.util.*;
 public class dashboardController implements Initializable {
     // FXML
     @FXML
+    private TableColumn<screeningData, String> dashboard_statusCol;
+    @FXML
+    private TableView<screeningData> dashboard_table;
+    @FXML
+    private TableColumn<screeningData, String> dashboard_timeCol;
+    @FXML
+    private TableColumn<screeningData, String> dashboard_titleCol;
+    @FXML
     private TableColumn<movieData, String> addMovie_durationCol;
     @FXML
     private TableColumn<movieData, String> addMovie_titleCol;
@@ -63,14 +71,6 @@ public class dashboardController implements Initializable {
     private TableColumn<screeningData, String> editScreening_startCol;
     @FXML
     private TableView<screeningData> editScreening_table2;
-    @FXML
-    private TableView<screeningData> dashboard_Table;
-    @FXML
-    private TableColumn<screeningData, String> dashboard_titleCol;
-    @FXML
-    private TableColumn<screeningData, String> dashboard_startCol;
-    @FXML
-    private TableColumn<screeningData, String> dashboard_statusCol;
     @FXML
     private TableColumn<screeningData, String> editScreening_titleCol2;
     @FXML
@@ -102,7 +102,11 @@ public class dashboardController implements Initializable {
     @FXML
     private TableColumn<customerData, String> customer_phoneCol1;
     @FXML
+    private TableColumn<bookingData, String> customer_totalCol;
+    @FXML
     private TableView<customerData> customer_table1;
+    @FXML
+    private ChoiceBox <String> customer_gender;
 
     @FXML
     private Button addMovie;
@@ -127,7 +131,6 @@ public class dashboardController implements Initializable {
 
     @FXML
     private TextField addMovie_search;
-
     @FXML
     private TextField addMovie_title;
 
@@ -196,14 +199,11 @@ public class dashboardController implements Initializable {
 
     @FXML
     private DatePicker customer_birth;
-
     @FXML
     private Label customer_date;
-    @FXML
-    private TextField customer_email;
 
     @FXML
-    private ChoiceBox<String> customer_gender;
+    private TextField customer_email;
 
     @FXML
     private Label customer_movie;
@@ -227,7 +227,13 @@ public class dashboardController implements Initializable {
     private Label customer_start;
 
     @FXML
-    private TableColumn<?, ?> customer_totalCol;
+    private Label dashboard_ticketSold;
+
+    @FXML
+    private Label dashboard_totalIncome;
+
+    @FXML
+    private Label dashboard_totalMovie;
 
     @FXML
     private Button dashboard;
@@ -252,7 +258,6 @@ public class dashboardController implements Initializable {
 
     @FXML
     private DatePicker editScreening_date;
-
     @FXML
     private Button editScreening_delete;
 
@@ -261,6 +266,7 @@ public class dashboardController implements Initializable {
 
     @FXML
     private TextField editScreening_room;
+
     @FXML
     private TextField editScreening_search1;
 
@@ -289,6 +295,7 @@ public class dashboardController implements Initializable {
     @FXML
     private Label totalMovie;
     // Element
+    private ObservableList<screeningData> listScreeningToday;
     private ObservableList<customerData> listCustomer;
     private ObservableList<bookingData> listBooking;
     private ObservableList<movieData> listAddMovie;
@@ -428,6 +435,65 @@ public class dashboardController implements Initializable {
         stage.setY((primScreenBounds.getHeight() - stage.getHeight()) / 2);
     }
 
+    // DASHBOARD ///////////////////////////////////////////////////////////////
+    //SHOW
+    ObservableList<screeningData> screeningListToday() {
+        ObservableList<screeningData> listData = FXCollections.observableArrayList();
+        String sql = "call screeningDataToday()";
+        connect = database.connectDb();
+        screeningData screenD;
+        try {
+            assert connect != null;
+            result = connect.prepareStatement(sql).executeQuery();
+            while (result.next()) {
+                screenD = new screeningData(result.getInt(1),
+                                            result.getInt(2),
+                                            result.getString(3),
+                                            result.getDate(4),
+                                            result.getTime(5),
+                                            result.getInt(6),
+                                            result.getString(7));
+                screenD.setStatus();
+                listData.add(screenD);
+            }
+            connect.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listData;
+    }
+
+    public void showDashboard() {
+        listScreeningToday = screeningListToday();
+
+        dashboard_titleCol.setCellValueFactory(new PropertyValueFactory<>("movieTitle"));
+        dashboard_timeCol.setCellValueFactory(new PropertyValueFactory<>("startTime"));
+        dashboard_statusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
+
+        dashboard_table.setItems(listScreeningToday);
+    }
+
+    public void showDashboardSummary() {
+        String sql = "select count(seatID) from booking b join booking_detail bd on bd.bookingID = b.id where bookingDate = curdate()";
+        String sql1 = "select sum(total) from booking where bookingDate = curdate()";
+        String sql2 = "select count(id) from movie";
+        connect = database.connectDb();
+        try {
+            assert connect != null;
+            result = connect.prepareStatement(sql).executeQuery();
+            if(result.next()) dashboard_ticketSold.setText(result.getString(1));
+
+            result = connect.prepareStatement(sql1).executeQuery();
+            if(result.next()) dashboard_totalIncome.setText(result.getString(1)==null ? "0" : result.getString(1));
+
+            result = connect.prepareStatement(sql2).executeQuery();
+            if(result.next()) dashboard_totalMovie.setText(result.getString(1));
+
+            connect.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     // Add Movie////////////////////////////////////////////////////////////////
     // SHOW TABLE
     // LIST////////////////////////////////////////////////////////////////
@@ -522,6 +588,10 @@ public class dashboardController implements Initializable {
 
                     clearAddMovie();
                     showAddMovieList();
+                    showDashboard();
+                    showDashboardSummary();
+                    showScreening1();
+                    showScreening2();
                     connect.close();
                 }
 
@@ -578,7 +648,6 @@ public class dashboardController implements Initializable {
         }
     }
 
-    public
     // DELETE////////////////////////////////////////////////////////////////
     public void deleteAddMovie() {
         if (addMovie_title.getText().isEmpty()
@@ -723,30 +792,6 @@ public class dashboardController implements Initializable {
         return listData;
     }
 
-    ObservableList<screeningData> screeningListToday() {
-        ObservableList<screeningData> screeningToday = FXCollections.observableArrayList();
-        String sql = "select * from screening where date = curdate()";
-        connect = database.connectDb();
-        screeningData screenD;
-        try {
-            result = connect.prepareStatement(sql).executeQuery();
-            while (result.next()) {
-                screenD = new screeningData(result.getInt(1),
-                        result.getInt(2),
-                        result.getString(3),
-                        result.getDate(4),
-                        result.getTime(5),
-                        result.getInt(6),
-                        result.getString(7));
-                screeningToday.add(screenD);
-            }
-            connect.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return screeningToday;
-    }
-
     public void showScreening2() {
         listScreening = screeningList();
         editScreening_titleCol2.setCellValueFactory(new PropertyValueFactory<>("movieTitle"));
@@ -755,39 +800,6 @@ public class dashboardController implements Initializable {
         editScreening_roomCol.setCellValueFactory(new PropertyValueFactory<>("roomID"));
 
         editScreening_table2.setItems(listScreening);
-    }
-
-    public void show_Dashboard_Screening() {
-        listScreening = screeningListToday();
-        dashboard_titleCol.setCellValueFactory(new PropertyValueFactory<>("movieTitle"));
-        dashboard_startCol.setCellValueFactory(new PropertyValueFactory<>("startTime"));
-        dashboard_statusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
-        dashboard_Table.setItems(listScreening);
-    }
-
-    public void show_Dashboard_summary() {
-        String sql = "select count(seatID) from booking join booking_detail on screeningID where ticketDate = curdate()";
-        String sql1 = "select sum(total) from booking where ticketDate = curdate()";
-        String sql2 = "select count(id) from movie";
-        connect = database.connectDb();
-        try {
-            result = connect.prepareStatement(sql).executeQuery();
-            ticketSold.setText(result.getString(1));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
-            result = connect.prepareStatement(sql1).executeQuery();
-            totalIncome.setText(result.getString(1));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        try {
-            result = connect.prepareStatement(sql2).executeQuery();
-            totalMovie.setText(result.getString(1));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
     }
 
     // SEARCH SCREEN////////////////////////////////////////////////////////////////
@@ -878,6 +890,7 @@ public class dashboardController implements Initializable {
                     prepare.setInt(4, Integer.parseInt(editScreening_room.getText()));
                     prepare.execute();
                     successAlert("Successfully adding new screen");
+                    showDashboard();
                     showScreening2();
                     clearEditScreening();
                     connect.close();
@@ -915,8 +928,10 @@ public class dashboardController implements Initializable {
                     prepare.setInt(4, getData.screeningID);
                     prepare.execute();
                     successAlert("Successfully updating screen");
+                    showDashboard();
                     showScreening2();
                     clearEditScreening();
+                    showBooking();
                     connect.close();
                 }
             } catch (Exception e) {
@@ -945,13 +960,15 @@ public class dashboardController implements Initializable {
                     statement.execute(sql);
                     successAlert("Successfully delete");
                     connect.close();
+                    clearEditScreening();
+                    showDashboard();
+                    showScreening2();
+                    showBooking();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
 
             }
-            clearEditScreening();
-            showScreening2();
         }
     }
 
@@ -1145,6 +1162,7 @@ public class dashboardController implements Initializable {
 
                 successAlert("Successfully booking");
                 createRoom();
+                showCustomer1();
                 showCustomer2();
 
                 connect.close();
@@ -1338,6 +1356,8 @@ public class dashboardController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         customer_gender.getItems().addAll("Male", "Female");
         displayUsername();
+        showDashboardSummary();
+        showDashboard();
         showAddMovieList();
         showScreening1();
         showScreening2();

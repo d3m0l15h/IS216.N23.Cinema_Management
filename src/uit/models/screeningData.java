@@ -53,12 +53,14 @@ public class screeningData {
         return image;
     }
 
-    public String getStatus() {
+    public void setStatus() {
         if (LocalTime.now().isAfter(startTime.toLocalTime())) {
-            status = "Finished";
+            this.status = "Finished";
         } else {
-            status = "Available";
+            this.status = "Available";
         }
+    }
+    public String getStatus() {
         return status;
     }
 }
