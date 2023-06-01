@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Point3D?>
 <?import javafx.scene.control.Button?>
@@ -687,7 +681,7 @@
                   </AnchorPane>
                   <AnchorPane layoutX="337.0" layoutY="13.0" prefHeight="315.0" prefWidth="614.0" styleClass="bg-white">
                      <children>
-                        <TableView fx:id="customer_table1" layoutX="2.0" layoutY="65.0" onMouseClicked="#selectCustomer1" prefHeight="238.0" prefWidth="610.0">
+                        <TableView fx:id="customer_table1" layoutX="2.0" layoutY="65.0" onMouseClicked="#selectCustomer1" prefHeight="243.0" prefWidth="610.0">
                            <columns>
                               <TableColumn fx:id="customer_nameCol" editable="false" prefWidth="176.00003051757812" resizable="false" text="Name" />
                               <TableColumn fx:id="customer_phoneCol1" editable="false" prefWidth="106.4000244140625" resizable="false" text="Phone" />
@@ -713,7 +707,7 @@
                   </AnchorPane>
                   <AnchorPane layoutX="336.0" layoutY="340.0" prefHeight="371.0" prefWidth="616.0" styleClass="bg-white">
                      <children>
-                        <TableView fx:id="customer_table2" layoutX="-2.0" layoutY="53.0" onMouseClicked="#selectCustomer2" prefHeight="304.0" prefWidth="617.0">
+                        <TableView fx:id="customer_table2" layoutX="5.0" layoutY="53.0" onMouseClicked="#selectCustomer2" prefHeight="313.0" prefWidth="608.0">
                            <columns>
                               <TableColumn fx:id="customer_phoneCol2" editable="false" prefWidth="156.00006103515625" resizable="false" text="Phone" />
                               <TableColumn fx:id="customer_seatCol" prefWidth="247.99996948242188" text="Seat" />
@@ -738,23 +732,23 @@
                   </AnchorPane>
                   <AnchorPane layoutX="10.0" layoutY="13.0" prefHeight="316.0" prefWidth="318.0" styleClass="bg-white">
                      <children>
-                        <ChoiceBox fx:id="customer_gender" layoutX="70.0" layoutY="219.0" prefHeight="26.0" prefWidth="119.0" style="-fx-background-color: #fff; -fx-border-color: #5062ab; -fx-border-radius: 5px;" />
-                        <Label layoutX="10.0" layoutY="56.0" prefHeight="26.0" prefWidth="47.0" text="Name">
+                        <ChoiceBox fx:id="customer_gender" layoutX="70.0" layoutY="222.0" prefHeight="26.0" prefWidth="119.0" style="-fx-background-color: #fff; -fx-border-color: #5062ab; -fx-border-radius: 5px;" />
+                        <Label layoutX="10.0" layoutY="59.0" prefHeight="26.0" prefWidth="47.0" text="Name">
                            <font>
                               <Font name="Segoe UI Semibold" size="16.0" />
                            </font>
                         </Label>
-                        <Label layoutX="10.0" layoutY="96.0" text="Phone">
+                        <Label layoutX="10.0" layoutY="99.0" text="Phone">
                            <font>
                               <Font name="Segoe UI Semibold" size="16.0" />
                            </font>
                         </Label>
-                        <Label layoutX="10.0" layoutY="140.0" text="Email">
+                        <Label layoutX="10.0" layoutY="143.0" text="Email">
                            <font>
                               <Font name="Segoe UI Semibold" size="16.0" />
                            </font>
                         </Label>
-                        <Label layoutX="10.0" layoutY="182.0" prefWidth="35.0" text="Birth">
+                        <Label layoutX="10.0" layoutY="185.0" prefWidth="35.0" text="Birth">
                            <font>
                               <Font name="Segoe UI Semibold" size="16.0" />
                            </font>
@@ -764,7 +758,7 @@
                               <Font name="Segoe UI Bold" size="30.0" />
                            </font>
                         </Label>
-                        <Label layoutX="9.0" layoutY="220.0" text="Gender">
+                        <Label layoutX="9.0" layoutY="223.0" text="Gender">
                            <font>
                               <Font name="Segoe UI Semibold" size="16.0" />
                            </font>
@@ -774,18 +768,18 @@
                               <Font name="Segoe UI Semibold" size="13.0" />
                            </font>
                         </Button>
-                        <DatePicker fx:id="customer_birth" layoutX="70.0" layoutY="181.0" />
-                        <TextField fx:id="customer_email" layoutX="70.0" layoutY="137.0" prefHeight="27.0" prefWidth="228.0">
+                        <DatePicker fx:id="customer_birth" layoutX="70.0" layoutY="184.0" />
+                        <TextField fx:id="customer_email" layoutX="70.0" layoutY="140.0" prefHeight="27.0" prefWidth="228.0">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </TextField>
-                        <TextField fx:id="customer_name" layoutX="70.0" layoutY="55.0" prefHeight="27.0" prefWidth="228.0">
+                        <TextField fx:id="customer_name" layoutX="70.0" layoutY="58.0" prefHeight="27.0" prefWidth="228.0">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </TextField>
-                        <Label fx:id="customer_phone" layoutX="71.0" layoutY="95.0" prefHeight="29.0" prefWidth="226.0">
+                        <Label fx:id="customer_phone" layoutX="71.0" layoutY="98.0" prefHeight="29.0" prefWidth="226.0">
                            <font>
                               <Font size="14.0" />
                            </font>
