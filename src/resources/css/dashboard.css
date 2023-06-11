@@ -1,19 +1,9 @@
 @font-face {
     font-family: "Source Sans Pro";
-    src: url("resources/font/source-sans-pro/SourceSansPro-Regular.otf");
+    src: url("../font/source-sans-pro/SourceSansPro-Regular.otf");
 }
 
-@font-face {
-    font-family: "Source Sans Pro Semibold";
-    src: url("resources/font/source-sans-pro/SourceSansPro-Semibold.otf");
-}
-
-@font-face {
-    font-family: "Source Sans Pro Bold";
-    src: url("resources/font/source-sans-pro/SourceSansPro-Bold.otf");
-}
-
-* {
+*{
     -fx-font-family: "Source Sans Pro";
     -fx-font-weight: Bold;
 }
@@ -58,14 +48,9 @@
     -fx-text-fill: #5062ab;
 }
 
-.btn:hover {
-    -fx-background-color: #5062ab;
-    -fx-text-fill: #fff;
-}
-
 .btn#buy:hover {
-    -fx-background-color: #00d219;
-    -fx-border-color: #00d219;
+    -fx-background-color:  #028f76;
+    -fx-border-color:  #028f76;
     -fx-text-fill: #fff;
     -fx-border-width: 2.5;
     -fx-border-radius: 5px;
@@ -73,8 +58,8 @@
 }
 
 .btn#clear:hover {
-    -fx-background-color: #d200ce;
-    -fx-border-color: #d200ce;
+    -fx-background-color: #483078;
+    -fx-border-color: #483078;
     -fx-text-fill: #fff;
     -fx-border-width: 2.5;
     -fx-border-radius: 5px;
