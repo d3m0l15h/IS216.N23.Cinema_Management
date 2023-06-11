@@ -205,7 +205,7 @@
                                     <Insets left="45.0" right="45.0" />
                                  </padding>
                                  <font>
-                                    <Font name="Public Sans Medium Italic" size="30.0" />
+                                    <Font name="Public Sans Medium" size="30.0" />
                                  </font>
                               </Label>
                            </children>
