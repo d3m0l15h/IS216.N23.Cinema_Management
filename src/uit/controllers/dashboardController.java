@@ -474,8 +474,8 @@ public class dashboardController implements Initializable {
     }
 
     public void showDashboardSummary() {
-        String sql = "select count(seatID) from booking b join booking_detail bd on bd.bookingID = b.id where bookingDate = curdate()";
-        String sql1 = "select sum(total) from booking where bookingDate = curdate()";
+        String sql = "select count(seatID) from booking b join booking_detail bd on bd.bookingID = b.id";
+        String sql1 = "select sum(total) from booking";
         String sql2 = "select count(id) from movie";
         connect = database.connectDb();
         try {
@@ -1065,8 +1065,7 @@ public class dashboardController implements Initializable {
         booking_table.setItems(filter);
     }
 
-    // SELECT
-    // BOOKING////////////////////////////////////////////////////////////////
+    // SELECT BOOKING////////////////////////////////////////////////////////////////
     public void selectBooking() {
         getData.clear();
         booking_total.setText("0VND");
@@ -1091,7 +1090,7 @@ public class dashboardController implements Initializable {
         createRoom();
     }
 
-    //
+    //SEARCH CUSTOMER BOOKING ////////////////////////////////////////////////////////
     public void customerSearchBooking() {
         String sql = "SELECT name, birth FROM customer WHERE phone = ?";
         connect = database.connectDb();
@@ -1117,7 +1116,7 @@ public class dashboardController implements Initializable {
         });
     }
 
-    //
+    // BUY BOOKING //////////////////////////////////////////////////
     public void buyBooking() throws Exception {
         Iterator<String> iterator = seatSet.iterator();
         if (getData.screeningID == 0) {
@@ -1172,8 +1171,8 @@ public class dashboardController implements Initializable {
         }
     }
 
-    // Customers
-    // SHOW
+    // CUSTOMER ////////////////////////////////////////////////////////
+    // SHOW CUSTOMER ///////////////////////////////////////////////////
     public ObservableList<customerData> customerList() {
         ObservableList<customerData> listData = FXCollections.observableArrayList();
         String sql = "SELECT * FROM customer";
@@ -1209,7 +1208,7 @@ public class dashboardController implements Initializable {
         customer_table1.setItems(listCustomer);
     }
 
-    // SEARCH
+    // SEARCH CUSTOMER //////////////////////////////////////////////////
     public void searchCustomer1() {
         FilteredList<customerData> filter = new FilteredList<>(listCustomer, e -> true);
         customer_search1.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -1232,7 +1231,7 @@ public class dashboardController implements Initializable {
         customer_table1.setItems(filter);
     }
 
-    // SELECT
+    // SELECT CUSTOMER /////////////////////////////////////////////////////////
     public void selectCustomer1() {
         customerData cusD = customer_table1.getSelectionModel().getSelectedItem();
         int num = customer_table1.getSelectionModel().getSelectedIndex();
@@ -1249,7 +1248,7 @@ public class dashboardController implements Initializable {
         getData.customerID = cusD.getPhone();
     }
 
-    // SHOW
+    // SHOW BOOKING ///////////////////////////////////////////////////////
     public ObservableList<bookingData> bookingList() {
         ObservableList<bookingData> listData = FXCollections.observableArrayList();
         String sql = "call getBooking()";
@@ -1288,7 +1287,7 @@ public class dashboardController implements Initializable {
         customer_table2.setItems(listBooking);
     }
 
-    // SELECT
+    // SELECT BOOKING ///////////////////////////////////////////////////////
     public void selectCustomer2() {
         bookingData bookD = customer_table2.getSelectionModel().getSelectedItem();
         int num = customer_table2.getSelectionModel().getSelectedIndex();
@@ -1303,7 +1302,7 @@ public class dashboardController implements Initializable {
 
     }
 
-    // Search
+    // SEARCH BOOKING ////////////////////////////////////////////////////////////
     public void searchCustomer2() {
         FilteredList<bookingData> filter = new FilteredList<>(listBooking, e -> true);
         customer_search2.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -1325,7 +1324,7 @@ public class dashboardController implements Initializable {
         customer_table2.setItems(filter);
     }
 
-    // UPDATE
+    // UPDATE CUSTOMER //////////////////////////////////////////////////////////////
     public void customerUpdate() {
         if (customer_name.getText().isEmpty() || customer_birth.getValue() == null) {
             emptyAlert("Don't empty name or birth");
