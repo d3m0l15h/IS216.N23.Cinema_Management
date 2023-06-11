@@ -176,19 +176,18 @@
 
 /*CUSTOMER*/
 
-.info-card
-{
+.info-card {
     -fx-border-color: #3374a2;
     -fx-border-radius: 5px 5px 5px 5px;
     -fx-border-width: 2px;
 }
 
-.card-customer{
-    -fx-background-color:#fff;
-    -fx-background-radius:5px;
+.card-customer {
+    -fx-background-color: #fff;
+    -fx-background-radius: 5px;
     -fx-border-color: #5062ab;
 
-    -fx-border-radius:5px;
+    -fx-border-radius: 5px;
 }
 
 .seat{
@@ -215,4 +214,10 @@
 
 .box {
     justify-content: center;
+}
+
+.font-dashboard-summary {
+    fx-font-weight: 400;
+    fx-font-size: 20px;
+    font-family: 'Public Sans', sans-serif;
 }
