@@ -267,13 +267,13 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="addMovieForm" layoutX="108.0" layoutY="135.0" prefHeight="720.0" prefWidth="961.0" style="-fx-background-color: #F0F1F3;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="addMovieForm" layoutX="108.0" layoutY="135.0" prefHeight="720.0" prefWidth="961.0" style="-fx-background-color: #F9FAFB;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <AnchorPane layoutX="9.0" layoutY="14.0" prefHeight="691.0" prefWidth="268.0" styleClass="bg-white">
                      <children>
-                        <Button fx:id="addMovie_import" layoutX="101.0" layoutY="228.0" mnemonicParsing="false" onAction="#ImportImage" styleClass="addMovieBtn" text="Import">
+                        <Button fx:id="addMovie_import" layoutX="101.0" layoutY="227.0" mnemonicParsing="false" onAction="#ImportImage" styleClass="addMovieBtn" text="Import">
                            <font>
-                              <Font name="Segoe UI Semibold" size="15.0" />
+                              <Font name="Segoe UI Semibold" size="14.0" />
                            </font></Button>
                         <Label alignment="CENTER_RIGHT" layoutX="4.0" layoutY="288.0" prefHeight="21.0" prefWidth="80.0" text="Movie Title">
                            <font>
@@ -317,33 +317,30 @@
                               <Font name="Segoe UI Semibold" size="15.0" />
                            </font>
                         </Button>
-                        <HBox id="util" layoutX="1.0" layoutY="467.0" prefHeight="31.0" prefWidth="268.0" spacing="15.0">
-                           <children>
-                              <Button mnemonicParsing="false" onAction="#insertAddMovie" prefHeight="41.0" prefWidth="69.0" styleClass="addMovieBtn" text="Add">
-                                 <font>
-                                    <Font name="Segoe UI Semibold" size="15.0" />
-                                 </font>
-                              </Button>
-                              <Button mnemonicParsing="false" onAction="#updateAddMovie" prefHeight="31.0" prefWidth="77.0" style="-fx-background-color: #00a903; -fx-text-fill: #fff; -fx-background-radius: 5px;" text="Update">
-                                 <font>
-                                    <Font name="Segoe UI Semibold" size="15.0" />
-                                 </font>
-                              </Button>
-                              <Button id="delete" mnemonicParsing="false" onAction="#deleteAddMovie" prefHeight="38.0" prefWidth="69.0" style="-fx-background-color: a90000; -fx-text-fill: #fff; -fx-background-radius: 5px;" text="Delete">
-                                 <font>
-                                    <Font name="Segoe UI Semibold" size="15.0" />
-                                 </font>
-                              </Button>
-                           </children>
-                           <padding>
-                              <Insets left="10.0" />
-                           </padding>
-                        </HBox>
                         <AnchorPane layoutX="57.0" layoutY="14.0" prefHeight="197.0" prefWidth="157.0" styleClass="bg-white">
                            <children>
                               <ImageView fx:id="addMovie_image" fitHeight="202.0" fitWidth="159.0" layoutX="-1.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true" styleClass="bg-white" />
                            </children>
                         </AnchorPane>
+                        <VBox layoutX="85.0" layoutY="451.0" prefHeight="174.0" prefWidth="173.0" spacing="30.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#insertAddMovie" prefHeight="31.0" prefWidth="174.0" styleClass="addMovieBtn" text="Add">
+                                 <font>
+                                    <Font name="Segoe UI Semibold" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" onAction="#updateAddMovie" prefHeight="31.0" prefWidth="254.0" style="-fx-background-color: #00a903; -fx-text-fill: #fff; -fx-background-radius: 5px;" text="Update">
+                                 <font>
+                                    <Font name="Cambria" size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button id="delete" mnemonicParsing="false" onAction="#deleteAddMovie" prefHeight="31.0" prefWidth="175.0" style="-fx-background-color: a90000; -fx-text-fill: #fff; -fx-background-radius: 5px;" text="Delete">
+                                 <font>
+                                    <Font name="Segoe UI Semibold" size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </VBox>
                      </children>
                   </AnchorPane>
                   <AnchorPane layoutX="288.0" layoutY="14.0" prefHeight="692.0" prefWidth="661.0" styleClass="bg-white">
@@ -361,12 +358,12 @@
                               <Image url="@../images/search_48px.png" />
                            </image>
                         </ImageView>
-                        <TableView fx:id="addMovie_table" layoutX="13.0" layoutY="86.0" onMouseClicked="#selectAddMovieList" prefHeight="594.0" prefWidth="638.0">
+                        <TableView fx:id="addMovie_table" layoutX="-1.0" layoutY="86.0" onMouseClicked="#selectAddMovieList" prefHeight="606.0" prefWidth="662.0">
                           <columns>
                             <TableColumn fx:id="addMovie_titleCol" editable="false" prefWidth="203.0" text="Title" />
                             <TableColumn fx:id="addMovie_genreCol" editable="false" prefWidth="287.1999816894531" text="Genre" />
                               <TableColumn fx:id="addMovie_durationCol" editable="false" prefWidth="102.4000244140625" resizable="false" text="Duration (min)" />
-                              <TableColumn fx:id="addMovie_yearCol" editable="false" prefWidth="45.5999755859375" resizable="false" text="Year" />
+                              <TableColumn fx:id="addMovie_yearCol" editable="false" prefWidth="68.00009765624998" resizable="false" text="Year" />
                           </columns>
                         </TableView>
                      </children></AnchorPane>
