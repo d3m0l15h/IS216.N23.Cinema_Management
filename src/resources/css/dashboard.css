@@ -72,15 +72,6 @@
     -fx-background-radius: 5px;
 }
 
-.btn#receipt:hover {
-    -fx-background-color: #ffa400;
-    -fx-border-color: #ffa400;
-    -fx-text-fill: #fff;
-    -fx-border-width: 2.5;
-    -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
-}
-
 .btn#clear:hover {
     -fx-background-color: #d200ce;
     -fx-border-color: #d200ce;
@@ -109,8 +100,8 @@
 }
 
 #addBtn {
-    -fx-background-color: #00d219;
-    -fx-border-color: #00d219;
+    -fx-background-color: #028f76;
+    -fx-border-color: #028f76;
     -fx-text-fill: #fff;
     -fx-border-width: 2.5;
     -fx-border-radius: 5px;
@@ -127,8 +118,8 @@
 }
 
 #clearBtn {
-    -fx-background-color: #d200ce;
-    -fx-border-color: #d200ce;
+    -fx-background-color: #483078;
+    -fx-border-color: #483078;
     -fx-text-fill: #fff;
     -fx-border-width: 2.5;
     -fx-border-radius: 5px;
@@ -142,7 +133,7 @@
 }
 
 .bg-white Label {
-    -fx-text-fill: #5062ab;
+    -fx-text-fill: #005bc5;
 }
 
 .bg-white-Label2 {
@@ -150,8 +141,9 @@
 }
 
 .bg-white TextField {
-    -fx-border-color: #5062ab;
-    -fx-border-radius: 5px;
+    -fx-background-color: Transparent;
+    -fx-border-color: #005bc5;
+    -fx-border-width: 0 0 1.1 0;
 }
 
 .bg-white DatePicker {
@@ -162,13 +154,13 @@
 /*AddMovie*/
 .addMovieBtn {
     -fx-text-fill: #fff;
-    -fx-background-color: #5062ab;
+    -fx-background-color: #005bc5;
     -fx-background-radius: 5px;
 }
 
 .addMovieBtn#clear {
     -fx-text-fill: #fff;
-    -fx-background-color: #d200ce;
+    -fx-background-color: #483078;
     -fx-background-radius: 5px;
 }
 
@@ -227,13 +219,13 @@
 }
 
 .chooseSeat {
-    -fx-background-color: #00bb00;
+    -fx-background-color: #028f76;
     -fx-border-color: #000000;
     -fx-border-width: 0.5;
 }
 
 .bookSeat {
-    -fx-background-color: #ae2d3c;
+    -fx-background-color: #9e0c39;
     -fx-border-color: #000000;
     -fx-border-width: 0.5;
 }
