@@ -1,3 +1,19 @@
+@font-face {
+    font-family: "Source Sans Pro";
+    src: url("resources/font/source-sans-pro/SourceSansPro-Regular.otf");
+}
+@font-face {
+    font-family: "Source Sans Pro Semibold";
+    src: url("resources/font/source-sans-pro/SourceSansPro-Semibold.otf");
+}
+@font-face {
+    font-family: "Source Sans Pro Bold";
+    src: url("resources/font/source-sans-pro/SourceSansPro-Bold.otf");
+}
+* {
+    -fx-font-family: "Source Sans Pro";
+    -fx-font-weight: Bold;
+}
 .paneBackground{
     -fx-background-color: linear-gradient(to bottom right, #1F2F98, #4ADEDE);
 }
@@ -134,14 +150,12 @@
 }
 /*Table*/
 .table-view {
-    -fx-background-radius: 10px ;
     -fx-border-radius: 10px;
     -fx-fill: #fff;
 }
 .table-view .column-header-background {
     -fx-background-color: linear-gradient(to bottom, #1F2F98, #4ADEDE);
     -fx-background-insets: 0,0,0,0;
-    -fx-background-radius: 10px 10px 0px 0px;
 }
 .table-view .column-header, .table-view .filler {
     -fx-background-color: Transparent;
