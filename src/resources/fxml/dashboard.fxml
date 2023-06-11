@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.*?>
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
@@ -191,7 +192,7 @@
                <children>
                   <AnchorPane layoutX="300.0" layoutY="27.0" prefHeight="663.0" prefWidth="613.0" styleClass="bg-white" visible="false" />
                   <AnchorPane layoutX="30.0" layoutY="30.0" prefHeight="663.0" prefWidth="232.0" styleClass="bg-white" visible="false" />
-                  <HBox alignment="CENTER" layoutY="30.0" prefHeight="165.0" prefWidth="965.0" spacing="50.0">
+                  <HBox alignment="CENTER" layoutY="60.0" prefHeight="165.0" prefWidth="965.0" spacing="50.0">
                      <children>
                         <AnchorPane prefHeight="165.0" prefWidth="220.0" style="-fx-background-color: #D2E9FC;" styleClass="card" stylesheets="@../css/dashboard.css">
                            <children>
@@ -249,25 +250,25 @@
                         <Insets right="33.0" />
                      </padding>
                   </HBox>
-                  <AnchorPane layoutX="81.0" layoutY="251.0" prefHeight="406.0" prefWidth="517.0" style="-fx-background-color: #fff; overflow: hidden;" styleClass="card">
+                  <AnchorPane layoutX="109.0" layoutY="251.0" prefHeight="424.0" prefWidth="745.0" style="-fx-background-color: #fff; overflow: hidden;" styleClass="card">
                      <children>
-                        <Label layoutX="332.0" layoutY="20.0" text="Screenings today" textAlignment="CENTER">
+                        <Label layoutX="302.0" layoutY="15.0" text="Screenings today" textAlignment="CENTER">
                            <font>
                               <Font name="Public Sans Medium" size="20.0" />
                            </font>
                         </Label>
-                        <TableView fx:id="dashboard_table" layoutY="58.0" prefHeight="366.0" prefWidth="810.0" styleClass="dash-table">
+                        <TableView fx:id="dashboard_table" layoutY="58.0" prefHeight="366.0" prefWidth="756.0" styleClass="dash-table">
                           <columns>
                             <TableColumn fx:id="dashboard_titleCol" editable="false" prefWidth="430.4071350097656" text="Title" />
                             <TableColumn fx:id="dashboard_timeCol" minWidth="0.0" prefWidth="174.1741943359375" text="Time" />
-                            <TableColumn fx:id="dashboard_statusCol" editable="false" minWidth="0.0" prefWidth="203.82598876953125" text="Status " />
+                            <TableColumn fx:id="dashboard_statusCol" editable="false" minWidth="0.0" prefWidth="149.00006103515625" text="Status " />
                           </columns>
                         </TableView>
                      </children>
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="addMovieForm" layoutX="108.0" layoutY="135.0" prefHeight="720.0" prefWidth="961.0" style="-fx-background-color: #F9FAFB;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="addMovieForm" layoutX="108.0" layoutY="135.0" prefHeight="720.0" prefWidth="961.0" style="-fx-background-color: #F9FAFB;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <AnchorPane layoutX="9.0" layoutY="14.0" prefHeight="691.0" prefWidth="268.0" styleClass="bg-white">
                      <children>
