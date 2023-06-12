@@ -110,7 +110,7 @@
                   </StackPane>
                   <StackPane fx:id="bookingPane" prefHeight="72.0" prefWidth="249.0" styleClass="nav">
                      <children>
-                        <ImageView fitHeight="30.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="42.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                            <StackPane.margin>
                               <Insets right="150.0" />
                            </StackPane.margin>
