@@ -421,7 +421,7 @@
                               <Font name="System Bold" size="15.0" />
                            </font>
                         </Label>
-                        <TextField id="txtFieldScreen" fx:id="editScreening_room" layoutX="201.0" layoutY="484.0" prefHeight="27.0" prefWidth="24.0">
+                        <TextField id="txtFieldScreen" fx:id="editScreening_room" layoutX="201.0" layoutY="484.0" prefHeight="32.0" prefWidth="48.0">
                            <font>
                               <Font size="13.0" />
                            </font>
@@ -463,7 +463,7 @@
                                  <effect>
                                     <DropShadow blurType="ONE_PASS_BOX" height="1.0" offsetX="5.0" offsetY="5.0" radius="0.0" width="0.0">
                                        <color>
-                                          <Color red="0.046315789222717285" green="0.34736841917037964" blue="0.12157894670963287" />
+                                          <Color red="0.0470588244497776" green="0.3490196168422699" blue="0.12156862765550613" />
                                        </color>
                                     </DropShadow>
                                  </effect>
@@ -542,10 +542,17 @@
                               <Font name="Segoe UI Semibold" size="18.0" />
                            </font>
                         </Label>
-                        <Button id="buy" fx:id="booking_buy" layoutX="544.0" layoutY="411.0" mnemonicParsing="false" onAction="#buyBooking" prefHeight="40.0" prefWidth="76.0" styleClass="btn" text="BUY">
+                        <Button id="addBtn" fx:id="booking_buy" layoutX="544.0" layoutY="411.0" mnemonicParsing="false" onAction="#buyBooking" prefHeight="40.0" prefWidth="76.0" text="BUY">
                            <font>
                               <Font name="Segoe UI Bold" size="14.0" />
                            </font>
+                           <effect>
+                              <DropShadow height="0.0" offsetX="5.0" offsetY="5.0" radius="0.0" width="0.0">
+                                 <color>
+                                    <Color red="0.0470588244497776" green="0.3490196168422699" blue="0.12156862765550613" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
                         </Button>
                         <GridPane fx:id="booking_seat" hgap="10.0" layoutX="224.0" layoutY="74.0" prefHeight="203.0" prefWidth="242.0" vgap="10.0">
                               </GridPane>
@@ -677,7 +684,7 @@
                               <Font name="Segoe UI Semibold" size="16.0" />
                            </font>
                         </Label>
-                        <Label fx:id="customer_start" layoutX="17.0" layoutY="194.0" prefHeight="30.0" prefWidth="266.0" styleClass="card-customer">
+                        <Label fx:id="customer_start" layoutX="17.0" layoutY="194.0" prefHeight="30.0" prefWidth="282.0" styleClass="card-customer">
                            <font>
                               <Font name="Segoe UI" size="15.0" />
                            </font>
@@ -685,7 +692,7 @@
                               <Insets left="5.0" />
                            </padding>
                         </Label>
-                        <Label fx:id="customer_date" layoutX="17.0" layoutY="138.0" prefHeight="30.0" prefWidth="266.0" styleClass="card-customer">
+                        <Label fx:id="customer_date" layoutX="17.0" layoutY="138.0" prefHeight="30.0" prefWidth="282.0" styleClass="card-customer">
                            <font>
                               <Font name="Segoe UI" size="15.0" />
                            </font>
@@ -693,7 +700,7 @@
                               <Insets left="5.0" />
                            </padding>
                         </Label>
-                        <Label fx:id="customer_movie" layoutX="17.0" layoutY="81.0" prefHeight="30.0" prefWidth="266.0" styleClass="card-customer">
+                        <Label fx:id="customer_movie" layoutX="17.0" layoutY="81.0" prefHeight="30.0" prefWidth="282.0" styleClass="card-customer">
                            <font>
                               <Font name="Segoe UI" size="15.0" />
                            </font>
@@ -824,7 +831,7 @@
                         </TextField>
                         <DatePicker fx:id="customer_birth" layoutX="17.0" layoutY="239.0" prefHeight="30.0" prefWidth="162.0" />
                         <ChoiceBox fx:id="customer_gender" layoutX="193.0" layoutY="239.0" prefHeight="30.0" prefWidth="101.0" style="-fx-background-color: #fff; -fx-border-color: #005bc5; -fx-border-radius: 20px; -fx-border-width: 2px;" />
-                        <Button id="buy" layoutX="197.0" layoutY="279.0" mnemonicParsing="false" onAction="#customerUpdate" prefHeight="30.0" prefWidth="97.0" style="-fx-font-size: 12px; -fx-border-radius: 20px;" styleClass="btn" text="UPDATE">
+                        <Button id="addBtn" layoutX="197.0" layoutY="279.0" mnemonicParsing="false" onAction="#customerUpdate" prefHeight="30.0" prefWidth="97.0" style="-fx-font-size: 12px; -fx-background-radius: 20px; -fx-border-radius: 20px;" text="UPDATE">
                            <font>
                               <Font name="Segoe UI Semibold" size="13.0" />
                            </font>

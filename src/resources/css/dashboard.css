@@ -53,17 +53,6 @@
     -fx-font-family: "Source Sans Pro";
 }
 
-.btn#buy:hover {
-    -fx-background-color:  #028f76;
-    -fx-border-color:  #028f76;
-    -fx-text-fill: #fff;
-    -fx-border-width: 2.5;
-    -fx-border-radius: 20px;
-    -fx-background-radius: 20px;
-    -fx-font-family: "Source Sans Pro";
-    -fx-font-size: 14px;
-}
-
 .btn#clear:hover {
     -fx-background-color: #483078;
     -fx-border-color: #483078;
