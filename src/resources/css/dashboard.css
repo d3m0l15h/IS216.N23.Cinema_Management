@@ -1,9 +1,9 @@
 @font-face {
     font-family: "Source Sans Pro";
-    src: url("../font/source-sans-pro/SourceSansPro-Regular.otf");
+    src: url("../font/source-sans-pro/SourceSansPro-Semibold.otf");
 }
 
-*{
+.root{
     -fx-font-family: "Source Sans Pro";
     -fx-font-weight: Bold;
 }
@@ -12,11 +12,15 @@
     /* -fx-background-color: linear-gradient(to bottom right, #1F2F98, #4ADEDE); */
     -fx-background-color: #539AD0;
 }
-
+.paneBackground Label {
+    -fx-font-family: "Source Sans Pro";
+}
 /*Left*/
 .navButton {
     -fx-background-color: Transparent;
     -fx-text-fill: #ffff;
+    -fx-font-family: "Source Sans Pro";
+    -fx-font-size: 15px;
 }
 
 .navButtonHover {
@@ -25,27 +29,28 @@
 
 .signOutBtn {
     -fx-background-color: #fff;
-    -fx-background-radius: 6px;
-    -fx-border-color: #3788b4;
+    -fx-background-radius: 20px;
+    -fx-border-color: #0b7fab;
     -fx-border-width: 2.5;
-    -fx-border-radius: 5px;
-    -fx-text-fill: #5062ab;
+    -fx-border-radius:205px;
+    -fx-text-fill: #005bc5;
 }
 
 .signOutBtn:hover {
-    -fx-background-color: #3788b4;
-    -fx-background-radius: 6px;
-    -fx-border-width: 2.5;
-    -fx-border-radius: 5px;
+    -fx-background-color: #0b7fab;
+    -fx-background-radius: 20px;
+    -fx-border-width: 2;
+    -fx-border-radius: 20px;
     -fx-text-fill: #fff;
 }
 
 .btn {
     -fx-background-color: Transparent;
-    -fx-border-color: #5062ab;
+    -fx-border-color: #005bc5;
     -fx-border-width: 2;
     -fx-border-radius: 5px;
-    -fx-text-fill: #5062ab;
+    -fx-text-fill: #005bc5;
+    -fx-font-family: "Source Sans Pro";
 }
 
 .btn#buy:hover {
@@ -53,8 +58,10 @@
     -fx-border-color:  #028f76;
     -fx-text-fill: #fff;
     -fx-border-width: 2.5;
-    -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-font-family: "Source Sans Pro";
+    -fx-font-size: 14px;
 }
 
 .btn#clear:hover {
@@ -64,6 +71,8 @@
     -fx-border-width: 2.5;
     -fx-border-radius: 5px;
     -fx-background-radius: 5px;
+    -fx-font-family: "Source Sans Pro";
+    -fx-font-size: 14px;
 }
 
 .btn#delete:hover {
@@ -82,6 +91,8 @@
     -fx-border-width: 2.5;
     -fx-border-radius: 5px;
     -fx-background-radius: 5px;
+    -fx-font-family: "Source Sans Pro";
+    -fx-font-size: 14px;
 }
 
 #addBtn {
@@ -91,6 +102,8 @@
     -fx-border-width: 2.5;
     -fx-border-radius: 5px;
     -fx-background-radius: 5px;
+    -fx-font-family: "Source Sans Pro";
+    -fx-font-size: 14px;
 }
 
 #deleteBtn {
@@ -100,6 +113,8 @@
     -fx-border-width: 2.5;
     -fx-border-radius: 5px;
     -fx-background-radius: 5px;
+    -fx-font-family: "Source Sans Pro";
+    -fx-font-size: 14px;
 }
 
 #clearBtn {
@@ -118,37 +133,70 @@
 }
 
 .bg-white Label {
-    -fx-text-fill: #005bc5;
-}
-
-.bg-white-Label2 {
-    -fx-text-fill: #FFF;
+    -fx-text-fill: #1e8bc3;
+    -fx-font-family: "Source Sans Pro";
 }
 
 .bg-white TextField {
     -fx-background-color: Transparent;
     -fx-border-color: #005bc5;
-    -fx-border-width: 0 0 1.1 0;
+    -fx-border-width: 2;
+    -fx-border-radius: 20px;
+    -fx-font-family: "Source Sans Pro";
+    -fx-font-size: 13px;
+}
+.date-picker {
+    -fx-background-color: Transparent;
+    -fx-border-color: #005bc5;
+    -fx-border-width: 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-font-family: "Source Sans Pro";
+}
+.date-picker > .text-field {
+    -fx-background-radius: 20;
+}
+.date-picker .arrow-button {
+    -fx-background-color: #005bc5;
+    -fx-background-radius: 20;
 }
 
-.bg-white DatePicker {
-    -fx-border-color: #5062ab;
-    -fx-border-radius: 5px;
+.date-picker .arrow-button .arrow {
+    -fx-background-color: white;
 }
+
 
 /*AddMovie*/
 .addMovieBtn {
     -fx-text-fill: #fff;
     -fx-background-color: #005bc5;
     -fx-background-radius: 5px;
+    -fx-font-family: "Source Sans Pro";
+    -fx-font-size: 14px;
 }
 
 .addMovieBtn#clear {
     -fx-text-fill: #fff;
     -fx-background-color: #483078;
     -fx-background-radius: 5px;
+    -fx-font-family: "Source Sans Pro";
+    -fx-font-size: 14px;
 }
-
+.searchBar {
+    -fx-background-color: Transparent;
+    -fx-border-width: 2;
+    -fx-border-radius: 20px;
+}
+/*Screening*/
+#txtFieldScreen {
+    -fx-border-width: 2;
+    -fx-border-radius: 20px;
+}
+/*BOOKING*/
+ #txtFieldCus{
+     -fx-border-width: 2px;
+     -fx-border-radius: 20px;
+ }
 /*Table*/
 .table-view {
     -fx-border-radius: 10px;
@@ -160,6 +208,7 @@
     /* -fx-background-color: linear-gradient(to bottom, #1F2F98, #4ADEDE); */
     -fx-background-color: #539AD0;
     -fx-background-insets: 0, 0, 0, 0;
+    -fx-font-family: "Source Sans Pro";
 }
 
 .table-view .column-header,
@@ -190,11 +239,10 @@
 }
 
 .card-customer {
-    -fx-background-color: #fff;
-    -fx-background-radius: 5px;
-    -fx-border-color: #5062ab;
-
-    -fx-border-radius: 5px;
+    -fx-background-color: Transparent;
+    -fx-border-color: #005bc5;
+    -fx-border-width: 2;
+    -fx-border-radius: 20px;
 }
 
 .seat {
@@ -227,7 +275,5 @@
 }
 
 .font-dashboard-summary {
-    fx-font-weight: 400;
-    fx-font-size: 20px;
-    font-family: 'Public Sans', sans-serif;
+    -fx-font-family: "Source Sans Pro";
 }
