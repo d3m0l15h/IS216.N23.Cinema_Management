@@ -214,6 +214,8 @@
     -fx-border-color: #005bc5;
     -fx-border-width: 2;
     -fx-border-radius: 20px;
+    -fx-font-family: "Source Sans Pro";
+    -fx-font-size: 14px;
 }
 
 .seat {

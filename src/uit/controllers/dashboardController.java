@@ -25,6 +25,11 @@ import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import javafx.util.converter.DefaultStringConverter;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import uit.home.database;
 import uit.home.getData;
 import uit.models.*;
@@ -303,7 +308,7 @@ public class dashboardController implements Initializable {
 
     private Image image;
     private Set<String> seatSet;
-    List<String> vip = Arrays.asList("E2", "E3", "E4", "F2", "F3", "F4");
+    List<String> vip = Arrays.asList("E2", "E3", "E4", "F2", "F3", "F4","D2","D3","D4");
     // Javafx.graphic
     private Parent root;
     private Scene scene;
@@ -1158,13 +1163,27 @@ public class dashboardController implements Initializable {
                     prepare.execute();
                     prepare.clearParameters();
                 }
-
+                connect.close();
                 successAlert("Successfully booking");
+                Connection connect = database.connectDb();
+                String sql = "call receipt('" + getData.bookingID + "')";
+
+                try {
+                    JasperDesign jdesign = JRXmlLoader.load("src/resources/jrxml/receipt.jrxml");
+                    JRDesignQuery updateQuery = new JRDesignQuery();
+                    updateQuery.setText(sql);
+                    jdesign.setQuery(updateQuery);
+
+                    Map<String, Object> parameters = new HashMap<>();
+                    JasperReport jreport = JasperCompileManager.compileReport(jdesign);
+                    JasperPrint jpasperPrint = JasperFillManager.fillReport(jreport, parameters, connect);
+
+                    JasperViewer.viewReport(jpasperPrint,false);
+                } catch (JRException e) { e.printStackTrace();}
+
                 createRoom();
                 showCustomer1();
                 showCustomer2();
-
-                connect.close();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -1299,7 +1318,7 @@ public class dashboardController implements Initializable {
         customer_date.setText(String.valueOf(bookD.getDateShow()));
         customer_start.setText(String.valueOf(bookD.getStartTime()));
         customer_room.setText(String.valueOf(bookD.getRoom()));
-
+        getData.bookingID = bookD.getId();
     }
 
     // SEARCH BOOKING ////////////////////////////////////////////////////////////
@@ -1350,7 +1369,22 @@ public class dashboardController implements Initializable {
             }
         }
     }
+    public void receiptScreen(){
+        Connection connect = database.connectDb();
+        String sql = "call receipt('" + getData.bookingID + "')";
+        try {
+        JasperDesign jdesign = JRXmlLoader.load("src/resources/jrxml/receipt.jrxml");
+        JRDesignQuery updateQuery = new JRDesignQuery();
+        updateQuery.setText(sql);
+        jdesign.setQuery(updateQuery);
 
+        Map<String, Object> parameters = new HashMap<>();
+        JasperReport jreport = JasperCompileManager.compileReport(jdesign);
+        JasperPrint jpasperPrint = JasperFillManager.fillReport(jreport, parameters, connect);
+
+            JasperViewer.viewReport(jpasperPrint,false);
+        } catch (JRException e) { e.printStackTrace();}
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         customer_gender.getItems().addAll("Male", "Female");

@@ -667,7 +667,7 @@
             </AnchorPane>
             <AnchorPane fx:id="customerForm" prefHeight="720.0" prefWidth="963.2" style="-fx-background-color: #F9FAFB;" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <AnchorPane layoutX="10.0" layoutY="340.0" prefHeight="370.0" prefWidth="318.0" styleClass="bg-white">
+                  <AnchorPane layoutX="10.0" layoutY="340.0" prefHeight="370.0" prefWidth="323.0" styleClass="bg-white">
                      <children>
                         <Label layoutX="22.0" layoutY="113.0" text="Date">
                            <font>
@@ -689,7 +689,7 @@
                               <Font name="Segoe UI" size="15.0" />
                            </font>
                            <padding>
-                              <Insets left="5.0" />
+                              <Insets left="10.0" />
                            </padding>
                         </Label>
                         <Label fx:id="customer_date" layoutX="17.0" layoutY="138.0" prefHeight="30.0" prefWidth="282.0" styleClass="card-customer">
@@ -697,7 +697,7 @@
                               <Font name="Segoe UI" size="15.0" />
                            </font>
                            <padding>
-                              <Insets left="5.0" />
+                              <Insets left="10.0" />
                            </padding>
                         </Label>
                         <Label fx:id="customer_movie" layoutX="17.0" layoutY="81.0" prefHeight="30.0" prefWidth="282.0" styleClass="card-customer">
@@ -705,7 +705,7 @@
                               <Font name="Segoe UI" size="15.0" />
                            </font>
                            <padding>
-                              <Insets left="5.0" />
+                              <Insets left="10.0" />
                            </padding>
                         </Label>
                         <Label fx:id="customer_room" layoutX="17.0" layoutY="247.0" prefHeight="30.0" prefWidth="72.0" styleClass="card-customer">
@@ -713,7 +713,7 @@
                               <Font name="Segoe UI" size="15.0" />
                            </font>
                            <padding>
-                              <Insets left="5.0" />
+                              <Insets left="10.0" />
                            </padding>
                         </Label>
                         <Label alignment="CENTER" layoutY="13.0" prefHeight="36.0" prefWidth="318.0" text="SCREEN">
@@ -726,11 +726,23 @@
                               <Font name="Segoe UI Semibold" size="16.0" />
                            </font>
                         </Label>
+                        <Button id="updateBtn" layoutX="221.0" layoutY="321.0" mnemonicParsing="false" onAction="#receiptScreen" prefHeight="34.0" prefWidth="78.0" styleClass="btn" text="RECEIPT">
+                           <font>
+                              <Font name="Segoe UI Semibold" size="14.0" />
+                           </font>
+                           <effect>
+                              <DropShadow height="1.0" offsetX="5.0" offsetY="5.0" radius="0.0" width="0.0">
+                                 <color>
+                                    <Color red="0.821052610874176" green="0.5063157677650452" />
+                                 </color>
+                              </DropShadow>
+                           </effect>
+                        </Button>
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutX="337.0" layoutY="13.0" prefHeight="318.0" prefWidth="614.0" styleClass="bg-white">
+                  <AnchorPane layoutX="337.0" layoutY="13.0" prefHeight="323.0" prefWidth="614.0" styleClass="bg-white">
                      <children>
-                        <TableView fx:id="customer_table1" layoutX="2.0" layoutY="65.0" onMouseClicked="#selectCustomer1" prefHeight="243.0" prefWidth="610.0">
+                        <TableView fx:id="customer_table1" layoutX="-2.0" layoutY="65.0" onMouseClicked="#selectCustomer1" prefHeight="256.0" prefWidth="616.0">
                            <columns>
                               <TableColumn fx:id="customer_nameCol" editable="false" prefWidth="176.00003051757812" resizable="false" text="Name" />
                               <TableColumn fx:id="customer_phoneCol1" editable="false" prefWidth="106.4000244140625" resizable="false" text="Phone" />
@@ -756,7 +768,7 @@
                   </AnchorPane>
                   <AnchorPane layoutX="336.0" layoutY="340.0" prefHeight="371.0" prefWidth="616.0" styleClass="bg-white">
                      <children>
-                        <TableView fx:id="customer_table2" layoutX="5.0" layoutY="53.0" onMouseClicked="#selectCustomer2" prefHeight="313.0" prefWidth="608.0">
+                        <TableView fx:id="customer_table2" layoutX="-1.0" layoutY="53.0" onMouseClicked="#selectCustomer2" prefHeight="318.0" prefWidth="616.0">
                            <columns>
                               <TableColumn fx:id="customer_phoneCol2" editable="false" prefWidth="156.00006103515625" resizable="false" text="Phone" />
                               <TableColumn fx:id="customer_seatCol" prefWidth="247.99996948242188" text="Seat" />
@@ -779,7 +791,7 @@
                         </ImageView>
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutX="10.0" layoutY="13.0" prefHeight="319.0" prefWidth="318.0" styleClass="bg-white">
+                  <AnchorPane layoutX="10.0" layoutY="13.0" prefHeight="324.0" prefWidth="322.0" styleClass="bg-white">
                      <children>
                         <Label alignment="CENTER" layoutX="74.0" prefHeight="46.0" prefWidth="169.0" text="CUSTOMER">
                            <font>
@@ -816,12 +828,12 @@
                               <Font size="14.0" />
                            </font>
                         </TextField>
-                        <Label fx:id="customer_phone" layoutX="17.0" layoutY="119.0" prefHeight="30.0" prefWidth="282.0" style="-fx-border-width: 2; -fx-border-color: #005bc5; -fx-border-radius: 20;">
+                        <Label fx:id="customer_phone" layoutX="17.0" layoutY="119.0" prefHeight="30.0" prefWidth="282.0" styleClass="card-customer">
                            <font>
                               <Font size="14.0" />
                            </font>
                            <padding>
-                              <Insets left="5.0" />
+                              <Insets left="10.0" />
                            </padding>
                         </Label>
                         <TextField fx:id="customer_email" layoutX="17.0" layoutY="178.0" prefHeight="32.0" prefWidth="282.0" style="-fx-border-radius: 20; -fx-border-width: 2;">

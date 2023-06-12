@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="350" pageHeight="400" columnWidth="310" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="5d56be95-7459-44fa-9864-14253acbfa1a">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="TicketBooking"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<queryString language="plsql">
+		<![CDATA[call receipt(2)]]>
+	</queryString>
+	<field name="total" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="total"/>
+		<property name="com.jaspersoft.studio.field.label" value="total"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="booking"/>
+	</field>
+	<field name="bookingDate" class="java.time.LocalDateTime">
+		<property name="com.jaspersoft.studio.field.name" value="bookingDate"/>
+		<property name="com.jaspersoft.studio.field.label" value="bookingDate"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="booking"/>
+	</field>
+	<field name="title" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="title"/>
+		<property name="com.jaspersoft.studio.field.label" value="title"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="movie"/>
+	</field>
+	<field name="startTime" class="java.sql.Time">
+		<property name="com.jaspersoft.studio.field.name" value="startTime"/>
+		<property name="com.jaspersoft.studio.field.label" value="startTime"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="screening"/>
+	</field>
+	<field name="dateShow" class="java.sql.Date">
+		<property name="com.jaspersoft.studio.field.name" value="dateShow"/>
+		<property name="com.jaspersoft.studio.field.label" value="dateShow"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="screening"/>
+	</field>
+	<field name="roomNumber" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="roomNumber"/>
+		<property name="com.jaspersoft.studio.field.label" value="roomNumber"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="room"/>
+	</field>
+	<field name="row" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="row"/>
+		<property name="com.jaspersoft.studio.field.label" value="row"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="seat"/>
+	</field>
+	<field name="seatNumber" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="seatNumber"/>
+		<property name="com.jaspersoft.studio.field.label" value="seatNumber"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="seat"/>
+	</field>
+	<field name="type" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="type"/>
+		<property name="com.jaspersoft.studio.field.label" value="type"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="seat"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="39" splitType="Stretch">
+			<staticText>
+				<reportElement x="97" y="0" width="145" height="30" uuid="c3992d27-1bbd-4f97-944d-19c5435e37a3"/>
+				<textElement>
+					<font fontName="MS Gothic" size="22"/>
+				</textElement>
+				<text><![CDATA[VE XEM PHIM]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="133" splitType="Stretch">
+			<staticText>
+				<reportElement x="132" y="10" width="49" height="28" uuid="f6e0e872-e161-4b8c-95cc-875d803d5df9"/>
+				<textElement textAlignment="Center">
+					<font fontName="MS PGothic" size="16"/>
+				</textElement>
+				<text><![CDATA[JAVa]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="-20" y="41" width="349" height="30" uuid="a23b2b1d-1918-449a-bdeb-cd0e1fd9553b"/>
+				<textElement textAlignment="Center">
+					<font fontName="MS Gothic" size="20" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[UPPER($F{title} )]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="72" width="140" height="30" uuid="ea63c683-2083-467e-8a6d-afdfebfcdd0e"/>
+				<textElement>
+					<font fontName="MS Gothic" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dateShow}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="230" y="72" width="39" height="25" uuid="274a47fb-ab7b-4c90-8d80-44a834cd872d"/>
+				<textElement>
+					<font fontName="MS Gothic" size="14"/>
+				</textElement>
+				<text><![CDATA[SHOW:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="271" y="72" width="59" height="25" uuid="045ffd5e-5ded-4cd4-85c5-5e5ce15cd372"/>
+				<textElement>
+					<font fontName="MS Gothic" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{startTime}.toLocalTime()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="102" width="39" height="25" uuid="cece248d-adcf-4f4d-86ca-6f3a67a834c6"/>
+				<textElement>
+					<font fontName="MS Gothic" size="14"/>
+				</textElement>
+				<text><![CDATA[ROOM:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="39" y="101" width="59" height="25" uuid="6b72ebb9-1512-444d-9383-29975bcaa06e"/>
+				<textElement>
+					<font fontName="MS Gothic" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{roomNumber}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="0" width="310" height="1" uuid="ccc21baf-0064-405a-bdf7-fcc061fee1c3"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="0" y="125" width="310" height="1" uuid="2e999a7a-5c8f-45cd-949c-c1c6559d8db5"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="40" splitType="Stretch">
+			<textField>
+				<reportElement x="39" y="3" width="39" height="19" uuid="7094a027-2f7d-48a7-b9b9-ede6cd226e6d"/>
+				<textElement>
+					<font fontName="MS Gothic" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{row} + "-" + $F{seatNumber}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="140" y="3" width="59" height="20" uuid="7c9a23d1-beae-4ce3-ab9f-89590b0f6dd6"/>
+				<textElement>
+					<font fontName="MS Gothic" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[UPPER( $F{type})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="3" width="39" height="19" uuid="c1ecf3df-2e16-4913-876a-127b4b789c3e"/>
+				<textElement>
+					<font fontName="MS Gothic" size="14"/>
+				</textElement>
+				<text><![CDATA[SEAT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="3" width="39" height="19" uuid="8c9d2791-6e56-4906-ae62-cdcebaa3b5ac"/>
+				<textElement>
+					<font fontName="MS Gothic" size="14"/>
+				</textElement>
+				<text><![CDATA[TYPE:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="235" y="3" width="74" height="20" uuid="c3544889-5b75-45de-b3f0-f105e7e71178"/>
+				<textElement>
+					<font fontName="MS Gothic" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[IF($F{type}.equals("vip"),"75000 VND","70000 VND")]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="44" splitType="Stretch">
+			<line>
+				<reportElement x="1" y="9" width="308" height="1" uuid="2bda351a-71a3-4bf4-ab63-4fee00155376"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="0" y="34" width="310" height="1" uuid="c095a33a-913c-4dba-ab9d-d18633f1dad0"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="1" y="16" width="80" height="14" uuid="57eddc01-5069-47a5-9fa9-5584e945c24f"/>
+				<textElement>
+					<font fontName="MS Gothic"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bookingDate}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="188" y="13" width="44" height="20" uuid="4a47970f-4713-4458-b5d7-5cec1f534890"/>
+				<textElement>
+					<font fontName="MS Gothic" size="14"/>
+				</textElement>
+				<text><![CDATA[TOTAL:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="235" y="13" width="75" height="20" uuid="0483d595-3d89-4614-9e00-199b9115216b"/>
+				<textElement>
+					<font fontName="MS Gothic" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total}.toString() + " VND"]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="2" y="6" width="308" height="1" uuid="1830c9e9-4fc5-47f5-a837-5e98dfc1185c"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+		</band>
+	</summary>
+</jasperReport>
