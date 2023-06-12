@@ -53,26 +53,6 @@
     -fx-font-family: "Source Sans Pro";
 }
 
-.btn#clear:hover {
-    -fx-background-color: #483078;
-    -fx-border-color: #483078;
-    -fx-text-fill: #fff;
-    -fx-border-width: 2.5;
-    -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
-    -fx-font-family: "Source Sans Pro";
-    -fx-font-size: 14px;
-}
-
-.btn#delete:hover {
-    -fx-background-color: #ae2d3c;
-    -fx-border-color: #ae2d3c;
-    -fx-text-fill: #fff;
-    -fx-border-width: 2.5;
-    -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
-}
-
 #updateBtn {
     -fx-background-color: #ffa400;
     -fx-border-color: #ffa400;
@@ -113,6 +93,8 @@
     -fx-border-width: 2.5;
     -fx-border-radius: 5px;
     -fx-background-radius: 5px;
+    -fx-font-family: "Source Sans Pro";
+    -fx-font-size: 14px;
 }
 
 /*Right*/
