@@ -20,6 +20,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Line;
 import javafx.stage.FileChooser;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
@@ -52,6 +53,8 @@ public class dashboardController implements Initializable {
     private TableColumn<screeningData, String> dashboard_timeCol;
     @FXML
     private TableColumn<screeningData, String> dashboard_titleCol;
+    @FXML
+    private TableColumn<screeningData, String> dashboard_roomCol;
     @FXML
     private TableColumn<movieData, String> addMovie_durationCol;
     @FXML
@@ -289,14 +292,16 @@ public class dashboardController implements Initializable {
 
     @FXML
     private Label username;
-
     @FXML
-    // private Label sold
+    private Label screenLabel;
+    @FXML
+    private Line screenLine;
+    @FXML
+    private Button addAddMovie;
+    @FXML
     private Label ticketSold;
-
     @FXML
     private Label totalIncome;
-
     @FXML
     private Label totalMovie;
     // Element
@@ -474,13 +479,14 @@ public class dashboardController implements Initializable {
         dashboard_titleCol.setCellValueFactory(new PropertyValueFactory<>("movieTitle"));
         dashboard_timeCol.setCellValueFactory(new PropertyValueFactory<>("startTime"));
         dashboard_statusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
+        dashboard_roomCol.setCellValueFactory(new PropertyValueFactory<>("roomID"));
 
         dashboard_table.setItems(listScreeningToday);
     }
 
     public void showDashboardSummary() {
-        String sql = "select count(seatID) from booking b join booking_detail bd on bd.bookingID = b.id";
-        String sql1 = "select sum(total) from booking";
+        String sql = "select count(seatID) from booking b join booking_detail bd on bd.bookingID = b.id where DATE(b.bookingDate) = CURRENT_DATE()";
+        String sql1 = "select sum(total) from booking b where DATE(b.bookingDate) = CURRENT_DATE()";
         String sql2 = "select count(id) from movie";
         connect = database.connectDb();
         try {
@@ -549,11 +555,14 @@ public class dashboardController implements Initializable {
         addMovie_genre.setText(movieD.getGenre());
         addMovie_duration.setText(String.valueOf(movieD.getDuration()));
         addMovie_year.setText(String.valueOf(movieD.getYear()));
+
         getData.movieID = movieD.getId();
         getData.path = movieD.getImage();
         String URI = "file:" + movieD.getImage();
         image = new Image(URI, 159, 202, false, true);
         addMovie_image.setImage(image);
+
+        addAddMovie.setDisable(true);
     }
 
     // INSERT////////////////////////////////////////////////////////////////
@@ -566,8 +575,8 @@ public class dashboardController implements Initializable {
             emptyAlert("Fill in all the blank");
         } else {
             String sql = "INSERT INTO movie(title, genre, duration, image, year) VALUES(?,?,?,?,?)";
-            String sql1 = "SELECT title, year from movie WHERE title = '" + addMovie_title.getText() + "'" +
-                    "AND year = '" + addMovie_year.getText() + "'";
+            String sql1 = "SELECT title, year from movie WHERE title = " + "\"" + addMovie_title.getText() +  "\" " +
+                    " AND year = '" + addMovie_year.getText() + "'";
             connect = database.connectDb();
             try {
                 assert connect != null;
@@ -616,37 +625,28 @@ public class dashboardController implements Initializable {
             emptyAlert("Fill in all the blank");
         } else {
             String sql = "UPDATE movie SET title = ?, genre = ?, duration = ?, year = ?, image = ? WHERE id = ?";
-            String sql1 = "SELECT * from movie WHERE title = '" + addMovie_title.getText() + "'" +
-                    "AND year = '" + addMovie_year.getText() + "'";
             connect = database.connectDb();
             try {
                 assert connect != null;
-                result = connect.prepareStatement(sql1).executeQuery();
-                if (result.next()) {
-                    alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error Message");
-                    alert.setHeaderText(null);
-                    alert.setContentText(addMovie_title.getText() + " already exist");
-                    alert.showAndWait();
-                } else {
-                    String URI = getData.path;
-                    URI = URI.replace("\\", "\\\\");
 
-                    prepare = connect.prepareStatement(sql);
-                    prepare.setString(1, addMovie_title.getText());
-                    prepare.setString(2, addMovie_genre.getText());
-                    prepare.setInt(3, Integer.parseInt(addMovie_duration.getText()));
-                    prepare.setInt(4, Integer.parseInt(addMovie_year.getText()));
-                    prepare.setString(5, URI);
-                    prepare.setInt(6, getData.movieID);
-                    prepare.execute();
+                String URI = getData.path;
+                URI = URI.replace("\\", "\\\\");
 
-                    successAlert("Successfully update");
+                prepare = connect.prepareStatement(sql);
+                prepare.setString(1, addMovie_title.getText());
+                prepare.setString(2, addMovie_genre.getText());
+                prepare.setInt(3, Integer.parseInt(addMovie_duration.getText()));
+                prepare.setInt(4, Integer.parseInt(addMovie_year.getText()));
+                prepare.setString(5, URI);
+                prepare.setInt(6, getData.movieID);
+                prepare.execute();
 
-                    clearAddMovie();
-                    showAddMovieList();
-                    connect.close();
-                }
+                successAlert("Successfully update");
+
+                clearAddMovie();
+                showAddMovieList();
+                connect.close();
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -679,7 +679,9 @@ public class dashboardController implements Initializable {
                     e.printStackTrace();
                 }
             }
+
             clearAddMovie();
+            showDashboardSummary();
             showAddMovieList();
         }
     }
@@ -692,6 +694,7 @@ public class dashboardController implements Initializable {
         addMovie_year.setText("");
         addMovie_image.setImage(null);
         getData.clear();
+        addAddMovie.setDisable(false);
     }
 
     // SEARCH////////////////////////////////////////////////////////////////
@@ -901,7 +904,7 @@ public class dashboardController implements Initializable {
                     connect.close();
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                emptyAlert(e.getMessage());
             }
         }
     }
@@ -940,7 +943,7 @@ public class dashboardController implements Initializable {
                     connect.close();
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                emptyAlert(e.getMessage());
             }
         }
     }
@@ -1001,10 +1004,10 @@ public class dashboardController implements Initializable {
                             seat.getStyleClass().removeAll("chooseSeat");// unreserve the seat
                             if (vip.contains(seat.getText())) {
                                 booking_total.setText(Integer.parseInt(booking_total.getText().replaceAll("[^\\d]", ""))
-                                        - 75000 + "VND");
+                                        - 75000 + " VND");
                             } else {
                                 booking_total.setText(Integer.parseInt(booking_total.getText().replaceAll("[^\\d]", ""))
-                                        - 70000 + "VND");
+                                        - 70000 + " VND");
                             }
                             seatSet.remove(seat.getId());
                         } else {
@@ -1012,10 +1015,10 @@ public class dashboardController implements Initializable {
                             seat.getStyleClass().removeAll("seat");// reserve the seat
                             if (vip.contains(seat.getText())) {
                                 booking_total.setText(Integer.parseInt(booking_total.getText().replaceAll("[^\\d]", ""))
-                                        + 75000 + "VND");
+                                        + 75000 + " VND");
                             } else {
                                 booking_total.setText(Integer.parseInt(booking_total.getText().replaceAll("[^\\d]", ""))
-                                        + 70000 + "VND");
+                                        + 70000 + " VND");
                             }
                             seatSet.add(seat.getId());
                         }
@@ -1045,7 +1048,7 @@ public class dashboardController implements Initializable {
         booking_dateCol.setCellValueFactory(new PropertyValueFactory<>("dateShow"));
         booking_roomCol.setCellValueFactory(new PropertyValueFactory<>("roomID"));
 
-        booking_table.setItems(listScreening);
+        booking_table.setItems(listScreeningToday);
     }
 
     // SEARCH BOOKING
@@ -1092,6 +1095,8 @@ public class dashboardController implements Initializable {
         image = new Image(URI, 177, 203, false, true);
         booking_image.setImage(image);
 
+        screenLine.setVisible(true);
+        screenLabel.setVisible(true);
         createRoom();
     }
 
@@ -1182,6 +1187,7 @@ public class dashboardController implements Initializable {
                 } catch (JRException e) { e.printStackTrace();}
 
                 createRoom();
+                showDashboardSummary();
                 showCustomer1();
                 showCustomer2();
             } catch (Exception e) {

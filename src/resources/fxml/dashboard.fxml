@@ -19,6 +19,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1200.0" stylesheets="@../css/dashboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uit.controllers.dashboardController">
@@ -262,8 +263,9 @@
                         <TableView fx:id="dashboard_table" layoutY="58.0" prefHeight="366.0" prefWidth="810.0" styleClass="dash-table">
                           <columns>
                             <TableColumn fx:id="dashboard_titleCol" editable="false" prefWidth="430.4071350097656" text="Title" />
-                            <TableColumn fx:id="dashboard_timeCol" minWidth="0.0" prefWidth="263.199951171875" text="Time" />
-                            <TableColumn fx:id="dashboard_statusCol" editable="false" minWidth="0.0" prefWidth="116.00006103515625" text="Status " />
+                            <TableColumn fx:id="dashboard_timeCol" minWidth="0.0" prefWidth="228.800048828125" text="Time" />
+                            <TableColumn fx:id="dashboard_statusCol" editable="false" minWidth="0.0" prefWidth="101.59991455078125" text="Status " />
+                              <TableColumn fx:id="dashboard_roomCol" prefWidth="48.0" resizable="false" text="Room" />
                           </columns>
                         </TableView>
                      </children>
@@ -329,7 +331,7 @@
                         </AnchorPane>
                         <VBox layoutX="14.0" layoutY="507.0" prefHeight="184.0" prefWidth="239.0" spacing="15.0">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#insertAddMovie" prefHeight="0.0" prefWidth="239.0" styleClass="addMovieBtn" text="Add">
+                              <Button fx:id="addAddMovie" mnemonicParsing="false" onAction="#insertAddMovie" prefHeight="0.0" prefWidth="239.0" styleClass="addMovieBtn" text="Add">
                                  <font>
                                     <Font name="Segoe UI Semibold" size="18.0" />
                                  </font>
@@ -554,8 +556,10 @@
                               </DropShadow>
                            </effect>
                         </Button>
-                        <GridPane fx:id="booking_seat" hgap="10.0" layoutX="224.0" layoutY="74.0" prefHeight="203.0" prefWidth="242.0" vgap="10.0">
+                        <GridPane fx:id="booking_seat" hgap="10.0" layoutX="240.0" layoutY="100.0" prefHeight="203.0" prefWidth="218.0" vgap="10.0">
                               </GridPane>
+                        <Line fx:id="screenLine" endX="107.60003662109375" layoutX="341.0" layoutY="69.0" startX="-100.0" strokeWidth="3.0" visible="false" />
+                        <Label fx:id="screenLabel" layoutX="322.0" layoutY="72.0" text="SCREEN" visible="false" />
                      </children>
                   </AnchorPane>
                   <AnchorPane layoutX="266.0" layoutY="13.0" prefHeight="214.0" prefWidth="690.0" styleClass="bg-white">
