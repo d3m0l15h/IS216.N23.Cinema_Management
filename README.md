@@ -2,22 +2,22 @@
 
 ## Overview
 
-This is a project in our course "IS216" - Java programming at UIT. With the particitipating of:
+This is a project in our course "IS216" - Java programming at UIT. With the participation of:
 
 | StudentNo | Full name      |
 | --------- | -------------- |
 | 21521930  | Đào Tiến Đạt   |
 | 21520673  | Phan Chí Cường |
 
-Thanks Master. Vu Minh Sang for assisting. Our app have following functions:
+Thanks, Master. Vu Minh Sang for assisting. Our app has the following functions:
 
-Support cinemas in managing their profit by showing sales figures
+* Support cinemas in managing their profit by showing sales figures
 
-Automate the ticket selling process
+* Automate the ticket-selling process
 
-Automate the manage film screening process
+* Automate the managed film screening process
 
-Manage customer information
+* Manage customer information
 
 ## Installation
 
